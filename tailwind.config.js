@@ -9,6 +9,9 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['ProximaNova-Regular', 'System', 'ui-sans-serif', 'system-ui'],
+      },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',

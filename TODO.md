@@ -1,8 +1,7 @@
 - [ x ] Installer nativewind
 - [ x ] Importer logos de l'app
-- [  ] Mettre en place la charte graphique et les couleurs etc
-- [  ] Connecter un gestionnaire d'assets d'icones etc
-- [  ] Importer la font -- PROXIMA NOVA
+- [ x ] Mettre en place la charte graphique et les couleurs etc
+- [ x ] Importer la font -- PROXIMA NOVA
 - [  ] Créer et connecter supabase
 - [  ] Systeme de login sign up
 - [  ] Faire un systeme de CI/CD pour que le code soit bien propre et testé a chaque fois
