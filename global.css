@@ -2,4 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 0 0 0;
+    --accent: 255 189 89;
+    color-scheme: light;
+  }
 
+  .dark {
+    --background: 0 0 0;
+    --foreground: 255 255 255;
+    --accent: 255 189 89;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+  }
+}
