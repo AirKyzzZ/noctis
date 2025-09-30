@@ -3,8 +3,8 @@
 - [ x ] Mettre en place la charte graphique et les couleurs etc
 - [ x ] Importer la font -- PROXIMA NOVA
 - [ x ] Créer et connecter supabase
-- [  ] Systeme de login sign up quand l'utilisateur entre pour la première fois sur l'application // welcome screen avec le logo en full size au centre et des petits effets comme des confettis et un texte en guide de courte introduction l'utilisateur doit avoir un nom un prénom une adresse mail et une photo il pourra ajouter d'autres infos pour compléter son profil plus tard
 - [  ] Faire un systeme de CI/CD github actions pour que le code soit bien propre et testé a chaque fois
+- [  ] Systeme de login sign up quand l'utilisateur entre pour la première fois sur l'application // welcome screen avec le logo en full size au centre et des petits effets comme des confettis et un texte en guide de courte introduction l'utilisateur doit avoir un nom un prénom une adresse mail et une photo il pourra ajouter d'autres infos pour compléter son profil plus tard
 - [  ] Faire une navbar en bas qui est mise dans le layout dans un component responsive avec une bonne architecture
 - [  ] Faire un systeme de gestion de reve avec les champs demandés : Date et Heure du rêve
 Type de rêve (cauchemar, rêve lucide, rêve ordinaire, etc.)
@@ -25,7 +25,5 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [  ] Connecter une api 100% gratuite qui permet de comprendre les reves et de les interpreter pour donner un retour / sens a l'utilisateur
 - [  ] Possibilité de changer la langue mais celle par défaut est le francais il y a aussi de l'anglais disponible pour l'instant
 - [  ] Possibilité d'exporter les reves
-
-Main prompt 1 :
-
-You are my senior competent code assistant 
+- [  ] Faire le readme pour bien expliquer le projet
+- [  ] Faire une pres canva pour présentation orale bien détaillée sur l'app
