@@ -1,5 +1,5 @@
-- [  ] Installer nativewind
-- [  ] Importer logos de l'app
+- [ x ] Installer nativewind
+- [ x ] Importer logos de l'app
 - [  ] Mettre en place la charte graphique et les couleurs etc
 - [  ] Connecter un gestionnaire d'assets d'icones etc
 - [  ] Importer la font -- PROXIMA NOVA
