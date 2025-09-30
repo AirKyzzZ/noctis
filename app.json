@@ -28,6 +28,10 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "supabaseUrl": "",
+      "supabaseAnonKey": ""
+    }
   }
 }
