@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import '@testing-library/jest-native/extend-expect';
 
 // Silence nativewind className warnings in tests
 // eslint-disable-next-line @typescript-eslint/no-empty-function
