@@ -19,13 +19,11 @@ jest.mock('expo-font', () => ({
 
 // Mock @expo/vector-icons to simple passthrough components to avoid font lookups
 jest.mock('@expo/vector-icons', () => {
-  const React = require('react');
-  const { Text } = require('react-native');
-  const FakeIcon = ({ name }: { name?: string }) => React.createElement(Text, null, name ?? 'icon');
+  const Noop = (..._args: any[]) => null;
   return new Proxy(
     {},
     {
-      get: () => FakeIcon,
+      get: () => Noop,
     }
   );
 });
