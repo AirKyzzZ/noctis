@@ -1,13 +1,23 @@
-import 'whatwg-fetch';
-import '@testing-library/jest-native/extend-expect';
+// Test environment setup
 
 // Silence nativewind className warnings in tests
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 // Mock expo-constants to avoid accessing native modules
 jest.mock('expo-constants', () => ({
   expoConfig: { extra: { supabaseUrl: '', supabaseAnonKey: '' } },
+}));
+
+// Mock expo-font to prevent requiring native modules like expo-asset
+jest.mock('expo-font', () => ({
+  useFonts: () => [true],
+}));
+
+// Mock react-native-safe-area-context to avoid provider requiring native metrics
+jest.mock('react-native-safe-area-context', () => ({
+  SafeAreaProvider: ({ children }) => children,
+  SafeAreaView: ({ children }) => children,
+  useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
 
 
