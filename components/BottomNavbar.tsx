@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable, useColorScheme } from 'react-native';
+import { View, Pressable, useColorScheme, Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
@@ -51,36 +51,85 @@ export default function BottomNavbar(props: BottomNavbarProps) {
           <View className="flex-row items-center justify-between">
             {tabs.map((tab) => {
               const isActive = tab.key === activeKey;
-              const circleFillColor = isActive ? (isDark ? '#000000' : '#FFFFFF') : 'transparent';
-              const iconColor = isActive ? (isDark ? '#FFFFFF' : '#000000') : inactiveIconColor;
-
               return (
-                <Pressable
+                <TabButton
                   key={tab.key}
-                  accessibilityRole="button"
-                  accessibilityLabel={tab.label ?? tab.key}
+                  tab={tab}
+                  isActive={isActive}
+                  isDark={isDark}
+                  inactiveIconColor={inactiveIconColor}
                   onPress={() => onTabPress?.(tab.key)}
-                  hitSlop={12}
-                  className="items-center justify-center rounded-full"
-                  style={{ width: 56, height: 40 }}
-                >
-                  <View
-                    className="items-center justify-center rounded-full"
-                    style={{
-                      width: 40,
-                      height: 40,
-                      backgroundColor: circleFillColor,
-                    }}
-                  >
-                    <Feather name={tab.icon} size={24} color={iconColor} />
-                  </View>
-                </Pressable>
+                />
               );
             })}
           </View>
         </View>
       </View>
     </View>
+  );
+}
+
+type TabButtonProps = {
+  tab: BottomTabItem;
+  isActive: boolean;
+  isDark: boolean;
+  inactiveIconColor: string;
+  onPress: () => void;
+};
+
+function TabButton({ tab, isActive, isDark, inactiveIconColor, onPress }: TabButtonProps) {
+  const scale = React.useRef(new Animated.Value(isActive ? 1 : 0.98)).current;
+
+  React.useEffect(() => {
+    if (isActive) {
+      Animated.sequence([
+        Animated.spring(scale, {
+          toValue: 1.15,
+          useNativeDriver: true,
+          friction: 5,
+          tension: 140,
+        }),
+        Animated.spring(scale, {
+          toValue: 1,
+          useNativeDriver: true,
+          friction: 7,
+          tension: 130,
+        }),
+      ]).start();
+    } else {
+      Animated.spring(scale, {
+        toValue: 0.98,
+        useNativeDriver: true,
+        friction: 7,
+        tension: 130,
+      }).start();
+    }
+  }, [isActive, scale]);
+
+  const circleFillColor = isActive ? (isDark ? '#000000' : '#FFFFFF') : 'transparent';
+  const iconColor = isActive ? (isDark ? '#FFFFFF' : '#000000') : inactiveIconColor;
+
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={tab.label ?? tab.key}
+      onPress={onPress}
+      hitSlop={12}
+      className="items-center justify-center rounded-full"
+      style={{ width: 56, height: 40 }}
+    >
+      <Animated.View
+        className="items-center justify-center rounded-full"
+        style={{
+          width: 40,
+          height: 40,
+          backgroundColor: circleFillColor,
+          transform: [{ scale }],
+        }}
+      >
+        <Feather name={tab.icon} size={24} color={iconColor} />
+      </Animated.View>
+    </Pressable>
   );
 }
 
