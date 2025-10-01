@@ -15,8 +15,8 @@ jest.mock('expo-font', () => ({
 
 // Mock react-native-safe-area-context to avoid provider requiring native metrics
 jest.mock('react-native-safe-area-context', () => ({
-  SafeAreaProvider: ({ children }) => children,
-  SafeAreaView: ({ children }) => children,
+  SafeAreaProvider: ({ children }: { children: any }) => children,
+  SafeAreaView: ({ children }: { children: any }) => children,
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
 
