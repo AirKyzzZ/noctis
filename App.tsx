@@ -3,10 +3,9 @@ import { Text, TextInput, View, Pressable, Alert } from 'react-native';
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import './global.css';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import supabase from './supabase/client';
-import BottomNavbar from './components/BottomNavbar';
-import type { BottomTabItem } from './components/BottomNavbar';
+import Layout from './components/Layout';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -92,7 +91,8 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 items-center justify-center bg-background px-6">
-        {!userEmail ? (
+        <Layout>
+          {!userEmail ? (
           <View className="w-full max-w-md gap-4">
             <Text className="text-2xl font-bold text-blue-500 mb-2">Créer un compte / Se connecter</Text>
             <TextInput
@@ -144,31 +144,10 @@ export default function App() {
               <Text className="text-white font-bold">Se déconnecter</Text>
             </Pressable>
           </View>
-        )}
-        <StatusBar style="auto" />
-        <BottomTabsDemo />
+          )}
+          <StatusBar style="auto" />
+        </Layout>
       </SafeAreaView>
     </SafeAreaProvider>
-  );
-}
-
-function BottomTabsDemo() {
-  const [active, setActive] = useState('home');
-  const tabs = useMemo<BottomTabItem[]>(
-    () => [
-      { key: 'home', icon: 'home' as const, label: 'Accueil' },
-      { key: 'search', icon: 'search' as const, label: 'Recherche' },
-      { key: 'bell', icon: 'bell' as const, label: 'Notifications' },
-      { key: 'user', icon: 'user' as const, label: 'Profil' },
-    ],
-    []
-  );
-
-  return (
-    <BottomNavbar
-      tabs={tabs}
-      activeKey={active}
-      onTabPress={setActive}
-    />
   );
 }
