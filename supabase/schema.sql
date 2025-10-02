@@ -1,4 +1,9 @@
--- Profiles table linked to auth.users
+-- ================================================
+-- PROFILES TABLE
+-- ================================================
+-- Drop table if you need a fresh start (comment out in production)
+-- drop table if exists public.profiles cascade;
+
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   username text unique,
@@ -11,9 +16,12 @@ create table if not exists public.profiles (
   updated_at timestamp with time zone default now() not null
 );
 
+-- Enable RLS
 alter table public.profiles enable row level security;
 
--- RLS policies: users can manage their own profile
+-- ================================================
+-- RLS POLICIES FOR PROFILES
+-- ================================================
 drop policy if exists "Profiles are viewable by the owner" on public.profiles;
 create policy "Profiles are viewable by the owner"
   on public.profiles for select
@@ -27,9 +35,13 @@ create policy "Users can insert their own profile"
 drop policy if exists "Users can update their own profile" on public.profiles;
 create policy "Users can update their own profile"
   on public.profiles for update
-  using (auth.uid() = id);
+  using (auth.uid() = id)
+  with check (auth.uid() = id);
 
--- Trigger to create an empty profile row on new auth user
+-- ================================================
+-- AUTOMATIC PROFILE CREATION TRIGGER
+-- ================================================
+-- This trigger automatically creates a profile when a new user signs up
 create or replace function public.handle_new_user()
 returns trigger as $$
 begin
@@ -46,7 +58,9 @@ create trigger on_auth_user_created
   for each row execute function public.handle_new_user();
 
 
--- Dreams table
+-- ================================================
+-- DREAMS TABLE
+-- ================================================
 create table if not exists public.dreams (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users (id) on delete cascade,
@@ -67,8 +81,12 @@ create table if not exists public.dreams (
   updated_at timestamptz not null default now()
 );
 
+-- Enable RLS
 alter table public.dreams enable row level security;
 
+-- ================================================
+-- RLS POLICIES FOR DREAMS
+-- ================================================
 drop policy if exists "Dreams are viewable by owner" on public.dreams;
 create policy "Dreams are viewable by owner"
   on public.dreams for select
@@ -89,10 +107,16 @@ create policy "Users can delete their own dreams"
   on public.dreams for delete
   using (auth.uid() = user_id);
 
+-- ================================================
+-- INDEXES FOR PERFORMANCE
+-- ================================================
 create index if not exists dreams_user_id_idx on public.dreams (user_id);
 create index if not exists dreams_occurred_at_idx on public.dreams (occurred_at desc);
 create index if not exists dreams_tags_gin on public.dreams using gin (tags);
 
+-- ================================================
+-- SEARCH VIEW
+-- ================================================
 -- Search materialized view (simple concatenation for LIKE queries)
 create or replace view public.dreams_searchable as
   select
@@ -125,7 +149,9 @@ create or replace view public.dreams_by_day as
 
 alter view public.dreams_by_day set (security_invoker = on);
 
--- User settings table
+-- ================================================
+-- USER SETTINGS TABLE
+-- ================================================
 create table if not exists public.user_settings (
   user_id uuid primary key references auth.users (id) on delete cascade,
   language text default 'fr' check (language in ('fr','en')),
@@ -136,8 +162,12 @@ create table if not exists public.user_settings (
   updated_at timestamptz not null default now()
 );
 
+-- Enable RLS
 alter table public.user_settings enable row level security;
 
+-- ================================================
+-- RLS POLICIES FOR USER SETTINGS
+-- ================================================
 drop policy if exists "Settings are viewable by owner" on public.user_settings;
 create policy "Settings are viewable by owner"
   on public.user_settings for select
@@ -153,7 +183,10 @@ create policy "Users can update their own settings"
   on public.user_settings for update
   using (auth.uid() = user_id);
 
--- Updated timestamps triggers
+-- ================================================
+-- UPDATED TIMESTAMPS TRIGGERS
+-- ================================================
+-- Automatically update the updated_at timestamp on row updates
 create or replace function public.set_updated_at()
 returns trigger as $$
 begin

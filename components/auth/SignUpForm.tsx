@@ -69,14 +69,19 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess, onLoginPress 
       if (signUpError) throw signUpError;
 
       if (authData.user) {
+        // Wait a moment for the trigger to create the profile
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
         // Update profile with additional information
-        const { error: profileError } = await supabase.from('profiles').upsert({
-          id: authData.user.id,
-          first_name: firstName.trim(),
-          last_name: lastName.trim(),
-          email: email.trim(),
-          avatar_url: photoUri,
-        });
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .update({
+            first_name: firstName.trim(),
+            last_name: lastName.trim(),
+            email: email.trim(),
+            avatar_url: photoUri,
+          })
+          .eq('id', authData.user.id);
 
         if (profileError) {
           console.error('Profile creation error:', profileError);
