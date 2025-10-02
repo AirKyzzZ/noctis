@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { View } from 'react-native';
-import BottomNavbar, { type BottomTabItem } from './BottomNavbar';
+import BottomNavbar, { type BottomTabItem } from '../../components/BottomNavbar';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -27,5 +27,6 @@ export default function Layout({ children }: LayoutProps) {
     </View>
   );
 }
+
 
 

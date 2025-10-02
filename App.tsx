@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import './global.css';
 import { useEffect, useState } from 'react';
 import supabase from './supabase/client';
-import Layout from './components/Layout';
+import Layout from './app/(tabs)/_layout';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

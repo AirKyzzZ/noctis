@@ -4,9 +4,9 @@
 - [ x ] Importer la font -- PROXIMA NOVA
 - [ x ] Créer et connecter supabase
 - [ x ] Faire un systeme de CI/CD github actions pour que le code soit bien propre et testé a chaque fois
+- [ x ] Faire une navbar en bas qui est mise dans le layout dans un component responsive avec une bonne architecture
 - [  ] Faire un light et un dark theme qui peut switcher juste échanger background et foreground pas besoin de modifier la couleur d'accent
 - [  ] Systeme de login sign up quand l'utilisateur entre pour la première fois sur l'application // welcome screen avec le logo en full size au centre et des petits effets comme des confettis et un texte en guide de courte introduction l'utilisateur doit avoir un nom un prénom une adresse mail et une photo il pourra ajouter d'autres infos pour compléter son profil plus tard
-- [ x ] Faire une navbar en bas qui est mise dans le layout dans un component responsive avec une bonne architecture
 - [  ] Implémenter le logo en tant qu'icone de l'application
 - [  ] Faire un systeme de gestion de reve avec les champs demandés : Date et Heure du rêve
 Type de rêve (cauchemar, rêve lucide, rêve ordinaire, etc.)
