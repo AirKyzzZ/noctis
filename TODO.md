@@ -29,8 +29,3 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [  ] Possibilité d'exporter les reves
 - [  ] Faire le readme pour bien expliquer le projet
 - [  ] Faire une pres canva pour présentation orale bien détaillée sur l'app
-
-BTS //
-
-- [  ] Faire un déploiment app windows linux macos
-- [  ] Doc complet bts

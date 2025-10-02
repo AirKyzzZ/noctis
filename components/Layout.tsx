@@ -20,7 +20,9 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <View className="flex-1">
-      {children}
+      <View className="flex-1 items-center justify-center">
+        {children}
+      </View>
       <BottomNavbar tabs={tabs} activeKey={active} onTabPress={setActive} />
     </View>
   );

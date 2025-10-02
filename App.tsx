@@ -90,11 +90,11 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex-1 items-center justify-center bg-background px-6">
+      <SafeAreaView className="flex-1 justify-center bg-background">
         <Layout>
           {!userEmail ? (
-          <View className="w-full max-w-md gap-4">
-            <Text className="text-2xl font-bold text-blue-500 mb-2">Créer un compte / Se connecter</Text>
+          <View className="gap-4" style={{ width: '100%', maxWidth: 520, alignSelf: 'center', paddingHorizontal: 24 }}>
+            <Text className="text-2xl font-bold text-blue-500 mb-2 text-center">Créer un compte / Se connecter</Text>
             <TextInput
               className="w-full rounded-md border border-gray-300 px-3 py-3"
               placeholder="Email"
@@ -133,7 +133,7 @@ export default function App() {
             </Text>
           </View>
         ) : (
-          <View className="items-center">
+          <View className="items-center" style={{ alignSelf: 'center', paddingHorizontal: 24, width: '100%', maxWidth: 520 }}>
             <Text className="text-2xl font-bold mb-2">Bienvenue 👋</Text>
             <Text className="text-gray-700 mb-6">Connecté en tant que {userEmail}</Text>
             <Pressable
