@@ -31,8 +31,22 @@ const config: ExpoConfig = {
   },
   web: {
     favicon: './assets/favicon.png',
+    bundler: 'metro',
   },
-  plugins: ['expo-font'],
+  scheme: 'noctis',
+  plugins: [
+    'expo-font',
+    'expo-router',
+    [
+      'expo-image-picker',
+      {
+        photosPermission: 'L\'application a besoin d\'accéder à vos photos pour définir votre photo de profil.',
+      },
+    ],
+  ],
+  experiments: {
+    typedRoutes: true,
+  },
   extra: {
     // These are safe to expose in the client bundle. Do NOT put service_role here.
     supabaseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL || '',

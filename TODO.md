@@ -7,6 +7,8 @@
 - [ x ] Faire une navbar en bas qui est mise dans le layout dans un component responsive avec une bonne architecture
 - [ x ] Implémenter le logo en tant qu'icone de l'application
 - [  ] Faire un light et un dark theme qui peut switcher juste échanger background et foreground pas besoin de modifier la couleur d'accent
+- [  ] Add the fact that the keyboard dosn't hide anything and puts the screenup and i can dismiss the keyboard bu clicking out of it
+- [  ] Fix the navbar position to make it sticky at the bottom of the screen and be responsive 
 - [  ] Systeme de login sign up quand l'utilisateur entre pour la première fois sur l'application // welcome screen avec le logo en full size au centre et des petits effets comme des confettis et un texte en guide de courte introduction l'utilisateur doit avoir un nom un prénom une adresse mail et une photo il pourra ajouter d'autres infos pour compléter son profil plus tard
 - [  ] Faire un systeme de gestion de reve avec les champs demandés : Date et Heure du rêve
 Type de rêve (cauchemar, rêve lucide, rêve ordinaire, etc.)

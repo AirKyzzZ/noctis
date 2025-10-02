@@ -1,30 +1,65 @@
-import React, { useMemo, useState } from 'react';
-import { View } from 'react-native';
-import BottomNavbar, { type BottomTabItem } from '../components/BottomNavbar';
+import React, { useEffect } from 'react';
+import { Slot, useRouter, useSegments } from 'expo-router';
+import { AuthProvider, useAuth } from '../providers/AuthContext';
+import { useFonts } from 'expo-font';
+import { Text, TextInput, View } from 'react-native';
+import '../global.css';
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
+function RootLayoutNav() {
+  const { session, loading } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
 
-export default function Layout({ children }: LayoutProps) {
-  const [active, setActive] = useState('home');
-  const tabs = useMemo<BottomTabItem[]>(
-    () => [
-      { key: 'home', icon: 'home' as const, label: 'Accueil' },
-      { key: 'search', icon: 'search' as const, label: 'Recherche' },
-      { key: 'bell', icon: 'bell' as const, label: 'Notifications' },
-      { key: 'user', icon: 'user' as const, label: 'Profil' },
-    ],
-    []
-  );
+  useEffect(() => {
+    if (loading) return;
+
+    const inAuthGroup = segments[0] === '(auth)';
+
+    if (!session && !inAuthGroup) {
+      // Redirect to welcome if not authenticated
+      router.replace('/(auth)/welcome');
+    } else if (session && inAuthGroup) {
+      // Redirect to tabs if authenticated
+      router.replace('/(tabs)');
+    }
+  }, [session, loading, segments]);
+
+  return <Slot />;
+}
+
+export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    'ProximaNova-Regular': require('../assets/ProximaNova/proximanova_regular.ttf'),
+    'ProximaNova-Bold': require('../assets/ProximaNova/proximanova_bold.otf'),
+    'ProximaNova-Light': require('../assets/ProximaNova/proximanova_light.otf'),
+    'ProximaNova-Black': require('../assets/ProximaNova/proximanova_black.otf'),
+    'ProximaNova-ExtraBold': require('../assets/ProximaNova/proximanova_extrabold.otf'),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      (Text as any).defaultProps = (Text as any).defaultProps || {};
+      (Text as any).defaultProps.style = [
+        (Text as any).defaultProps.style,
+        { fontFamily: 'ProximaNova-Regular' },
+      ];
+
+      (TextInput as any).defaultProps = (TextInput as any).defaultProps || {};
+      (TextInput as any).defaultProps.style = [
+        (TextInput as any).defaultProps.style,
+        { fontFamily: 'ProximaNova-Regular' },
+      ];
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
-    <View className="flex-1">
-      <View className="flex-1 items-center justify-center">
-        {children}
-      </View>
-      <BottomNavbar tabs={tabs} activeKey={active} onTabPress={setActive} />
-    </View>
+    <AuthProvider>
+      <RootLayoutNav />
+    </AuthProvider>
   );
 }
 

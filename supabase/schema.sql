@@ -2,7 +2,10 @@
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   username text unique,
-  full_name text,
+  first_name text,
+  last_name text,
+  full_name text generated always as (first_name || ' ' || last_name) stored,
+  email text,
   avatar_url text,
   created_at timestamp with time zone default now() not null,
   updated_at timestamp with time zone default now() not null
