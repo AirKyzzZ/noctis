@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Logo } from '../../components/auth/Logo';
 import { ConfettiEffect } from '../../components/auth/ConfettiEffect';
 import { IntroText } from '../../components/auth/IntroText';
@@ -46,7 +45,7 @@ export default function WelcomeScreen() {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={['#1e3a8a', '#3b82f6', '#60a5fa']} style={styles.gradient}>
+      <View className="flex-1 bg-white">
         <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
           {showConfetti && <ConfettiEffect />}
           <View className="flex-1 justify-center items-center">
@@ -58,16 +57,13 @@ export default function WelcomeScreen() {
             />
           </View>
         </SafeAreaView>
-      </LinearGradient>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  gradient: {
     flex: 1,
   },
   safeArea: {

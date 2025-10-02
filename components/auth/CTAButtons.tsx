@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Pressable, Text } from 'react-native';
+import { colors } from '../../constants/colors';
 
 interface CTAButtonsProps {
   onLoginPress: () => void;
@@ -11,15 +12,16 @@ export const CTAButtons: React.FC<CTAButtonsProps> = ({ onLoginPress, onSignUpPr
     <View className="px-8 w-full gap-4">
       <Pressable
         onPress={onSignUpPress}
-        className="bg-blue-600 py-4 rounded-xl active:opacity-80"
+        className="py-4 rounded-xl active:opacity-80"
+        style={{ backgroundColor: colors.accent }}
       >
-        <Text className="text-white text-center font-bold text-lg">Créer un compte</Text>
+        <Text className="text-black text-center font-bold text-lg">Créer un compte</Text>
       </Pressable>
       <Pressable
         onPress={onLoginPress}
-        className="bg-white/20 py-4 rounded-xl active:opacity-80 border border-white/30"
+        className="bg-gray-100 py-4 rounded-xl active:opacity-80 border border-gray-300"
       >
-        <Text className="text-white text-center font-bold text-lg">Se connecter</Text>
+        <Text className="text-black text-center font-bold text-lg">Se connecter</Text>
       </Pressable>
     </View>
   );
