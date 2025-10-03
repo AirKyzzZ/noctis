@@ -14,7 +14,7 @@ const config: ExpoConfig = {
   userInterfaceStyle: 'light',
   newArchEnabled: true,
   splash: {
-    image: './assets/splash-icon.png',
+    image: './assets/white.png',
     resizeMode: 'contain',
     backgroundColor: '#ffffff',
   },
@@ -23,14 +23,14 @@ const config: ExpoConfig = {
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
+      foregroundImage: './assets/white.png',
       backgroundColor: '#ffffff',
     },
     edgeToEdgeEnabled: true,
     predictiveBackGestureEnabled: false,
   },
   web: {
-    favicon: './assets/favicon.png',
+    favicon: './assets/white.png',
     bundler: 'metro',
   },
   scheme: 'noctis',

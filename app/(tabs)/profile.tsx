@@ -96,7 +96,7 @@ export default function ProfileScreen() {
               )}
               <Pressable
                 onPress={handlePickImage}
-                className="absolute bottom-0 right-0 bg-black rounded-full p-3 active:opacity-80"
+                className="absolute bottom-0 right-0 bg-accent rounded-full p-3 active:opacity-80"
                 style={{
                   shadowColor: '#000',
                   shadowOpacity: 0.2,
@@ -142,7 +142,7 @@ export default function ProfileScreen() {
             <Pressable
               onPress={handleSaveProfile}
               disabled={isSaving}
-              className="bg-black py-4 rounded-xl active:opacity-80 mt-2"
+              className="bg-accent py-4 rounded-xl active:opacity-80 mt-2"
             >
               {isSaving ? (
                 <ActivityIndicator color="white" />

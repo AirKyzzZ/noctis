@@ -26,7 +26,7 @@ export default function WelcomeScreen() {
                 className="py-4 rounded-xl active:opacity-80"
                 style={{ backgroundColor: colors.accent }}
               >
-                <Text className="text-black text-center font-bold text-lg">
+                <Text className="text-white text-center font-bold text-lg">
                   Enter App
                 </Text>
               </Pressable>
