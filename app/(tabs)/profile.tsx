@@ -24,7 +24,7 @@ export default function ProfileScreen() {
     try {
       await updateProfile({ name, surname });
       Alert.alert('Success', 'Profile updated successfully!');
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to update profile. Please try again.');
     } finally {
       setIsSaving(false);
