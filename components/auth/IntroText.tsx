@@ -5,11 +5,11 @@ export const IntroText: React.FC = () => {
   return (
     <View className="px-8 mb-8">
       <Text className="text-black text-3xl font-bold text-center mb-4">
-        Bienvenue sur Noctis
+        Welcome to Noctis
       </Text>
       <Text className="text-black/70 text-center text-base leading-6">
-        Capturez vos rêves, explorez votre inconscient et découvrez les patterns cachés de votre
-        vie nocturne. Votre journal de rêves personnel et intelligent.
+      Capture your dreams, explore your subconscious, and discover the hidden patterns of your
+      nightlife. Your personal, intelligent dream journal.
       </Text>
     </View>
   );
