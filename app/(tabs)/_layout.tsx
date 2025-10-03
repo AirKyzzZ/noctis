@@ -60,6 +60,7 @@ export default function TabsLayout() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: { display: 'none' },
+          animation: 'shift',
         }}
       >
         <Tabs.Screen name="index" />
