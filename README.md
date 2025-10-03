@@ -1,37 +1,27 @@
 # Noctis 🌙
 
-A beautiful dream journal application built with React Native, Expo, and Supabase.
+A beautiful dream journal application built with React Native and Expo. All data is stored locally on your device.
 
 ## ✨ Features
 
 ### 🎨 Beautiful Welcome Screen
 - Animated confetti effect on first load
 - Gradient background with elegant logo
-- Smooth transitions between auth screens
+- Simple "Enter App" button to get started
 - Introductory text explaining the app
 
-### 🔐 Complete Authentication System
-- **Welcome Screen**: First impression with logo and call-to-action buttons
-- **Sign Up**: Create account with:
-  - First name and last name (required)
-  - Email address (required)
-  - Password with confirmation (required, min 6 characters)
-  - Profile photo (optional)
-- **Login**: Simple email/password authentication
-- **Protected Routes**: Automatic navigation based on auth state
-
-### 👤 User Profile Management
-- View and manage profile information
-- First name, last name, email display
-- Optional profile photo
-- Secure sign-out functionality
+### 💾 Local-First Architecture
+- **No backend required**: All data stored locally using AsyncStorage
+- **Offline-first**: Works completely offline
+- **Privacy-focused**: Your data never leaves your device
+- **Simple entry**: One tap to start using the app
 
 ### 🏗️ Modern Architecture
 - **File-based routing** with Expo Router
 - **Component-based structure** for maintainability
 - **TypeScript** for type safety
 - **NativeWind (Tailwind CSS)** for styling
-- **Supabase** for authentication and database
+- **AsyncStorage** for local data persistence
 - **Context API** for state management
 
 ## 📁 Project Structure
@@ -51,22 +41,15 @@ noctis/
 │   └── _layout.tsx              # Root layout
 │
 ├── components/                   # Reusable components
-│   ├── auth/                    # Auth components
+│   ├── auth/                    # Welcome screen components
 │   │   ├── Logo.tsx            # App logo component
 │   │   ├── ConfettiEffect.tsx  # Animated confetti
 │   │   ├── IntroText.tsx       # Welcome text
-│   │   ├── CTAButtons.tsx      # Call-to-action buttons
-│   │   ├── LoginForm.tsx       # Login form
-│   │   ├── SignUpForm.tsx      # Signup form with photo
 │   │   └── index.ts            # Component exports
 │   └── BottomNavbar.tsx         # Bottom navigation
 │
 ├── providers/                    # Context providers
-│   └── AuthContext.tsx          # Authentication context
-│
-├── supabase/                     # Supabase configuration
-│   ├── client.ts                # Supabase client setup
-│   └── schema.sql               # Database schema
+│   └── AuthContext.tsx          # App state context
 │
 ├── utils/                        # Utility functions
 │   └── imagePicker.ts           # Image picker helper
@@ -81,7 +64,6 @@ noctis/
 - Node.js (v16 or later)
 - npm or yarn
 - Expo CLI
-- Supabase account
 
 ### Installation
 
@@ -93,30 +75,16 @@ noctis/
 
 2. **Install dependencies**
    
-   If you encounter npm cache permission errors, see [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) for solutions.
-   
    ```bash
    npm install
    ```
 
-3. **Set up Supabase**
-   
-   - Create a new Supabase project
-   - Run the SQL from `supabase/schema.sql` in the SQL Editor
-   - Get your project URL and anon key
-
-4. **Configure environment variables**
-   
-   Create a `.env` file:
-   ```env
-   EXPO_PUBLIC_SUPABASE_URL=your_supabase_project_url
-   EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-
-5. **Start the development server**
+3. **Start the development server**
    ```bash
    npm start
    ```
+
+That's it! No backend setup, no database configuration, no environment variables needed.
 
 For detailed setup instructions, see [SETUP.md](./SETUP.md).
 
@@ -136,15 +104,12 @@ npm run android
 npm run web
 ```
 
-## 🗄️ Database Schema
+## 💾 Local Storage
 
-The app uses the following main tables:
-
-- **profiles**: User profile information (first_name, last_name, email, avatar_url)
-- **dreams**: Dream journal entries
-- **user_settings**: User preferences and settings
-
-See `supabase/schema.sql` for the complete schema with RLS policies.
+All app data is stored locally using AsyncStorage:
+- App state (whether the user has entered the app)
+- Any future features will also use local storage
+- No external database or internet connection required
 
 ## 🎨 Customization
 
@@ -177,17 +142,16 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📚 Documentation
 
 - [Setup Guide](./SETUP.md) - Detailed setup instructions
-- [Installation Guide](./INSTALL_GUIDE.md) - Troubleshooting installation issues
 - [Expo Router Docs](https://docs.expo.dev/router/introduction/)
-- [Supabase Docs](https://supabase.com/docs)
 - [NativeWind Docs](https://www.nativewind.dev/)
+- [AsyncStorage Docs](https://react-native-async-storage.github.io/async-storage/)
 
 ## 🙏 Acknowledgments
 
 Built with:
 - [Expo](https://expo.dev/)
 - [React Native](https://reactnative.dev/)
-- [Supabase](https://supabase.com/)
 - [NativeWind](https://www.nativewind.dev/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/)
 

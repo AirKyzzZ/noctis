@@ -5,7 +5,7 @@
 
 // Mock expo-constants to avoid accessing native modules
 jest.mock('expo-constants', () => ({
-  expoConfig: { extra: { supabaseUrl: '', supabaseAnonKey: '' } },
+  expoConfig: { extra: {} },
 }));
 
 // Mock expo-font to prevent requiring native modules like expo-asset

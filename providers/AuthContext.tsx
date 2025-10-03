@@ -1,101 +1,64 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Session, User } from '@supabase/supabase-js';
-import supabase from '../supabase/client';
-
-interface Profile {
-  id: string;
-  first_name: string | null;
-  last_name: string | null;
-  email: string | null;
-  avatar_url: string | null;
-  username: string | null;
-}
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface AuthContextType {
-  session: Session | null;
-  user: User | null;
-  profile: Profile | null;
+  isAuthenticated: boolean;
   loading: boolean;
-  signOut: () => Promise<void>;
-  refreshProfile: () => Promise<void>;
+  enterApp: () => Promise<void>;
+  exitApp: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  session: null,
-  user: null,
-  profile: null,
+  isAuthenticated: false,
   loading: true,
-  signOut: async () => {},
-  refreshProfile: async () => {},
+  enterApp: async () => {},
+  exitApp: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
 
+const AUTH_STORAGE_KEY = '@noctis_auth';
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [user, setUser] = useState<User | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const fetchProfile = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('id, first_name, last_name, email, avatar_url, username')
-        .eq('id', userId)
-        .single();
-
-      if (error) throw error;
-      setProfile(data);
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-      setProfile(null);
-    }
-  };
-
-  const refreshProfile = async () => {
-    if (user?.id) {
-      await fetchProfile(user.id);
-    }
-  };
-
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user?.id) {
-        fetchProfile(session.user.id);
-      }
-      setLoading(false);
-    });
-
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user?.id) {
-        fetchProfile(session.user.id);
-      } else {
-        setProfile(null);
-      }
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    checkAuthStatus();
   }, []);
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
-    setSession(null);
-    setUser(null);
-    setProfile(null);
+  const checkAuthStatus = async () => {
+    try {
+      const authValue = await AsyncStorage.getItem(AUTH_STORAGE_KEY);
+      setIsAuthenticated(authValue === 'true');
+    } catch (error) {
+      console.error('Error checking auth status:', error);
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const enterApp = async () => {
+    try {
+      await AsyncStorage.setItem(AUTH_STORAGE_KEY, 'true');
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error('Error entering app:', error);
+    }
+  };
+
+  const exitApp = async () => {
+    try {
+      await AsyncStorage.removeItem(AUTH_STORAGE_KEY);
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.error('Error exiting app:', error);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ session, user, profile, loading, signOut, refreshProfile }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, enterApp, exitApp }}>
       {children}
     </AuthContext.Provider>
   );

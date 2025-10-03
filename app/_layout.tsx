@@ -6,7 +6,7 @@ import { Text, TextInput, View } from 'react-native';
 import '../global.css';
 
 function RootLayoutNav() {
-  const { session, loading } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const segments = useSegments();
   const router = useRouter();
 
@@ -15,14 +15,14 @@ function RootLayoutNav() {
 
     const inAuthGroup = segments[0] === '(auth)';
 
-    if (!session && !inAuthGroup) {
+    if (!isAuthenticated && !inAuthGroup) {
       // Redirect to welcome if not authenticated
       router.replace('/(auth)/welcome');
-    } else if (session && inAuthGroup) {
+    } else if (isAuthenticated && inAuthGroup) {
       // Redirect to tabs if authenticated
       router.replace('/(tabs)');
     }
-  }, [session, loading, segments]);
+  }, [isAuthenticated, loading, segments]);
 
   return <Slot />;
 }

@@ -1,47 +1,24 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Logo } from '../../components/auth/Logo';
 import { ConfettiEffect } from '../../components/auth/ConfettiEffect';
 import { IntroText } from '../../components/auth/IntroText';
-import { CTAButtons } from '../../components/auth/CTAButtons';
-import { LoginForm } from '../../components/auth/LoginForm';
-import { SignUpForm } from '../../components/auth/SignUpForm';
+import { useAuth } from '../../providers/AuthContext';
+import { colors } from '../../constants/colors';
 
 export default function WelcomeScreen() {
-  const [screen, setScreen] = useState<'welcome' | 'login' | 'signup'>('welcome');
   const [showConfetti, setShowConfetti] = useState(true);
+  const { enterApp } = useAuth();
 
   React.useEffect(() => {
     const timer = setTimeout(() => setShowConfetti(false), 5000);
     return () => clearTimeout(timer);
   }, []);
 
-  if (screen === 'login') {
-    return (
-      <SafeAreaView style={styles.container} edges={['top']}>
-        <View className="flex-1 justify-center bg-white">
-          <LoginForm
-            onSuccess={() => setScreen('welcome')}
-            onSignUpPress={() => setScreen('signup')}
-          />
-        </View>
-      </SafeAreaView>
-    );
-  }
-
-  if (screen === 'signup') {
-    return (
-      <SafeAreaView style={styles.container} edges={['top']}>
-        <View className="flex-1 bg-white pt-8">
-          <SignUpForm
-            onSuccess={() => setScreen('login')}
-            onLoginPress={() => setScreen('login')}
-          />
-        </View>
-      </SafeAreaView>
-    );
-  }
+  const handleEnterApp = async () => {
+    await enterApp();
+  };
 
   return (
     <View style={styles.container}>
@@ -51,10 +28,15 @@ export default function WelcomeScreen() {
           <View className="flex-1 justify-center items-center">
             <Logo />
             <IntroText />
-            <CTAButtons
-              onLoginPress={() => setScreen('login')}
-              onSignUpPress={() => setScreen('signup')}
-            />
+            <View className="px-8 w-full">
+              <Pressable
+                onPress={handleEnterApp}
+                className="py-4 rounded-xl active:opacity-80"
+                style={{ backgroundColor: colors.accent }}
+              >
+                <Text className="text-black text-center font-bold text-lg">Enter App</Text>
+              </Pressable>
+            </View>
           </View>
         </SafeAreaView>
       </View>

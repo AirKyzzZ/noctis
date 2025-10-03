@@ -4,16 +4,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../providers/AuthContext';
 
 export default function ProfileScreen() {
-  const { profile, signOut } = useAuth();
+  const { exitApp } = useAuth();
 
-  const handleSignOut = async () => {
-    Alert.alert('Déconnexion', 'Êtes-vous sûr de vouloir vous déconnecter ?', [
-      { text: 'Annuler', style: 'cancel' },
+  const handleExitApp = async () => {
+    Alert.alert('Exit App', 'Are you sure you want to exit the app?', [
+      { text: 'Cancel', style: 'cancel' },
       {
-        text: 'Déconnexion',
+        text: 'Exit',
         style: 'destructive',
         onPress: async () => {
-          await signOut();
+          await exitApp();
         },
       },
     ]);
@@ -22,29 +22,19 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 px-8 py-8">
-        <Text className="text-3xl font-bold text-gray-900 mb-8">Profil</Text>
+        <Text className="text-3xl font-bold text-gray-900 mb-8">Profile</Text>
         
-        {profile && (
-          <View className="gap-4 mb-8">
-            <View>
-              <Text className="text-sm text-gray-500">Nom complet</Text>
-              <Text className="text-lg text-gray-900">
-                {profile.first_name} {profile.last_name}
-              </Text>
-            </View>
-            
-            <View>
-              <Text className="text-sm text-gray-500">Email</Text>
-              <Text className="text-lg text-gray-900">{profile.email}</Text>
-            </View>
-          </View>
-        )}
+        <View className="gap-4 mb-8">
+          <Text className="text-base text-gray-600">
+            Your app data is stored locally on this device.
+          </Text>
+        </View>
         
         <Pressable
-          onPress={handleSignOut}
+          onPress={handleExitApp}
           className="bg-red-600 py-4 rounded-xl active:opacity-80"
         >
-          <Text className="text-white text-center font-bold text-lg">Se déconnecter</Text>
+          <Text className="text-white text-center font-bold text-lg">Exit App</Text>
         </Pressable>
       </View>
     </SafeAreaView>
