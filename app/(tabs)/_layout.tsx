@@ -10,6 +10,7 @@ export default function TabsLayout() {
   // Map pathname to active tab key
   const getActiveKey = () => {
     if (pathname === '/(tabs)' || pathname === '/') return 'home';
+    if (pathname.includes('dreams')) return 'book';
     if (pathname.includes('search')) return 'search';
     if (pathname.includes('notifications')) return 'bell';
     if (pathname.includes('profile')) return 'user';
@@ -25,6 +26,7 @@ export default function TabsLayout() {
   
   const tabs: BottomTabItem[] = [
     { key: 'home', icon: 'home' as const, label: 'Accueil' },
+    { key: 'book', icon: 'book' as const, label: 'Dreams' },
     { key: 'search', icon: 'search' as const, label: 'Recherche' },
     { key: 'bell', icon: 'bell' as const, label: 'Notifications' },
     { key: 'user', icon: 'user' as const, label: 'Profil' },
@@ -36,6 +38,9 @@ export default function TabsLayout() {
     switch (key) {
       case 'home':
         router.push('/(tabs)');
+        break;
+      case 'book':
+        router.push('/(tabs)/dreams');
         break;
       case 'search':
         router.push('/(tabs)/search');
@@ -58,6 +63,7 @@ export default function TabsLayout() {
         }}
       >
         <Tabs.Screen name="index" />
+        <Tabs.Screen name="dreams" />
         <Tabs.Screen name="search" />
         <Tabs.Screen name="notifications" />
         <Tabs.Screen name="profile" />

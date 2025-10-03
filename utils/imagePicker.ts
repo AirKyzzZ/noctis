@@ -14,8 +14,8 @@ export async function pickImage(): Promise<string | null> {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert(
-          'Permission requise',
-          'Nous avons besoin de votre permission pour accéder à vos photos.'
+          'Permission required',
+          'We need your permission to access your photos.'
         );
         return null;
       }
@@ -37,8 +37,8 @@ export async function pickImage(): Promise<string | null> {
   } catch (error) {
     console.error('Image picker error:', error);
     Alert.alert(
-      'Photo de profil',
-      'Pour activer la sélection de photo, installez d\'abord les packages requis avec: npm install'
+      'Profile photo',
+      'To enable photo selection, please install the required packages with: npm install'
     );
     return null;
   }
