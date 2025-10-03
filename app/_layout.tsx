@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { AuthProvider, useAuth } from '../providers/AuthContext';
+import { ProfileProvider } from '../providers/ProfileContext';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, View } from 'react-native';
 import '../global.css';
@@ -58,7 +59,9 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <RootLayoutNav />
+      <ProfileProvider>
+        <RootLayoutNav />
+      </ProfileProvider>
     </AuthProvider>
   );
 }
