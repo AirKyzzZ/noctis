@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for noctis/app.config.ts</title>
+    <title>Code coverage report for noctis/app/(auth)/welcome.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">noctis</a> app.config.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">noctis/app/(auth)</a> welcome.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -112,19 +112,22 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,6 +152,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,73 +161,54 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { ExpoConfig } from 'expo/config';
-import dotenv from 'dotenv';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { View, StyleSheet, Pressable, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Logo } from '../../components/auth/Logo';
+import { IntroText } from '../../components/auth/IntroText';
+import { useAuth } from '../../providers/AuthContext';
+import { colors } from '../../constants/colors';
 &nbsp;
-// Load .env first, then override with .env.local if present
-<span class="cstat-no" title="statement not covered" >dotenv.config();</span>
-<span class="cstat-no" title="statement not covered" >dotenv.config({ path: '.env.local', override: true });</span>
+export default function <span class="fstat-no" title="function not covered" >WelcomeScreen(</span>) {
+  const { enterApp } = <span class="cstat-no" title="statement not covered" >useAuth();</span>
 &nbsp;
-const config: ExpoConfig = <span class="cstat-no" title="statement not covered" >{</span>
-  name: 'noctis',
-  slug: 'noctis',
-  version: '1.0.0',
-  orientation: 'portrait',
-  icon: './assets/white.png',
-  userInterfaceStyle: 'light',
-  newArchEnabled: true,
-  splash: {
-    image: './assets/white.png',
-    resizeMode: 'contain',
-    backgroundColor: '#ffffff',
-  },
-  ios: {
-    supportsTablet: true,
-  },
-  android: {
-    adaptiveIcon: {
-      foregroundImage: './assets/white.png',
-      backgroundColor: '#ffffff',
-    },
-    edgeToEdgeEnabled: true,
-    predictiveBackGestureEnabled: false,
-  },
-  web: {
-    favicon: './assets/white.png',
-    bundler: 'metro',
-  },
-  scheme: 'noctis',
-  plugins: [
-    'expo-font',
-    'expo-router',
-    [
-      'expo-image-picker',
-      {
-        photosPermission: 'The app needs access to your photos for your profile picture.',
-      },
-    ],
-  ],
-  experiments: {
-    typedRoutes: true,
-  },
-};
+  const handleEnterApp = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    await enterApp();</span>
+  };
 &nbsp;
-export default config;
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;View style={styles.container}&gt;
+      &lt;View className="flex-1 bg-white"&gt;
+        &lt;SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}&gt;
+          &lt;View className="flex-1 justify-center items-center"&gt;
+            &lt;Logo /&gt;
+            &lt;IntroText /&gt;
+            &lt;View className="px-8 w-full"&gt;
+              &lt;Pressable
+                onPress={handleEnterApp}
+                className="py-4 rounded-xl active:opacity-80"
+                style={{ backgroundColor: colors.accent }}
+              &gt;
+                &lt;Text className="text-white text-center font-bold text-lg"&gt;
+                  Enter App
+                &lt;/Text&gt;
+              &lt;/Pressable&gt;
+            &lt;/View&gt;
+          &lt;/View&gt;
+        &lt;/SafeAreaView&gt;
+      &lt;/View&gt;
+    &lt;/View&gt;
+  );
+}
 &nbsp;
+const styles = <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
+  container: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+  },
+});
 &nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -234,14 +219,14 @@ export default config;
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2025-10-03T11:59:09.767Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     

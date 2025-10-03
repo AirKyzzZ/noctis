@@ -35,4 +35,27 @@ jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
 }));
 
+// Mock expo-router to avoid runtime issues in tests
+jest.mock('expo-router', () => ({
+  Slot: ({ children }: { children?: any }) => children || null,
+  useRouter: () => ({
+    push: jest.fn(),
+    replace: jest.fn(),
+    back: jest.fn(),
+  }),
+  useSegments: () => [],
+  Stack: ({ children }: { children: any }) => children,
+  Tabs: ({ children }: { children: any }) => children,
+}));
+
+// Mock expo-router/entry
+jest.mock('expo-router/entry', () => ({}));
+
+// Mock AsyncStorage
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  setItem: jest.fn(() => Promise.resolve()),
+  getItem: jest.fn(() => Promise.resolve(null)),
+  removeItem: jest.fn(() => Promise.resolve()),
+}));
+
 
