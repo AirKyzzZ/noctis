@@ -81,7 +81,7 @@ export default function DreamDetailScreen() {
         initializeFields(foundDream);
       } else {
         Alert.alert('Error', 'Dream not found');
-        router.back();
+        router.push('/(tabs)/dreams');
       }
     }
   }, [id]);
@@ -156,7 +156,7 @@ export default function DreamDetailScreen() {
           onPress: async () => {
             if (dream) {
               await deleteDream(dream.id);
-              router.back();
+              router.push('/(tabs)/dreams');
             }
           },
         },
@@ -189,7 +189,7 @@ export default function DreamDetailScreen() {
       >
         {/* Header */}
         <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: '#E5E7EB' }}>
-          <Pressable onPress={() => router.back()} hitSlop={12}>
+          <Pressable onPress={() => router.push('/(tabs)/dreams')} hitSlop={12}>
             <Feather name="arrow-left" size={24} color="#1F2937" />
           </Pressable>
           <Text className="text-lg font-bold" style={{ color: '#1F2937' }}>

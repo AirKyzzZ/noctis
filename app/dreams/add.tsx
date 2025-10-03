@@ -102,7 +102,7 @@ export default function AddDreamScreen() {
         overallTone,
       });
 
-      router.back();
+      router.push('/(tabs)/dreams');
     } catch (error) {
       Alert.alert('Error', 'Failed to save dream. Please try again.');
       console.error('Error saving dream:', error);
@@ -119,7 +119,7 @@ export default function AddDreamScreen() {
       >
         {/* Header */}
         <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: '#E5E7EB' }}>
-          <Pressable onPress={() => router.back()} hitSlop={12}>
+          <Pressable onPress={() => router.push('/(tabs)/dreams')} hitSlop={12}>
             <Feather name="x" size={24} color="#1F2937" />
           </Pressable>
           <Text className="text-lg font-bold" style={{ color: '#1F2937' }}>
