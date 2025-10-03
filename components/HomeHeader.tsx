@@ -10,6 +10,12 @@ interface HomeHeaderProps {
 export default function HomeHeader({ onSettingsPress }: HomeHeaderProps) {
   const { profile } = useProfile();
   
+  // Capitalize first letter of name
+  const capitalizeFirstLetter = (text: string) => {
+    if (!text) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  };
+  
   // Get current date in a nice format
   const getCurrentDate = () => {
     const date = new Date();
@@ -51,7 +57,7 @@ export default function HomeHeader({ onSettingsPress }: HomeHeaderProps) {
         {/* Center: Welcome Text */}
         <View className="flex-1 items-center justify-center px-4">
           <Text className="text-lg font-semibold text-gray-900 text-center">
-            Welcome{profile?.name ? `, ${profile.name}` : ''}
+            Welcome{profile?.name ? `, ${capitalizeFirstLetter(profile.name)}` : ''}
           </Text>
           <Text className="text-xs text-gray-500 mt-1 text-center">
             {getCurrentDate()}
