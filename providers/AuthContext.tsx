@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 interface AuthContextType {
   isAuthenticated: boolean;
   loading: boolean;
+  showConfetti: boolean;
   enterApp: () => Promise<void>;
   exitApp: () => Promise<void>;
 }
@@ -11,6 +12,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   loading: true,
+  showConfetti: false,
   enterApp: async () => {},
   exitApp: async () => {},
 });
@@ -22,6 +24,7 @@ const AUTH_STORAGE_KEY = '@noctis_auth';
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     checkAuthStatus();
@@ -42,7 +45,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const enterApp = async () => {
     try {
       await AsyncStorage.setItem(AUTH_STORAGE_KEY, 'true');
+      setShowConfetti(true);
       setIsAuthenticated(true);
+      
+      // Hide confetti after animation completes
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 8000);
     } catch (error) {
       console.error('Error entering app:', error);
     }
@@ -58,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading, enterApp, exitApp }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, showConfetti, enterApp, exitApp }}>
       {children}
     </AuthContext.Provider>
   );

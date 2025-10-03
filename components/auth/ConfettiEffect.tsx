@@ -17,7 +17,7 @@ export const ConfettiEffect: React.FC = () => {
 
   useEffect(() => {
     // Create confetti pieces
-    confettiPieces.current = Array.from({ length: 30 }, () => {
+    confettiPieces.current = Array.from({ length: 40 }, () => {
       const initialX = Math.random() * width;
       return {
         x: new Animated.Value(initialX),
@@ -33,12 +33,12 @@ export const ConfettiEffect: React.FC = () => {
       return Animated.parallel([
         Animated.timing(piece.y, {
           toValue: height + 100,
-          duration: 3000 + Math.random() * 2000,
+          duration: 5000 + Math.random() * 2000,
           useNativeDriver: true,
         }),
         Animated.timing(piece.x, {
           toValue: piece.initialX + (Math.random() - 0.5) * 100,
-          duration: 3000 + Math.random() * 2000,
+          duration: 5000 + Math.random() * 2000,
           useNativeDriver: true,
         }),
         Animated.loop(
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   },
   confetti: {
     position: 'absolute',
-    width: 10,
-    height: 10,
+    width: 12,
+    height: 12,
     borderRadius: 2,
   },
 });

@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, Pressable, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Logo } from '../../components/auth/Logo';
-import { ConfettiEffect } from '../../components/auth/ConfettiEffect';
 import { IntroText } from '../../components/auth/IntroText';
 import { useAuth } from '../../providers/AuthContext';
 import { colors } from '../../constants/colors';
 
 export default function WelcomeScreen() {
-  const [showConfetti, setShowConfetti] = useState(true);
   const { enterApp } = useAuth();
-
-  React.useEffect(() => {
-    const timer = setTimeout(() => setShowConfetti(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleEnterApp = async () => {
     await enterApp();
@@ -24,7 +17,6 @@ export default function WelcomeScreen() {
     <View style={styles.container}>
       <View className="flex-1 bg-white">
         <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
-          {showConfetti && <ConfettiEffect />}
           <View className="flex-1 justify-center items-center">
             <Logo />
             <IntroText />
@@ -34,7 +26,9 @@ export default function WelcomeScreen() {
                 className="py-4 rounded-xl active:opacity-80"
                 style={{ backgroundColor: colors.accent }}
               >
-                <Text className="text-black text-center font-bold text-lg">Enter App</Text>
+                <Text className="text-black text-center font-bold text-lg">
+                  Enter App
+                </Text>
               </Pressable>
             </View>
           </View>

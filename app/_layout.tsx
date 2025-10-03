@@ -4,10 +4,11 @@ import { AuthProvider, useAuth } from '../providers/AuthContext';
 import { ProfileProvider } from '../providers/ProfileContext';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, View } from 'react-native';
+import { ConfettiEffect } from '../components/auth/ConfettiEffect';
 import '../global.css';
 
 function RootLayoutNav() {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, showConfetti } = useAuth();
   const segments = useSegments();
   const router = useRouter();
 
@@ -25,7 +26,12 @@ function RootLayoutNav() {
     }
   }, [isAuthenticated, loading, segments]);
 
-  return <Slot />;
+  return (
+    <>
+      <Slot />
+      {showConfetti && <ConfettiEffect />}
+    </>
+  );
 }
 
 export default function RootLayout() {
