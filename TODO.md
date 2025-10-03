@@ -7,9 +7,9 @@
 - [ x ] Faire une navbar en bas qui est mise dans le layout dans un component responsive avec une bonne architecture
 - [ x ] Implémenter le logo en tant qu'icone de l'application
 - [  ] Faire un light et un dark theme qui peut switcher juste échanger background et foreground pas besoin de modifier la couleur d'accent
-- [  ] Add the fact that the keyboard dosn't hide anything and puts the screenup and i can dismiss the keyboard bu clicking out of it
+- [ x ] Add the fact that the keyboard dosn't hide anything and puts the screenup and i can dismiss the keyboard by clicking out of it
 - [ x ] welcome screen avec le logo en full size au centre et des petits effets comme des confettis et un texte en guide de courte introduction
-- [  ] Faire un systeme de gestion de reve avec les champs demandés : Date et Heure du rêve
+- [ x ] Faire un systeme de gestion de reve avec les champs demandés : Date et Heure du rêve
 Type de rêve (cauchemar, rêve lucide, rêve ordinaire, etc.)
 État émotionnel avant et après le rêve
 Personnages présents dans le rêve
@@ -21,9 +21,9 @@ Qualité du sommeil ressentie
 Signification personnelle du rêve
 Tonalité globale du rêve (positive, négative, neutre)
 et la possibilité de les gérer donc les ajouter les modifier les supprimer et acceder a un historique avec une streak tout les jours ca ajoute un et ca permet de gamifier et que l'utilisateur reste plus sur l'application
-- [  ] Possibilité de modifier ou supprimer un reve après l'avoir ajouté
+- [ x ] Possibilité de modifier ou supprimer un reve après l'avoir ajouté
 - [  ] Notificatons pour rappeler d'ajouter ses reves tout les jours
-- [  ] Inclure plein de stats et des graphiques dans une page dédiée
+- [ x ] Inclure plein de stats et des graphiques dans une page dédiée
 - [  ] Recherche et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
 - [  ] Connecter une api 100% gratuite qui permet de comprendre les reves et de les interpreter pour donner un retour / sens a l'utilisateur
 - [  ] Possibilité de changer la langue mais celle par défaut est le francais il y a aussi de l'anglais disponible pour l'instant

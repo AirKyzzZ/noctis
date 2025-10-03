@@ -8,6 +8,8 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -186,6 +188,7 @@ export default function DreamDetailScreen() {
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
       >
         {/* Header */}
         <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: '#E5E7EB' }}>
@@ -222,7 +225,8 @@ export default function DreamDetailScreen() {
           </View>
         </View>
 
-        <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
           <View className="px-4 py-5">
             {/* Date info */}
             {!isEditing && (
@@ -274,6 +278,7 @@ export default function DreamDetailScreen() {
             )}
           </View>
         </ScrollView>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

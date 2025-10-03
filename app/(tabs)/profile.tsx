@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, Alert, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { View, Text, Pressable, Alert, TextInput, Image, ScrollView, ActivityIndicator, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useAuth } from '../../providers/AuthContext';
@@ -76,8 +76,14 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="flex-1">
-        <View className="flex-1 px-8 py-8">
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView className="flex-1">
+            <View className="flex-1 px-8 py-8">
           <Text className="text-3xl font-bold text-gray-900 mb-8">Profile</Text>
           
           {/* Profile Picture */}
@@ -165,7 +171,9 @@ export default function ProfileScreen() {
             <Text className="text-white text-center font-bold text-lg">Exit App</Text>
           </Pressable>
         </View>
-      </ScrollView>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
