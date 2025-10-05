@@ -31,9 +31,9 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] Card avec une grande icone en 3d un texte type "Your dream journal awaits" et un bouton call to action qui permet d'ajouter un nouveau reve rapidement
 - [ x ] overview de quelques stats comme le nombre total de rêves et la streak actuel et un petit troisième truc + bouton voir plus qui amène sur la page journal
 - [ x ] Fix bug quand y'a deux reves le même jour ca reset la streak, si jamais il y en a deux dans la même journée ca compte pour 1
+- [ x ] faire en sorte que l'icone de photo de profil dans le header de la home page ammène sur la page profil et remplacer le logo paramètre par un theme switcher
 
-- [  ] faire en sorte que l'icone de photo de profil dans le header de la home page ammène sur la page profil et remplacer le logo paramètre par un theme switcher
-- [  ] Mettre icone paramètre dans la page profil et pas dasn la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
+- [  ] Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
 - [  ] card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels, pour l'instant ne rempli pas cette page j'ai juste besoin de la card sur la home page tout en bas
 - [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://rapidapi.com/MoonAPIcom/api/moon-phase) et un peu d'aléatoire de prévoir les reves des utilisateurs
 - [  ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve

@@ -1,13 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { AuthProvider, useAuth } from '../providers/AuthContext';
 import { ProfileProvider } from '../providers/ProfileContext';
 import { DreamProvider } from '../providers/DreamContext';
-import { ThemeProvider } from '../providers/ThemeContext';
+import { ThemeProvider, useTheme } from '../providers/ThemeContext';
 import { useFonts } from 'expo-font';
-import { Text, TextInput } from 'react-native';
+import { Text, TextInput, View, Animated, StyleSheet } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
 import '../global.css';
+
+function ThemeTransitionOverlay() {
+  const { isTransitioning, isDark } = useTheme();
+  const opacity = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (isTransitioning) {
+      // Fade in quickly, then fade out
+      Animated.sequence([
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+  }, [isTransitioning]);
+
+  if (!isTransitioning && opacity._value === 0) {
+    return null;
+  }
+
+  return (
+    <Animated.View
+      style={[
+        styles.overlay,
+        {
+          opacity,
+          backgroundColor: isDark ? '#000000' : '#FFFFFF',
+        },
+      ]}
+      pointerEvents="none"
+    />
+  );
+}
 
 function RootLayoutNav() {
   const { isAuthenticated, loading, showConfetti } = useAuth();
@@ -32,6 +72,7 @@ function RootLayoutNav() {
     <>
       <Slot />
       {showConfetti && <ConfettiEffect />}
+      <ThemeTransitionOverlay />
     </>
   );
 }
@@ -78,5 +119,15 @@ export default function RootLayout() {
   );
 }
 
+const styles = StyleSheet.create({
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 9999,
+  },
+});
 
 

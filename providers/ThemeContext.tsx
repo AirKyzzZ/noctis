@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LayoutAnimation, Platform, UIManager } from 'react-native';
+
+// Enable LayoutAnimation on Android
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 type Theme = 'light' | 'dark';
 
@@ -7,6 +13,7 @@ interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
   isDark: boolean;
+  isTransitioning: boolean;
   colors: {
     background: string;
     foreground: string;
@@ -72,6 +79,7 @@ const darkColors = {
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('light');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Load theme from storage on mount
   useEffect(() => {
@@ -90,20 +98,40 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const toggleTheme = async () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    try {
-      await AsyncStorage.setItem('@theme', newTheme);
-    } catch (error) {
-      console.error('Failed to save theme:', error);
-    }
+    // Start transition animation
+    setIsTransitioning(true);
+
+    // Wait a brief moment for the overlay to appear
+    setTimeout(() => {
+      // Configure smooth animation
+      LayoutAnimation.configureNext(
+        LayoutAnimation.create(
+          300, // duration
+          LayoutAnimation.Types.easeInEaseOut,
+          LayoutAnimation.Properties.opacity
+        )
+      );
+
+      const newTheme = theme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+      
+      // End transition after animation completes
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 400);
+
+      // Save theme
+      AsyncStorage.setItem('@theme', newTheme).catch((error) => {
+        console.error('Failed to save theme:', error);
+      });
+    }, 150);
   };
 
   const colors = theme === 'light' ? lightColors : darkColors;
   const isDark = theme === 'dark';
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDark, colors }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isDark, isTransitioning, colors }}>
       {children}
     </ThemeContext.Provider>
   );
