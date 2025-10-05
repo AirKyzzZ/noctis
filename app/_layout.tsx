@@ -5,16 +5,18 @@ import { ProfileProvider } from '../providers/ProfileContext';
 import { DreamProvider } from '../providers/DreamContext';
 import { ThemeProvider, useTheme } from '../providers/ThemeContext';
 import { useFonts } from 'expo-font';
-import { Text, TextInput, View, Animated, StyleSheet } from 'react-native';
+import { Text, TextInput, View, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
 import '../global.css';
 
 function ThemeTransitionOverlay() {
   const { isTransitioning, isDark } = useTheme();
   const opacity = useRef(new Animated.Value(0)).current;
+  const [shouldRender, setShouldRender] = React.useState(false);
 
   useEffect(() => {
     if (isTransitioning) {
+      setShouldRender(true);
       // Fade in quickly, then fade out
       Animated.sequence([
         Animated.timing(opacity, {
@@ -27,11 +29,13 @@ function ThemeTransitionOverlay() {
           duration: 400,
           useNativeDriver: true,
         }),
-      ]).start();
+      ]).start(() => {
+        setShouldRender(false);
+      });
     }
   }, [isTransitioning]);
 
-  if (!isTransitioning && opacity._value === 0) {
+  if (!shouldRender) {
     return null;
   }
 
@@ -51,6 +55,7 @@ function ThemeTransitionOverlay() {
 
 function RootLayoutNav() {
   const { isAuthenticated, loading, showConfetti } = useAuth();
+  const { isDark } = useTheme();
   const segments = useSegments();
   const router = useRouter();
 
@@ -68,8 +73,17 @@ function RootLayoutNav() {
     }
   }, [isAuthenticated, loading, segments]);
 
+  // Update status bar style based on theme
+  useEffect(() => {
+    StatusBar.setBarStyle(isDark ? 'light-content' : 'dark-content', true);
+  }, [isDark]);
+
   return (
     <>
+      <StatusBar
+        barStyle={isDark ? 'light-content' : 'dark-content'}
+        animated={true}
+      />
       <Slot />
       {showConfetti && <ConfettiEffect />}
       <ThemeTransitionOverlay />
