@@ -12,7 +12,7 @@ export default function QuickAddDreamCard() {
   };
 
   return (
-    <View className="mx-4 my-4">
+    <View className="mx-4 mt-2 mb-4">
       <Pressable
         onPress={handleAddDream}
         className="overflow-hidden rounded-3xl"

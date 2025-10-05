@@ -38,7 +38,7 @@ export default function HomeHeader({ onSettingsPress }: HomeHeaderProps) {
 
   return (
     <View className="px-6 py-4">
-      <View className="flex-row items-center justify-between mb-6">
+      <View className="flex-row items-center justify-between mb-2">
         {/* Left: User Photo */}
         <View className="w-12">
           {profile?.profilePicture ? (
