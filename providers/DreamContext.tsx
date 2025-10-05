@@ -128,28 +128,41 @@ export const DreamProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     newStats.lastDreamDate = sortedDreams[0].dateTime;
 
     // Calculate streaks (dreams on consecutive days)
+    // First, group dreams by date to handle multiple dreams on the same day
+    const uniqueDates: number[] = [];
+    const dateSet = new Set<number>();
+    
+    sortedDreams.forEach((dream) => {
+      const dreamDate = new Date(dream.dateTime);
+      dreamDate.setHours(0, 0, 0, 0); // Normalize to start of day
+      const dateTime = dreamDate.getTime();
+      
+      if (!dateSet.has(dateTime)) {
+        dateSet.add(dateTime);
+        uniqueDates.push(dateTime);
+      }
+    });
+
+    // Now calculate streaks based on unique dates
     let currentStreak = 0;
     let longestStreak = 0;
     let tempStreak = 1;
-    let lastDate: Date | null = null;
+    let lastDate: number | null = null;
 
-    sortedDreams.forEach((dream, index) => {
-      const dreamDate = new Date(dream.dateTime);
-      dreamDate.setHours(0, 0, 0, 0); // Normalize to start of day
-
+    uniqueDates.forEach((dateTime, index) => {
       if (index === 0) {
-        lastDate = dreamDate;
+        lastDate = dateTime;
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const yesterday = new Date(today);
         yesterday.setDate(yesterday.getDate() - 1);
 
         // Current streak starts if dream is today or yesterday
-        if (dreamDate.getTime() === today.getTime() || dreamDate.getTime() === yesterday.getTime()) {
+        if (dateTime === today.getTime() || dateTime === yesterday.getTime()) {
           currentStreak = 1;
         }
-      } else if (lastDate) {
-        const diffTime = lastDate.getTime() - dreamDate.getTime();
+      } else if (lastDate !== null) {
+        const diffTime = lastDate - dateTime;
         const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
         if (diffDays === 1) {
@@ -166,7 +179,7 @@ export const DreamProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             currentStreak = 0;
           }
         }
-        lastDate = dreamDate;
+        lastDate = dateTime;
       }
     });
 
