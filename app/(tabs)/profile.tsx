@@ -21,6 +21,10 @@ export default function ProfileScreen() {
     setSurname(profile.surname);
   }, [profile]);
 
+  const handleSettingsPress = () => {
+    // TODO: Implement settings page
+  };
+
   const handleSaveProfile = async () => {
     setIsSaving(true);
     try {
@@ -86,7 +90,22 @@ export default function ProfileScreen() {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView className="flex-1">
             <View className="flex-1 px-8 py-8">
-          <Text className="text-3xl font-bold mb-8" style={{ color: colors.textPrimary }}>Profile</Text>
+          {/* Header with Settings Icon */}
+          <View className="flex-row items-center justify-between mb-8">
+            <Text className="text-3xl font-bold" style={{ color: colors.textPrimary }}>Profile</Text>
+            <Pressable onPress={handleSettingsPress} className="active:opacity-70">
+              <View
+                className="w-10 h-10 rounded-full items-center justify-center"
+                style={{ backgroundColor: colors.gray100 }}
+              >
+                <Feather 
+                  name="settings" 
+                  size={20} 
+                  color={colors.textPrimary} 
+                />
+              </View>
+            </Pressable>
+          </View>
           
           {/* Profile Picture */}
           <View className="items-center mb-8">

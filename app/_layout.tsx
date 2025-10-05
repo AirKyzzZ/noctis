@@ -5,7 +5,7 @@ import { ProfileProvider } from '../providers/ProfileContext';
 import { DreamProvider } from '../providers/DreamContext';
 import { ThemeProvider, useTheme } from '../providers/ThemeContext';
 import { useFonts } from 'expo-font';
-import { Text, TextInput, View, Animated, StyleSheet, StatusBar } from 'react-native';
+import { Text, TextInput, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
 import '../global.css';
 
@@ -82,7 +82,7 @@ function RootLayoutNav() {
     <>
       <StatusBar
         barStyle={isDark ? 'light-content' : 'dark-content'}
-        animated={true}
+        animated
       />
       <Slot />
       {showConfetti && <ConfettiEffect />}

@@ -41,14 +41,14 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [  ] Afficher les notifications dans le notifications tab et permttre de les marquer comme lu ou de les supprimer
 - [  ] Afficher un badge rouge a cote de l'icone bell dans la navbar quand il y a des notifications non lues
 - [  ] Faire un light et un dark theme switcher -- juste échanger background et foreground pas besoin de modifier la couleur d'accent
-- [  ] Ajouter un form de retour feedback et des pages légales
-- [  ] Implémenter la âge de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
-- [  ] Prévision sommeil (ton idée avec la lune) :
+- [  ] Ajouter un form de retour feedback et des pages légales dans la page de settings
+- [  ] Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
+- [  ] Prévision sommeil (avec la lune) :
 Phases de la lune 🌕
 Horaires de coucher/lever recommandés (chronotype).
-Influence de la météo (pluie, chaleur, bruit) avec l'api open de la météo en temps réel la ou se trouve l'utilisateur.
+Influence de la météo (pluie, chaleur, bruit) avec l'api open de la météo en temps réel la ou se trouve l'utilisateur. API : https://open-meteo.com/
 - [  ] Défis : ex. “Note tes rêves 7 jours d’affilée”.
-- [  ] Succès / badges : “Premier rêve lucide enregistré ! 🏆”.
+- [  ] Succès / badges : “Premier rêve lucide enregistré ! 🏆”. Voir tout les badges collectés dans la page de profil
 - [  ] Visualisation automatique : l’app génère une image AI inspirée de ton rêve.
 - [  ] Audio journal : possibilité d’enregistrer à la voix ton rêve (utile au réveil quand tu es trop fatigué pour écrire). EN SPEECH TO TEXT
 - [  ] Forecast de thèmes de rêve (ex. : “Cette semaine tu risques de rêver de voyages car…”).
