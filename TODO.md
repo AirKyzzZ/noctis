@@ -1,3 +1,5 @@
+NOCTIS : YOUR LUCID DREAM COMPANION
+
 - [ x ] Installer nativewind
 - [ x ] Importer logos de l'app
 - [ x ] Mettre en place la charte graphique et les couleurs etc
@@ -23,8 +25,10 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] Possibilité de modifier ou supprimer un reve après l'avoir ajouté
 - [ x ] Inclure plein de stats et des graphiques dans une page dédiée
 - [ x ] Calendar avec les jours
+- [ x ] Card avec une grande icone en 3d un texte type "Your dream journal awaits" et un bouton call to action qui permet d'ajouter un nouveau reve rapidement
 
-- [  ] Card avec une grande icone en 3d un texte type "Your dream journal awaits" et un bouton call to action qui permet d'ajouter un nouveau reve rapidement
+- [  ] overview de quelques stats comme le nombre total de rêves et la streak actuel et un petit troisième truc + bouton voir plus qui amène sur la page journal
+- [  ] card bibliothèque avec une animation de livre qui s’ouvre et les pages qui se feuillettent qui amène vers la
 - [  ] Feature your dream forecast qui permet en fonction des cycles lunaires (Api) et un peu d'aléatoire de prévoir les reves des utilisateurs
 - [  ] Ajouter un date picker pour l'ajout de reves
 - [  ] Notificatons pour rappeler d'ajouter ses reves tout les jours
@@ -33,8 +37,49 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [  ] Faire un light et un dark theme switcher -- juste échanger background et foreground pas besoin de modifier la couleur d'accent
 - [  ] Ajouter un form de retour feedback et des pages légales
 - [  ] Implémenter la âge de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
+- [  ] Prévision sommeil (ton idée avec la lune) :
+Phases de la lune 🌕
+Horaires de coucher/lever recommandés (chronotype).
+Influence de la météo (pluie, chaleur, bruit) avec l'api open de la météo en temps réel la ou se trouve l'utilisateur.
+- [  ] Défis : ex. “Note tes rêves 7 jours d’affilée”.
+- [  ] Succès / badges : “Premier rêve lucide enregistré ! 🏆”.
+- [  ] Visualisation automatique : l’app génère une image AI inspirée de ton rêve.
+- [  ] Audio journal : possibilité d’enregistrer à la voix ton rêve (utile au réveil quand tu es trop fatigué pour écrire). SPPECH TO TEXT
+- [  ] Forecast de thèmes de rêve (ex. : “Cette semaine tu risques de rêver de voyages car…”).
+- [  ] Dream-graph : réseau interactif de tous tes rêves connectés par symboles communs.
+- [  ] Conseils personnalisés : “Essaie de te coucher 30 min plus tôt pour favoriser les rêves lucides.”
 - [  ] Connecter une api 100% gratuite qui permet de voir le cycle lunaire actuel afin de voir comment est ce que l'utilisateur devrait dormir cette nuit
-- [  ] Possibilité de changer la langue mais celle par défaut est le francais il y a aussi de l'anglais disponible pour l'instant
-- [  ] Possibilité d'exporter les reves dans un fichier a télécharger
+- [  ] Possibilité de changer la langue mais celle par défaut est le francais il y a aussi de l'anglais disponible pour l'instant i18n
+- [  ] Possibilité d'exporter les reves dans un fichier a télécharger ou dans le cloud choisi par l'utilisateur
+- [  ] Buy me a coffee in the settings
 - [  ] Faire le readme pour bien expliquer le projet, expliquer que dans le futur se projet sera encore amélioré notamment avec un spabase afin de le présenter durant l'oral de 2h du bts sio
 - [  ] Faire une pres canva pour présentation orale bien détaillée sur l'app
+- [  ] 🧠 Fonctions psychologiques / introspection
+
+Cartographie des émotions : chaque rêve noté avec une émotion dominante → stats (ex. : 40% joyeux, 30% anxieux).
+
+Analyse de symboles : ex. “Tu rêves souvent d’eau, ce symbole peut être lié à…”.
+
+Journal parallèle : possibilité d’ajouter ce que tu vivais la veille (stress, activité, repas) → pour détecter corrélations.
+
+Détection des personnages récurrents : l’app identifie les “personnages clés” de tes rêves.
+- [  ] 🌀 Fonctions pour les rêves lucides
+
+Rappels de “tests de réalité” (notifications aléatoires → “Es-tu en train de rêver ?”).
+
+Checklists lucides : suivi des méthodes utilisées (MILD, WBTB, etc.).
+
+Suivi de progression : “Tu as eu 3 rêves lucides ce mois-ci, +50% par rapport au précédent.”
+
+Bibliothèque de techniques : explications rapides pour s’entraîner à rêver lucide.
+
+
+
+
+
+POST PRES -> BTS : 
+
+- [  ] Supabase connecter créer un compte utilisateur
+- [  ] Comparaison anonyme : voir les thèmes les plus communs des autres utilisateurs (genre “Cette semaine, 25% des gens ont rêvé de voyages”).
+- [  ] Partage optionnel (privé ou communauté) : publier un rêve anonymisé pour comparer.
+- [  ] Marketing la la mettre sur les stores
