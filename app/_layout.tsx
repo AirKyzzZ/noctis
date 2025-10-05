@@ -3,6 +3,7 @@ import { Slot, useRouter, useSegments } from 'expo-router';
 import { AuthProvider, useAuth } from '../providers/AuthContext';
 import { ProfileProvider } from '../providers/ProfileContext';
 import { DreamProvider } from '../providers/DreamContext';
+import { ThemeProvider } from '../providers/ThemeContext';
 import { useFonts } from 'expo-font';
 import { Text, TextInput } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
@@ -65,13 +66,15 @@ export default function RootLayout() {
   }
 
   return (
-    <AuthProvider>
-      <ProfileProvider>
-        <DreamProvider>
-          <RootLayoutNav />
-        </DreamProvider>
-      </ProfileProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <ProfileProvider>
+          <DreamProvider>
+            <RootLayoutNav />
+          </DreamProvider>
+        </ProfileProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

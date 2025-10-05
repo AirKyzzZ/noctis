@@ -3,9 +3,11 @@ import { View, Text, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
+import { useTheme } from '../providers/ThemeContext';
 
 export default function QuickAddDreamCard() {
   const router = useRouter();
+  const { isDark } = useTheme();
 
   const handleAddDream = () => {
     router.push('/dreams/add');
@@ -25,7 +27,7 @@ export default function QuickAddDreamCard() {
         }}
       >
         <LinearGradient
-          colors={['#F3E8FF', '#EDE9FE', '#E9D5FF']}
+          colors={isDark ? ['#2D1B4E', '#1F1438', '#2D1B4E'] : ['#F3E8FF', '#EDE9FE', '#E9D5FF']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={{
@@ -41,7 +43,7 @@ export default function QuickAddDreamCard() {
           <View style={{ flex: 1, paddingRight: 16, justifyContent: 'center' }}>
             <Text
               className="mb-4 text-xl font-bold leading-tight"
-              style={{ color: '#4C1D95' }}
+              style={{ color: isDark ? '#E9D5FF' : '#4C1D95' }}
             >
               Your dream journal awaits
             </Text>

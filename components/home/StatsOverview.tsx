@@ -3,10 +3,12 @@ import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../../providers/DreamContext';
+import { useTheme } from '../../providers/ThemeContext';
 
 export default function StatsOverview() {
   const router = useRouter();
   const { stats, dreams } = useDreams();
+  const { colors } = useTheme();
 
   // Calculate dreams this week
   const getDreamsThisWeek = () => {
@@ -26,17 +28,17 @@ export default function StatsOverview() {
     <View className="mx-4 mb-3">
       {/* Header */}
       <View className="mb-2 flex-row items-center justify-between">
-        <Text className="text-base font-bold" style={{ color: '#1F2937' }}>
+        <Text className="text-base font-bold" style={{ color: colors.textPrimary }}>
           Your Progress
         </Text>
         <Pressable
           onPress={() => router.push('/(tabs)/dreams')}
           className="flex-row items-center"
         >
-          <Text className="mr-1 text-sm font-semibold" style={{ color: '#8B5CF6' }}>
+          <Text className="mr-1 text-sm font-semibold" style={{ color: colors.accent }}>
             See More
           </Text>
-          <Feather name="arrow-right" size={14} color="#8B5CF6" />
+          <Feather name="arrow-right" size={14} color={colors.accent} />
         </Pressable>
       </View>
 

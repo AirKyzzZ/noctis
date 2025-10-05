@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, Image, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useProfile } from '../providers/ProfileContext';
+import { useTheme } from '../providers/ThemeContext';
+import { useRouter } from 'expo-router';
 
 interface HomeHeaderProps {
   onSettingsPress?: () => void;
@@ -9,6 +11,8 @@ interface HomeHeaderProps {
 
 export default function HomeHeader({ onSettingsPress }: HomeHeaderProps) {
   const { profile } = useProfile();
+  const { toggleTheme, isDark, colors } = useTheme();
+  const router = useRouter();
   
   // Capitalize first letter of name
   const capitalizeFirstLetter = (text: string) => {
@@ -28,49 +32,63 @@ export default function HomeHeader({ onSettingsPress }: HomeHeaderProps) {
     return date.toLocaleDateString('en-US', options);
   };
 
-  const handleSettingsPress = () => {
-    if (onSettingsPress) {
-      onSettingsPress();
-    } else {
-      // TODO: Navigate to settings page when it's created
-    }
+  const handleProfilePress = () => {
+    router.push('/(tabs)/profile');
+  };
+
+  const handleThemeToggle = () => {
+    toggleTheme();
   };
 
   return (
     <View className="px-6 py-4">
       <View className="flex-row items-center justify-between mb-2">
-        {/* Left: User Photo */}
-        <View className="w-12">
+        {/* Left: User Photo - now clickable */}
+        <Pressable onPress={handleProfilePress} className="w-12 active:opacity-70">
           {profile?.profilePicture ? (
             <Image
               source={{ uri: profile.profilePicture }}
               className="w-12 h-12 rounded-full"
-              style={{ backgroundColor: '#f3f4f6' }}
+              style={{ backgroundColor: colors.gray200 }}
             />
           ) : (
-            <View className="w-12 h-12 rounded-full bg-gray-200 items-center justify-center">
-              <Feather name="user" size={20} color="#9ca3af" />
+            <View 
+              className="w-12 h-12 rounded-full items-center justify-center"
+              style={{ backgroundColor: colors.gray200 }}
+            >
+              <Feather name="user" size={20} color={colors.textTertiary} />
             </View>
           )}
-        </View>
+        </Pressable>
 
         {/* Center: Welcome Text */}
         <View className="flex-1 items-center justify-center px-4">
-          <Text className="text-lg font-semibold text-gray-900 text-center">
+          <Text 
+            className="text-lg font-semibold text-center"
+            style={{ color: colors.textPrimary }}
+          >
             Welcome{profile?.name ? `, ${capitalizeFirstLetter(profile.name)}` : ''}
           </Text>
-          <Text className="text-xs text-gray-500 mt-1 text-center">
+          <Text 
+            className="text-xs mt-1 text-center"
+            style={{ color: colors.textSecondary }}
+          >
             {getCurrentDate()}
           </Text>
         </View>
 
-        {/* Right: Settings Button */}
+        {/* Right: Theme Toggle Button */}
         <View className="w-12 items-end">
           <Pressable
-            onPress={handleSettingsPress}
-            className="w-10 h-10 rounded-full bg-gray-100 items-center justify-center active:opacity-70"
+            onPress={handleThemeToggle}
+            className="w-10 h-10 rounded-full items-center justify-center active:opacity-70"
+            style={{ backgroundColor: colors.gray100 }}
           >
-            <Feather name="settings" size={20} color="#374151" />
+            <Feather 
+              name={isDark ? 'sun' : 'moon'} 
+              size={20} 
+              color={colors.textPrimary} 
+            />
           </Pressable>
         </View>
       </View>

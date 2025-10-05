@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../../providers/DreamContext';
+import { useTheme } from '../../providers/ThemeContext';
 import {
   DreamType,
   EmotionalState,
@@ -54,6 +55,7 @@ const overallTones: { value: OverallTone; label: string; emoji: string }[] = [
 export default function AddDreamScreen() {
   const router = useRouter();
   const { addDream } = useDreams();
+  const { colors } = useTheme();
 
   const [dreamType, setDreamType] = useState<DreamType>('ordinary');
   const [description, setDescription] = useState('');
@@ -114,24 +116,24 @@ export default function AddDreamScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: '#F9FAFB' }}>
+    <SafeAreaView className="flex-1" style={{ backgroundColor: colors.background }}>
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={0}
       >
         {/* Header */}
-        <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: '#E5E7EB' }}>
+        <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: colors.border }}>
           <Pressable onPress={() => router.push('/(tabs)/dreams')} hitSlop={12}>
-            <Feather name="x" size={24} color="#1F2937" />
+            <Feather name="x" size={24} color={colors.textPrimary} />
           </Pressable>
-          <Text className="text-lg font-bold" style={{ color: '#1F2937' }}>
+          <Text className="text-lg font-bold" style={{ color: colors.textPrimary }}>
             New Dream
           </Text>
           <Pressable onPress={handleSave} disabled={saving} hitSlop={12}>
             <Text
               className="text-base font-semibold"
-              style={{ color: saving ? '#9CA3AF' : '#8B5CF6' }}
+              style={{ color: saving ? colors.textTertiary : colors.accent }}
             >
               {saving ? 'Saving...' : 'Save'}
             </Text>

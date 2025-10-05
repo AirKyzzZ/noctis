@@ -4,11 +4,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useAuth } from '../../providers/AuthContext';
 import { useProfile } from '../../providers/ProfileContext';
+import { useTheme } from '../../providers/ThemeContext';
 import { pickImage } from '../../utils/imagePicker';
 
 export default function ProfileScreen() {
   const { exitApp } = useAuth();
   const { profile, updateProfile, loading } = useProfile();
+  const { colors } = useTheme();
   const [name, setName] = useState(profile.name);
   const [surname, setSurname] = useState(profile.surname);
   const [isSaving, setIsSaving] = useState(false);
@@ -66,16 +68,16 @@ export default function ProfileScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView className="flex-1 bg-white">
+      <SafeAreaView className="flex-1" style={{ backgroundColor: colors.background }}>
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#000000" />
+          <ActivityIndicator size="large" color={colors.textPrimary} />
         </View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1" style={{ backgroundColor: colors.background }}>
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -84,7 +86,7 @@ export default function ProfileScreen() {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView className="flex-1">
             <View className="flex-1 px-8 py-8">
-          <Text className="text-3xl font-bold text-gray-900 mb-8">Profile</Text>
+          <Text className="text-3xl font-bold mb-8" style={{ color: colors.textPrimary }}>Profile</Text>
           
           {/* Profile Picture */}
           <View className="items-center mb-8">
@@ -93,11 +95,11 @@ export default function ProfileScreen() {
                 <Image
                   source={{ uri: profile.profilePicture }}
                   className="w-32 h-32 rounded-full"
-                  style={{ backgroundColor: '#f3f4f6' }}
+                  style={{ backgroundColor: colors.gray200 }}
                 />
               ) : (
-                <View className="w-32 h-32 rounded-full bg-gray-200 items-center justify-center">
-                  <Feather name="user" size={48} color="#9ca3af" />
+                <View className="w-32 h-32 rounded-full items-center justify-center" style={{ backgroundColor: colors.gray200 }}>
+                  <Feather name="user" size={48} color={colors.textTertiary} />
                 </View>
               )}
               <Pressable
@@ -124,24 +126,26 @@ export default function ProfileScreen() {
           {/* Profile Form */}
           <View className="gap-4 mb-8">
             <View>
-              <Text className="text-sm font-semibold text-gray-700 mb-2">First Name</Text>
+              <Text className="text-sm font-semibold mb-2" style={{ color: colors.textSecondary }}>First Name</Text>
               <TextInput
                 value={name}
                 onChangeText={setName}
                 placeholder="Enter your first name"
-                placeholderTextColor="#9ca3af"
-                className="bg-gray-100 px-4 py-4 rounded-xl text-gray-900"
+                placeholderTextColor={colors.textTertiary}
+                className="px-4 py-4 rounded-xl"
+                style={{ backgroundColor: colors.inputBackground, color: colors.textPrimary }}
               />
             </View>
 
             <View>
-              <Text className="text-sm font-semibold text-gray-700 mb-2">Last Name</Text>
+              <Text className="text-sm font-semibold mb-2" style={{ color: colors.textSecondary }}>Last Name</Text>
               <TextInput
                 value={surname}
                 onChangeText={setSurname}
                 placeholder="Enter your last name"
-                placeholderTextColor="#9ca3af"
-                className="bg-gray-100 px-4 py-4 rounded-xl text-gray-900"
+                placeholderTextColor={colors.textTertiary}
+                className="px-4 py-4 rounded-xl"
+                style={{ backgroundColor: colors.inputBackground, color: colors.textPrimary }}
               />
             </View>
 
@@ -159,7 +163,7 @@ export default function ProfileScreen() {
           </View>
 
           <View className="gap-4 mb-8">
-            <Text className="text-base text-gray-600">
+            <Text className="text-base" style={{ color: colors.textSecondary }}>
               Your profile data is stored locally on this device.
             </Text>
           </View>

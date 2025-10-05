@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, Text } from 'react-native';
 import { useDreams } from '../providers/DreamContext';
+import { useTheme } from '../providers/ThemeContext';
 
 interface DayPillProps {
   date: Date;
@@ -9,6 +10,7 @@ interface DayPillProps {
 }
 
 const DayPill: React.FC<DayPillProps> = ({ date, isToday, hasDream }) => {
+  const { colors } = useTheme();
   const dayNumber = date.getDate();
   const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
 
@@ -17,34 +19,30 @@ const DayPill: React.FC<DayPillProps> = ({ date, isToday, hasDream }) => {
       {/* Dream indicator dot */}
       {hasDream && (
         <View 
-          className={`absolute top-1 left-1/2 -ml-1 w-2 h-2 rounded-full z-10 ${
-            isToday ? 'bg-white' : 'bg-black'
-          }`}
+          className="absolute top-1 left-1/2 -ml-1 w-2 h-2 rounded-full z-10"
+          style={{ backgroundColor: isToday ? colors.background : colors.foreground }}
         />
       )}
       
       {/* Pill container */}
       <View
-        className={`
-          px-3 pt-4 pb-2 rounded-full items-center justify-center min-w-[56px]
-          ${isToday 
-            ? 'bg-black' 
-            : 'bg-white border border-gray-300'
-          }
-        `}
-        style={{ minHeight: 56 }}
+        className="px-3 pt-4 pb-2 rounded-full items-center justify-center min-w-[56px]"
+        style={{ 
+          minHeight: 56,
+          backgroundColor: isToday ? colors.foreground : colors.cardBackground,
+          borderWidth: isToday ? 0 : 1,
+          borderColor: colors.border
+        }}
       >
         <Text 
-          className={`text-xs font-medium ${
-            isToday ? 'text-white' : 'text-gray-600'
-          }`}
+          className="text-xs font-medium"
+          style={{ color: isToday ? colors.background : colors.textSecondary }}
         >
           {dayName}
         </Text>
         <Text 
-          className={`text-lg font-bold mt-0.5 ${
-            isToday ? 'text-white' : 'text-black'
-          }`}
+          className="text-lg font-bold mt-0.5"
+          style={{ color: isToday ? colors.background : colors.textPrimary }}
         >
           {dayNumber}
         </Text>

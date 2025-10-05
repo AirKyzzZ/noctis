@@ -2,12 +2,14 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { DreamStats } from '../../types/dream';
+import { useTheme } from '../../providers/ThemeContext';
 
 interface StatsGridProps {
   stats: DreamStats;
 }
 
 export default function StatsGrid({ stats }: StatsGridProps) {
+  const { colors } = useTheme();
   const statItems = [
     {
       icon: 'book' as const,
@@ -40,8 +42,9 @@ export default function StatsGrid({ stats }: StatsGridProps) {
       {statItems.map((item, index) => (
         <View key={index} className="w-1/2 p-1.5">
           <View
-            className="rounded-xl bg-white p-4"
+            className="rounded-xl p-4"
             style={{
+              backgroundColor: colors.cardBackground,
               shadowColor: '#000',
               shadowOffset: { width: 0, height: 1 },
               shadowOpacity: 0.05,
@@ -61,10 +64,10 @@ export default function StatsGrid({ stats }: StatsGridProps) {
                 <Feather name={item.icon} size={18} color={item.color} />
               </View>
             </View>
-            <Text className="mb-1 text-2xl font-bold" style={{ color: '#1F2937' }}>
+            <Text className="mb-1 text-2xl font-bold" style={{ color: colors.textPrimary }}>
               {item.value}
             </Text>
-            <Text className="text-xs" style={{ color: '#9CA3AF' }}>
+            <Text className="text-xs" style={{ color: colors.textTertiary }}>
               {item.label}
             </Text>
           </View>

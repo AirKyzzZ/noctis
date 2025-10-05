@@ -3,6 +3,7 @@ import { View, Text, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Dream } from '../../types/dream';
 import { format } from '../../../noctis/utils/dateFormat';
+import { useTheme } from '../../providers/ThemeContext';
 
 interface DreamCardProps {
   dream: Dream;
@@ -36,6 +37,7 @@ const toneEmojis = {
 };
 
 export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) {
+  const { colors } = useTheme();
   const typeColor = dreamTypeColors[dream.type];
   const typeIcon = dreamTypeIcons[dream.type];
   const toneEmoji = toneEmojis[dream.overallTone];
@@ -43,8 +45,9 @@ export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) 
   return (
     <Pressable
       onPress={onPress}
-      className="mb-3 overflow-hidden rounded-2xl bg-white"
+      className="mb-3 overflow-hidden rounded-2xl"
       style={{
+        backgroundColor: colors.cardBackground,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.08,
@@ -67,10 +70,10 @@ export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) 
                 <Feather name={typeIcon} size={16} color={typeColor} />
               </View>
               <View className="flex-1">
-                <Text className="text-base font-bold capitalize" style={{ color: '#1F2937' }}>
+                <Text className="text-base font-bold capitalize" style={{ color: colors.textPrimary }}>
                   {dream.type} Dream
                 </Text>
-                <Text className="text-xs" style={{ color: '#9CA3AF' }}>
+                <Text className="text-xs" style={{ color: colors.textTertiary }}>
                   {format(new Date(dream.dateTime), 'MMM dd, yyyy • hh:mm a')}
                 </Text>
               </View>
@@ -93,7 +96,7 @@ export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) 
         <Text
           numberOfLines={2}
           className="mb-3 text-sm leading-5"
-          style={{ color: '#4B5563' }}
+          style={{ color: colors.textSecondary }}
         >
           {dream.description || 'No description provided'}
         </Text>
@@ -105,9 +108,9 @@ export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) 
               <View
                 key={index}
                 className="mb-1 mr-2 rounded-full px-3 py-1"
-                style={{ backgroundColor: '#F3F4F6' }}
+                style={{ backgroundColor: colors.gray100 }}
               >
-                <Text className="text-xs" style={{ color: '#6B7280' }}>
+                <Text className="text-xs" style={{ color: colors.textSecondary }}>
                   {tag}
                 </Text>
               </View>
@@ -115,9 +118,9 @@ export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) 
             {dream.tags.length > 3 && (
               <View
                 className="mb-1 rounded-full px-3 py-1"
-                style={{ backgroundColor: '#F3F4F6' }}
+                style={{ backgroundColor: colors.gray100 }}
               >
-                <Text className="text-xs" style={{ color: '#6B7280' }}>
+                <Text className="text-xs" style={{ color: colors.textSecondary }}>
                   +{dream.tags.length - 3}
                 </Text>
               </View>
@@ -126,24 +129,24 @@ export default function DreamCard({ dream, onPress, onDelete }: DreamCardProps) 
         )}
 
         {/* Footer stats */}
-        <View className="flex-row items-center justify-between border-t pt-3" style={{ borderTopColor: '#F3F4F6' }}>
+        <View className="flex-row items-center justify-between border-t pt-3" style={{ borderTopColor: colors.border }}>
           <View className="flex-row items-center">
-            <Feather name="moon" size={14} color="#9CA3AF" />
-            <Text className="ml-1.5 text-xs" style={{ color: '#6B7280' }}>
+            <Feather name="moon" size={14} color={colors.textTertiary} />
+            <Text className="ml-1.5 text-xs" style={{ color: colors.textSecondary }}>
               Quality: {dream.sleepQuality}/5
             </Text>
           </View>
 
           <View className="flex-row items-center">
-            <Feather name="eye" size={14} color="#9CA3AF" />
-            <Text className="ml-1.5 text-xs" style={{ color: '#6B7280' }}>
+            <Feather name="eye" size={14} color={colors.textTertiary} />
+            <Text className="ml-1.5 text-xs" style={{ color: colors.textSecondary }}>
               Clarity: {dream.clarity}/5
             </Text>
           </View>
 
           <View className="flex-row items-center">
             <Text className="text-sm">{toneEmoji}</Text>
-            <Text className="ml-1 text-xs capitalize" style={{ color: '#6B7280' }}>
+            <Text className="ml-1 text-xs capitalize" style={{ color: colors.textSecondary }}>
               {dream.overallTone}
             </Text>
           </View>

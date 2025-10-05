@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Pressable, useColorScheme, Animated } from 'react-native';
+import { View, Pressable, Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
+import { useTheme } from '../providers/ThemeContext';
 
 type FeatherIconName = keyof typeof Feather.glyphMap;
 
@@ -20,10 +21,9 @@ type BottomNavbarProps = {
 export default function BottomNavbar(props: BottomNavbarProps) {
   const { tabs, activeKey, onTabPress } = props;
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
+  const { isDark } = useTheme();
 
   const containerPaddingBottom = Math.max(insets.bottom, 8);
-  const isDark = colorScheme === 'dark';
   const containerBgColor = isDark ? '#FFFFFF' : '#000000';
   const inactiveIconColor = isDark ? '#000000' : '#FFFFFF';
 
@@ -42,7 +42,7 @@ export default function BottomNavbar(props: BottomNavbarProps) {
             paddingHorizontal: 14,
             backgroundColor: containerBgColor,
             shadowColor: '#000',
-            shadowOpacity: colorScheme === 'dark' ? 0.55 : 0.15,
+            shadowOpacity: isDark ? 0.55 : 0.15,
             shadowOffset: { width: 0, height: 8 },
             shadowRadius: 20,
             elevation: 14,

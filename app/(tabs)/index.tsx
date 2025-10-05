@@ -4,12 +4,13 @@ import HomeHeader from '../../components/HomeHeader';
 import WeekCalendar from '../../components/WeekCalendar';
 import QuickAddDreamCard from '../../components/QuickAddDreamCard';
 import { StatsOverview } from '../../components/home';
+import { useTheme } from '../../providers/ThemeContext';
 
 export default function HomeScreen() {
-
+  const { colors } = useTheme();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1" style={{ backgroundColor: colors.background }}>
       <HomeHeader />
       <QuickAddDreamCard />
       <StatsOverview />

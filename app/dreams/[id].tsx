@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../../providers/DreamContext';
+import { useTheme } from '../../providers/ThemeContext';
 import { format } from '../../utils/dateFormat';
 import {
   DreamType,
@@ -57,6 +58,7 @@ export default function DreamDetailScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { getDreamById, updateDream, deleteDream } = useDreams();
+  const { colors } = useTheme();
 
   const [isEditing, setIsEditing] = useState(false);
   const [dream, setDream] = useState<Dream | null>(null);
@@ -175,39 +177,39 @@ export default function DreamDetailScreen() {
 
   if (!dream) {
     return (
-      <SafeAreaView className="flex-1 bg-gray-50">
+      <SafeAreaView className="flex-1" style={{ backgroundColor: colors.background }}>
         <View className="flex-1 items-center justify-center">
-          <Text className="text-gray-500">Loading...</Text>
+          <Text style={{ color: colors.textSecondary }}>Loading...</Text>
         </View>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: '#F9FAFB' }}>
+    <SafeAreaView className="flex-1" style={{ backgroundColor: colors.background }}>
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={0}
       >
         {/* Header */}
-        <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: '#E5E7EB' }}>
+        <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: colors.border }}>
           <Pressable onPress={() => router.push('/(tabs)/dreams')} hitSlop={12}>
-            <Feather name="arrow-left" size={24} color="#1F2937" />
+            <Feather name="arrow-left" size={24} color={colors.textPrimary} />
           </Pressable>
-          <Text className="text-lg font-bold" style={{ color: '#1F2937' }}>
+          <Text className="text-lg font-bold" style={{ color: colors.textPrimary }}>
             {isEditing ? 'Edit Dream' : 'Dream Details'}
           </Text>
           <View className="flex-row items-center">
             {isEditing ? (
               <>
                 <Pressable onPress={handleCancel} hitSlop={12} className="mr-3">
-                  <Text className="text-base" style={{ color: '#6B7280' }}>
+                  <Text className="text-base" style={{ color: colors.textSecondary }}>
                     Cancel
                   </Text>
                 </Pressable>
                 <Pressable onPress={handleSave} hitSlop={12}>
-                  <Text className="text-base font-semibold" style={{ color: '#8B5CF6' }}>
+                  <Text className="text-base font-semibold" style={{ color: colors.accent }}>
                     Save
                   </Text>
                 </Pressable>
@@ -218,7 +220,7 @@ export default function DreamDetailScreen() {
                   <Feather name="trash-2" size={20} color="#EF4444" />
                 </Pressable>
                 <Pressable onPress={() => setIsEditing(true)} hitSlop={12}>
-                  <Feather name="edit-2" size={20} color="#8B5CF6" />
+                  <Feather name="edit-2" size={20} color={colors.accent} />
                 </Pressable>
               </>
             )}

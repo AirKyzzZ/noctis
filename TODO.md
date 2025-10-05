@@ -30,12 +30,12 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] Calendar avec les jours
 - [ x ] Card avec une grande icone en 3d un texte type "Your dream journal awaits" et un bouton call to action qui permet d'ajouter un nouveau reve rapidement
 - [ x ] overview de quelques stats comme le nombre total de rêves et la streak actuel et un petit troisième truc + bouton voir plus qui amène sur la page journal
+- [ x ] Fix bug quand y'a deux reves le même jour ca reset la streak, si jamais il y en a deux dans la même journée ca compte pour 1
 
-- [  ] Fix bug quand y'a deux reves le même jour ca reset la streak, si jamais il y en a deux dans la même journée ca compte pour 1
 - [  ] faire en sorte que l'icone de photo de profil dans le header de la home page ammène sur la page profil et remplacer le logo paramètre par un theme switcher
-- [  ] Mettre icone paramètre dans la page profil et pas dasn la home page mais c'est la meme
+- [  ] Mettre icone paramètre dans la page profil et pas dasn la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
 - [  ] card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels, pour l'instant ne rempli pas cette page j'ai juste besoin de la card sur la home page tout en bas
-- [  ] Feature your dream forecast qui permet en fonction des cycles lunaires (Api) et un peu d'aléatoire de prévoir les reves des utilisateurs
+- [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://rapidapi.com/MoonAPIcom/api/moon-phase) et un peu d'aléatoire de prévoir les reves des utilisateurs
 - [  ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
 - [  ] Notificatons pour rappeler d'ajouter ses reves tout les jours
 - [  ] Afficher les notifications dans le notifications tab et permttre de les marquer comme lu ou de les supprimer
@@ -50,7 +50,7 @@ Influence de la météo (pluie, chaleur, bruit) avec l'api open de la météo en
 - [  ] Défis : ex. “Note tes rêves 7 jours d’affilée”.
 - [  ] Succès / badges : “Premier rêve lucide enregistré ! 🏆”.
 - [  ] Visualisation automatique : l’app génère une image AI inspirée de ton rêve.
-- [  ] Audio journal : possibilité d’enregistrer à la voix ton rêve (utile au réveil quand tu es trop fatigué pour écrire). SPEECH TO TEXT
+- [  ] Audio journal : possibilité d’enregistrer à la voix ton rêve (utile au réveil quand tu es trop fatigué pour écrire). EN SPEECH TO TEXT
 - [  ] Forecast de thèmes de rêve (ex. : “Cette semaine tu risques de rêver de voyages car…”).
 - [  ] Dream-graph : réseau interactif de tous tes rêves connectés par symboles communs. A REMPLACER DANS LA HOMEPAGE A LA PLACE DE LA CARD TOTAL DREAMS
 - [  ] Conseils personnalisés : “Essaie de te coucher 30 min plus tôt pour favoriser les rêves lucides.”
