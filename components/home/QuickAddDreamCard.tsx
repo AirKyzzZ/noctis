@@ -3,7 +3,7 @@ import { View, Text, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../providers/ThemeContext';
+import { useTheme } from '../../providers/ThemeContext';
 
 export default function QuickAddDreamCard() {
   const router = useRouter();
@@ -80,7 +80,7 @@ export default function QuickAddDreamCard() {
             }}
           >
             <Image
-              source={require('../assets/moon-icon-homecard.png')}
+              source={require('../../assets/moon-icon-homecard.png')}
               style={{
                 width: 120,
                 height: 120,

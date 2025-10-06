@@ -1,8 +1,8 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import HomeHeader from '../../components/HomeHeader';
-import WeekCalendar from '../../components/WeekCalendar';
-import QuickAddDreamCard from '../../components/QuickAddDreamCard';
+import HomeHeader from '../../components/home/HomeHeader';
+import WeekCalendar from '../../components/home/WeekCalendar';
+import QuickAddDreamCard from '../../components/home/QuickAddDreamCard';
 import { StatsOverview } from '../../components/home';
 import { useTheme } from '../../providers/ThemeContext';
 

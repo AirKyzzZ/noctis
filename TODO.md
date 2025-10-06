@@ -148,7 +148,7 @@ Astronomical Dawn occurs when the sun reaches 18° below the horizon, Nautical a
 - [  ] Visualisation automatique : l’app génère une image AI inspirée de ton rêve.
 - [  ] Audio journal : possibilité d’enregistrer à la voix ton rêve (utile au réveil quand tu es trop fatigué pour écrire). EN SPEECH TO TEXT
 - [  ] Forecast de thèmes de rêve (ex. : “Cette semaine tu risques de rêver de voyages car…”).
-- [  ] Dream-graph : réseau interactif de tous tes rêves connectés par symboles communs. A REMPLACER DANS LA HOMEPAGE A LA PLACE DE LA CARD TOTAL DREAMS
+- [  ] Dream-graph : réseau interactif en 2D de tous tes rêves connectés par symboles communs. A REMPLACER DANS LA HOMEPAGE A LA PLACE DE LA CARD TOTAL DREAMS
 - [  ] Conseils personnalisés : “Essaie de te coucher 30 min plus tôt pour favoriser les rêves lucides.”
 - [  ] Connecter une api 100% gratuite qui permet de voir le cycle lunaire actuel afin de voir comment est ce que l'utilisateur devrait dormir cette nuit
 - [  ] Possibilité de changer la langue mais celle par défaut est le francais il y a aussi de l'anglais disponible pour l'instant i18n

@@ -14,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useDreams } from '../../providers/DreamContext';
 import { useTheme } from '../../providers/ThemeContext';
 import {
@@ -57,6 +58,8 @@ export default function AddDreamScreen() {
   const { addDream } = useDreams();
   const { colors } = useTheme();
 
+  const [dreamDate, setDreamDate] = useState<Date>(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [dreamType, setDreamType] = useState<DreamType>('ordinary');
   const [description, setDescription] = useState('');
   const [emotionalStateBefore, setEmotionalStateBefore] = useState<EmotionalState>('calm');
@@ -70,6 +73,24 @@ export default function AddDreamScreen() {
   const [personalMeaning, setPersonalMeaning] = useState('');
   const [overallTone, setOverallTone] = useState<OverallTone>('neutral');
   const [saving, setSaving] = useState(false);
+
+  const handleDateChange = (event: any, selectedDate?: Date) => {
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false);
+    }
+    if (selectedDate) {
+      setDreamDate(selectedDate);
+    }
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'short',
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+    });
+  };
 
   const handleSave = async () => {
     if (!description.trim()) {
@@ -91,7 +112,7 @@ export default function AddDreamScreen() {
         .filter((t) => t.length > 0);
 
       await addDream({
-        dateTime: new Date().toISOString(),
+        dateTime: dreamDate.toISOString(),
         type: dreamType,
         description,
         emotionalStateBefore,
@@ -170,6 +191,40 @@ export default function AddDreamScreen() {
                   </Pressable>
                 ))}
               </View>
+            </View>
+
+            {/* Dream Date */}
+            <View className="mb-6">
+              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+                Dream Date
+              </Text>
+              <Pressable
+                onPress={() => setShowDatePicker(true)}
+                className="flex-row items-center justify-between rounded-xl bg-white p-4"
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#E5E7EB',
+                }}
+              >
+                <View className="flex-row items-center">
+                  <Feather name="calendar" size={20} color="#8B5CF6" />
+                  <Text className="ml-3 text-base" style={{ color: '#1F2937' }}>
+                    {formatDate(dreamDate)}
+                  </Text>
+                </View>
+                <Feather name="chevron-right" size={20} color="#9CA3AF" />
+              </Pressable>
+              {(showDatePicker || Platform.OS === 'ios') && (
+                <View className="mt-3">
+                  <DateTimePicker
+                    value={dreamDate}
+                    mode="date"
+                    display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                    onChange={handleDateChange}
+                    maximumDate={new Date()}
+                  />
+                </View>
+              )}
             </View>
 
             {/* Dream Description */}

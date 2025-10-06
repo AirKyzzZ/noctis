@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, Text } from 'react-native';
-import { useDreams } from '../providers/DreamContext';
-import { useTheme } from '../providers/ThemeContext';
+import { useDreams } from '../../providers/DreamContext';
+import { useTheme } from '../../providers/ThemeContext';
 
 interface DayPillProps {
   date: Date;
