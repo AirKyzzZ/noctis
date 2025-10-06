@@ -56,12 +56,25 @@ const overallTones: { value: OverallTone; label: string; emoji: string }[] = [
 
 export default function DreamDetailScreen() {
   const router = useRouter();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, from } = useLocalSearchParams<{ id: string; from?: string }>();
   const { getDreamById, updateDream, deleteDream } = useDreams();
   const { colors } = useTheme();
 
   const [isEditing, setIsEditing] = useState(false);
   const [dream, setDream] = useState<Dream | null>(null);
+
+  const handleGoBack = () => {
+    // Navigate back to where the user came from
+    if (from === 'search') {
+      router.push('/(tabs)/search');
+    } else if (from === 'dreams') {
+      router.push('/(tabs)/dreams');
+    } else if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/(tabs)/dreams');
+    }
+  };
 
   // Editable fields
   const [dreamType, setDreamType] = useState<DreamType>('ordinary');
@@ -85,7 +98,7 @@ export default function DreamDetailScreen() {
         initializeFields(foundDream);
       } else {
         Alert.alert('Error', 'Dream not found');
-        router.push('/(tabs)/dreams');
+        handleGoBack();
       }
     }
   }, [id]);
@@ -160,7 +173,7 @@ export default function DreamDetailScreen() {
           onPress: async () => {
             if (dream) {
               await deleteDream(dream.id);
-              router.push('/(tabs)/dreams');
+              handleGoBack();
             }
           },
         },
@@ -194,7 +207,7 @@ export default function DreamDetailScreen() {
       >
         {/* Header */}
         <View className="flex-row items-center justify-between border-b px-4 py-3" style={{ borderBottomColor: colors.border }}>
-          <Pressable onPress={() => router.push('/(tabs)/dreams')} hitSlop={12}>
+          <Pressable onPress={handleGoBack} hitSlop={12}>
             <Feather name="arrow-left" size={24} color={colors.textPrimary} />
           </Pressable>
           <Text className="text-lg font-bold" style={{ color: colors.textPrimary }}>

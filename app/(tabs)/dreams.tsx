@@ -154,7 +154,7 @@ export default function DreamsScreen() {
               <DreamCard
                 key={dream.id}
                 dream={dream}
-                onPress={() => router.push(`/dreams/${dream.id}`)}
+                onPress={() => router.push(`/dreams/${dream.id}?from=dreams`)}
                 onDelete={() => handleDeleteDream(dream.id)}
               />
             ))

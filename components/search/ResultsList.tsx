@@ -26,7 +26,7 @@ export default function ResultsList({ dreams }: ResultsListProps) {
         renderItem={({ item }) => (
           <DreamCard
             dream={item}
-            onPress={() => router.push(`/dreams/${item.id}`)}
+            onPress={() => router.push(`/dreams/${item.id}?from=search`)}
           />
         )}
       />
