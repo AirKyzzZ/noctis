@@ -36,6 +36,7 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
 - [ x ] Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
 
+- [  ] Diagramme de Kiviat avec les différents types de sommeil a mettre dans la page journal de reves pour avoir une stat supplémentaire
 - [  ] card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels, pour l'instant ne rempli pas cette page j'ai juste besoin de la card sur la home page tout en bas
 - [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://docs.stormglass.io/#/astronomy) avec une localisation fixe a BORDEAUX pour permettre de faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire de "prévoir" les reves des utilisateurs avec end la date du jour lat = 44.8667 lng = -0.5597 MAXIMUM 10 REQUETES par jour optimiser les requetes au maximum car je suis en version gratuit donc MAX 10 REQUETES PAR JOUR
 
