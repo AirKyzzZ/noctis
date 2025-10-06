@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { View, Text, Image, Pressable, Animated } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useProfile } from '../providers/ProfileContext';
-import { useTheme } from '../providers/ThemeContext';
+import { useProfile } from '../../providers/ProfileContext';
+import { useTheme } from '../../providers/ThemeContext';
 import { useRouter } from 'expo-router';
 
 interface HomeHeaderProps {

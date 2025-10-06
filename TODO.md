@@ -32,10 +32,110 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] overview de quelques stats comme le nombre total de rêves et la streak actuel et un petit troisième truc + bouton voir plus qui amène sur la page journal
 - [ x ] Fix bug quand y'a deux reves le même jour ca reset la streak, si jamais il y en a deux dans la même journée ca compte pour 1
 - [ x ] faire en sorte que l'icone de photo de profil dans le header de la home page ammène sur la page profil et remplacer le logo paramètre par un theme switcher
+- [ x ] Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
 
-- [  ] Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
 - [  ] card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels, pour l'instant ne rempli pas cette page j'ai juste besoin de la card sur la home page tout en bas
-- [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://rapidapi.com/MoonAPIcom/api/moon-phase) et un peu d'aléatoire de prévoir les reves des utilisateurs
+- [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://docs.stormglass.io/#/astronomy) avec une localisation fixe a BORDEAUX pour permettre de faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire de "prévoir" les reves des utilisateurs avec end la date du jour lat = 44.8667 lng = -0.5597 MAXIMUM 10 REQUETES par jour optimiser les requetes au maximum car je suis en version gratuit donc MAX 10 REQUETES PAR JOUR
+
+example usage : 
+
+GET https://api.stormglass.io/v2/astronomy/point
+Retrieve sunrise, sunset, moonrise, moonset and moon phase for a single coordinate.
+
+const lat = 58.7984;
+const lng = 17.8081;
+const end = 2020-02-25;
+
+fetch(`https://api.stormglass.io/v2/astronomy/point?lat=${lat}&lng=${lng}&end=${end}`, {
+  headers: {
+    'Authorization': 'example-api-key'
+  }
+}).then((response) => response.json()).then((jsonData) => {
+  // Do something with response data.
+});
+
+{
+    "data": [
+        {
+            "astronomicalDawn": "2018-11-22T04:29:13+00:00",
+            "astronomicalDusk": "2018-11-22T16:43:25+00:00",
+            "civilDawn": "2018-11-22T06:07:58+00:00",
+            "civilDusk": "2018-11-22T15:04:39+00:00",
+            "moonFraction": 0.9773405348657047,
+            "moonPhase": {
+                "closest": {
+                    "text": "Full moon",
+                    "time": "2018-11-23T10:05:00+00:00",
+                    "value": 0.5
+                },
+                "current": {
+                    "text": "Waxing gibbous",
+                    "time": "2018-11-22T00:00:00+00:00",
+                    "value": 0.45190179144442527
+                }
+            },
+            "moonrise": "2018-11-22T13:58:41.948883+00:00",
+            "moonset": "2018-11-22T05:04:59.690726+00:00",
+            "nauticalDawn": "2018-11-22T05:17:04+00:00",
+            "nauticalDusk": "2018-11-22T15:55:34+00:00",
+            "sunrise": "2018-11-22T06:56:32+00:00",
+            "sunset": "2018-11-22T14:16:06+00:00",
+            "time": "2018-11-22T00:00:00+00:00"
+        },
+        ...
+    ],
+    "meta": {
+        "cost": 1,
+        "dailyQuota": 50,
+        "lat": 58.7984,
+        "lng": 17.8081,
+        "requestCount": 1,
+        "start": "2018-11-22T00:00:00+00:00"
+    }
+}
+
+Available Query Parameters
+Parameter	Required	Default	Description
+lat	✔	n/a	Latitude of the desired coordinate.
+lng	✔	n/a	Longitude of the desired coordinate.
+start		Today at 00.00	Timestamp in UTC for first forecast hour - UNIX format or URL encoded ISO format.
+end		Tomorrow at 00.00	For how many days ahead to receive data. max 10 days.
+Response Format
+The response will be sent back in the form of a JSON object. The resource root contains two objects, data and meta.
+
+Meta
+
+The meta object contains information about the API request. Such as requested latitude and longitude, your daily quota and how many requests you’ve made so far today.
+
+Data
+
+The data object contains the actual data on a daily basis. One item in the data list contains:
+
+key	value
+time	Timestamp in UTC indicating the day for the data
+sunrise	Timestamp for sunrise in UTC. Will return null if no sunsrise occurs on the given day
+sunset	Timestamp for sunset in UTC. Will return null if no sunset occurs on the given day
+moonrise	Timestamp for moonrise in UTC. Will return null if no moonrise occurs on the given day
+moonset	Timestamp for moonset in UTC. Will return null if no moonset occurs on the given day
+moonFraction	A float number between 0 and 1 indicating how much of the moon is illuminated
+moonPhase	Objects describing the current and the closest moon phase
+astronomicalDawn	Timestamp in UTC. Will return null if no dawn occurs on the given day
+astronomicalDusk	Timestamp in UTC. Will return null if no dusk occurs on the given day
+civilDawn	Timestamp for sunset in UTC. Will return null if no dawn occurs on the given day
+civilDusk	Timestamp for sunset in UTC. Will return null if no dusk occurs on the given day
+nauticalDawn	Timestamp for sunset in UTC. Will return null if no dawn occurs on the given day
+nauticalDusk	Timestamp for sunset in UTC. Will return null if no dusk occurs on the given day
+A moon phase is described by an object with the structure according to the table below. current describes the current moon phase and closest gives you the timestamp for the closest phase being one of New moon, First quarter, Full moon or Third quarter.
+
+key	value
+time	Timestamp in UTC showing what time the moon phase object describes
+text	A string describing the moon phase. The possible values are: New moon, Waxing crescent, First quarter, Waxing gibbous, Full moon, Vaning gibbous, Third quarter, Vaning crescent
+value	A float value for the phase of the given time.
+The value parameter gives you a float value for the given time where 0.0 or 1.0 equals New moon, 0.25 equals First Quarter, 0.5 equals Full moon and 0.75 equals Third quarter.
+
+Definition Of Dusk And Dawn
+Astronomical Dawn occurs when the sun reaches 18° below the horizon, Nautical at 12° and Civil at 6°. The same degrees apply for the Dusk definitions.
+
 - [  ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
 - [  ] Notificatons pour rappeler d'ajouter ses reves tout les jours
 - [  ] Afficher les notifications dans le notifications tab et permttre de les marquer comme lu ou de les supprimer
@@ -43,10 +143,6 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [  ] Faire un light et un dark theme switcher -- juste échanger background et foreground pas besoin de modifier la couleur d'accent
 - [  ] Ajouter un form de retour feedback et des pages légales dans la page de settings
 - [  ] Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
-- [  ] Prévision sommeil (avec la lune) :
-Phases de la lune 🌕
-Horaires de coucher/lever recommandés (chronotype).
-Influence de la météo (pluie, chaleur, bruit) avec l'api open de la météo en temps réel la ou se trouve l'utilisateur. API : https://open-meteo.com/
 - [  ] Défis : ex. “Note tes rêves 7 jours d’affilée”.
 - [  ] Succès / badges : “Premier rêve lucide enregistré ! 🏆”. Voir tout les badges collectés dans la page de profil
 - [  ] Visualisation automatique : l’app génère une image AI inspirée de ton rêve.
@@ -71,7 +167,7 @@ Journal parallèle : possibilité d’ajouter ce que tu vivais la veille (stress
 Détection des personnages récurrents : l’app identifie les “personnages clés” de tes rêves.
 - [  ] 🌀 Fonctions pour les rêves lucides
 
-Rappels de “tests de réalité” (notifications aléatoires → “Es-tu en train de rêver ?”).
+Rappels via notifications de “tests de réalité” (notifications aléatoires → “Es-tu en train de rêver ?”).
 
 Checklists lucides : suivi des méthodes utilisées (MILD, WBTB, etc.).
 
