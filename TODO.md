@@ -33,6 +33,8 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] Fix bug quand y'a deux reves le même jour ca reset la streak, si jamais il y en a deux dans la même journée ca compte pour 1
 - [ x ] faire en sorte que l'icone de photo de profil dans le header de la home page ammène sur la page profil et remplacer le logo paramètre par un theme switcher
 - [ x ] Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
+- [ x ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
+- [ x ] Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
 
 - [  ] card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels, pour l'instant ne rempli pas cette page j'ai juste besoin de la card sur la home page tout en bas
 - [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://docs.stormglass.io/#/astronomy) avec une localisation fixe a BORDEAUX pour permettre de faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire de "prévoir" les reves des utilisateurs avec end la date du jour lat = 44.8667 lng = -0.5597 MAXIMUM 10 REQUETES par jour optimiser les requetes au maximum car je suis en version gratuit donc MAX 10 REQUETES PAR JOUR
@@ -136,13 +138,12 @@ The value parameter gives you a float value for the given time where 0.0 or 1.0 
 Definition Of Dusk And Dawn
 Astronomical Dawn occurs when the sun reaches 18° below the horizon, Nautical at 12° and Civil at 6°. The same degrees apply for the Dusk definitions.
 
-- [  ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
+
 - [  ] Notificatons pour rappeler d'ajouter ses reves tout les jours
 - [  ] Afficher les notifications dans le notifications tab et permttre de les marquer comme lu ou de les supprimer
 - [  ] Afficher un badge rouge a cote de l'icone bell dans la navbar quand il y a des notifications non lues
 - [  ] Faire un light et un dark theme switcher -- juste échanger background et foreground pas besoin de modifier la couleur d'accent
 - [  ] Ajouter un form de retour feedback et des pages légales dans la page de settings
-- [  ] Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
 - [  ] Défis : ex. “Note tes rêves 7 jours d’affilée”.
 - [  ] Succès / badges : “Premier rêve lucide enregistré ! 🏆”. Voir tout les badges collectés dans la page de profil
 - [  ] Visualisation automatique : l’app génère une image AI inspirée de ton rêve.

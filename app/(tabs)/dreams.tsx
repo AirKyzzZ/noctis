@@ -52,7 +52,7 @@ export default function DreamsScreen() {
         <View className="flex-row items-center justify-between">
           <View>
             <Text className="text-2xl font-bold" style={{ color: colors.textPrimary }}>
-              Dream Journal
+              💤 Dream Journal
             </Text>
             <Text className="mt-0.5 text-sm" style={{ color: colors.textTertiary }}>
               Track and explore your dreams
