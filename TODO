@@ -65,115 +65,13 @@ Dream Graph:
   ✔ I want the graph naviguation section to have a little bit less height
 
 Dream Forecast Feature:
-  ☐ Feature + nouvelle page "your dream forecast" @critical
-  ☐ Permet en fonction des cycles lunaires de "prévoir" les reves des utilisateurs
-  ☐ API: https://docs.stormglass.io/#/astronomy
-  ☐ Localisation fixe a BORDEAUX (lat = 44.8667, lng = -0.5597)
-  ☐ MAXIMUM 10 REQUETES par jour - optimiser les requetes au maximum @critical
-  ☐ Faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire
-  
-    Notes:
-    Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://docs.stormglass.io/#/astronomy) avec une localisation fixe a BORDEAUX pour permettre de faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire de "prévoir" les reves des utilisateurs avec end la date du jour lat = 44.8667 lng = -0.5597 MAXIMUM 10 REQUETES par jour optimiser les requetes au maximum car je suis en version gratuit donc MAX 10 REQUETES PAR JOUR
-
-    example usage : 
-
-    GET https://api.stormglass.io/v2/astronomy/point
-    Retrieve sunrise, sunset, moonrise, moonset and moon phase for a single coordinate.
-
-    const lat = 58.7984;
-    const lng = 17.8081;
-    const end = 2020-02-25;
-
-    fetch(`https://api.stormglass.io/v2/astronomy/point?lat=${lat}&lng=${lng}&end=${end}`, {
-    headers: {
-        'Authorization': 'example-api-key'
-    }
-    }).then((response) => response.json()).then((jsonData) => {
-    // Do something with response data.
-    });
-
-    {
-        "data": [
-            {
-                "astronomicalDawn": "2018-11-22T04:29:13+00:00",
-                "astronomicalDusk": "2018-11-22T16:43:25+00:00",
-                "civilDawn": "2018-11-22T06:07:58+00:00",
-                "civilDusk": "2018-11-22T15:04:39+00:00",
-                "moonFraction": 0.9773405348657047,
-                "moonPhase": {
-                    "closest": {
-                        "text": "Full moon",
-                        "time": "2018-11-23T10:05:00+00:00",
-                        "value": 0.5
-                    },
-                    "current": {
-                        "text": "Waxing gibbous",
-                        "time": "2018-11-22T00:00:00+00:00",
-                        "value": 0.45190179144442527
-                    }
-                },
-                "moonrise": "2018-11-22T13:58:41.948883+00:00",
-                "moonset": "2018-11-22T05:04:59.690726+00:00",
-                "nauticalDawn": "2018-11-22T05:17:04+00:00",
-                "nauticalDusk": "2018-11-22T15:55:34+00:00",
-                "sunrise": "2018-11-22T06:56:32+00:00",
-                "sunset": "2018-11-22T14:16:06+00:00",
-                "time": "2018-11-22T00:00:00+00:00"
-            },
-            ...
-        ],
-        "meta": {
-            "cost": 1,
-            "dailyQuota": 50,
-            "lat": 58.7984,
-            "lng": 17.8081,
-            "requestCount": 1,
-            "start": "2018-11-22T00:00:00+00:00"
-        }
-    }
-
-    Available Query Parameters
-    Parameter   Required    Default Description
-    lat ✔   n/a Latitude of the desired coordinate.
-    lng ✔   n/a Longitude of the desired coordinate.
-    start       Today at 00.00  Timestamp in UTC for first forecast hour - UNIX format or URL encoded ISO format.
-    end     Tomorrow at 00.00   For how many days ahead to receive data. max 10 days.
-    Response Format
-    The response will be sent back in the form of a JSON object. The resource root contains two objects, data and meta.
-
-    Meta
-
-    The meta object contains information about the API request. Such as requested latitude and longitude, your daily quota and how many requests you’ve made so far today.
-
-    Data
-
-    The data object contains the actual data on a daily basis. One item in the data list contains:
-
-    key value
-    time    Timestamp in UTC indicating the day for the data
-    sunrise Timestamp for sunrise in UTC. Will return null if no sunsrise occurs on the given day
-    sunset  Timestamp for sunset in UTC. Will return null if no sunset occurs on the given day
-    moonrise    Timestamp for moonrise in UTC. Will return null if no moonrise occurs on the given day
-    moonset Timestamp for moonset in UTC. Will return null if no moonset occurs on the given day
-    moonFraction    A float number between 0 and 1 indicating how much of the moon is illuminated
-    moonPhase   Objects describing the current and the closest moon phase
-    astronomicalDawn    Timestamp in UTC. Will return null if no dawn occurs on the given day
-    astronomicalDusk    Timestamp in UTC. Will return null if no dusk occurs on the given day
-    civilDawn   Timestamp for sunset in UTC. Will return null if no dawn occurs on the given day
-    civilDusk   Timestamp for sunset in UTC. Will return null if no dusk occurs on the given day
-    nauticalDawn    Timestamp for sunset in UTC. Will return null if no dawn occurs on the given day
-    nauticalDusk    Timestamp for sunset in UTC. Will return null if no dusk occurs on the given day
-    A moon phase is described by an object with the structure according to the table below. current describes the current moon phase and closest gives you the timestamp for the closest phase being one of New moon, First quarter, Full moon or Third quarter.
-
-    key value
-    time    Timestamp in UTC showing what time the moon phase object describes
-    text    A string describing the moon phase. The possible values are: New moon, Waxing crescent, First quarter, Waxing gibbous, Full moon, Vaning gibbous, Third quarter, Vaning crescent
-    value   A float value for the phase of the given time.
-    The value parameter gives you a float value for the given time where 0.0 or 1.0 equals New moon, 0.25 equals First Quarter, 0.5 equals Full moon and 0.75 equals Third quarter.
-
-    Definition Of Dusk And Dawn
-    Astronomical Dawn occurs when the sun reaches 18° below the horizon, Nautical at 12° and Civil at 6°. The same degrees apply for the Dusk definitions.
-
+  ✔ Feature + nouvelle page "your dream forecast" @critical @done(25-10-07 19:48)
+  ✔ Permet en fonction des cycles lunaires de "prévoir" les reves des utilisateurs @done(25-10-07 19:48)
+  ✔ API: https://docs.stormglass.io/#/astronomy @done(25-10-07 19:48)
+  ✔ Localisation fixe a BORDEAUX (lat = 44.8667, lng = -0.5597) @done(25-10-07 19:48)
+  ✔ MAXIMUM 10 REQUETES par jour - optimiser les requetes au maximum @critical @done(25-10-07 19:48)
+  ✔ Faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire @done(25-10-07 19:48)
+  ☐ Ajouter une card dans la home page pour la dream forecast feature
 
 Notifications:
   ☐ Notifications pour rappeler d'ajouter ses reves tout les jours @high

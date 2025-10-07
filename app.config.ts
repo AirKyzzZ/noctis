@@ -47,6 +47,9 @@ const config: ExpoConfig = {
   experiments: {
     typedRoutes: true,
   },
+  extra: {
+    STORMGLASS_API: process.env['STORMGLASS-API'] || process.env.STORMGLASS_API,
+  },
 };
 
 export default config;

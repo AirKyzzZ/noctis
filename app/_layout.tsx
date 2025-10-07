@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from '../providers/AuthContext';
 import { ProfileProvider } from '../providers/ProfileContext';
 import { DreamProvider } from '../providers/DreamContext';
 import { ThemeProvider, useTheme } from '../providers/ThemeContext';
+import { MoonProvider } from '../providers/MoonContext';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
@@ -125,7 +126,9 @@ export default function RootLayout() {
       <AuthProvider>
         <ProfileProvider>
           <DreamProvider>
-            <RootLayoutNav />
+            <MoonProvider>
+              <RootLayoutNav />
+            </MoonProvider>
           </DreamProvider>
         </ProfileProvider>
       </AuthProvider>
