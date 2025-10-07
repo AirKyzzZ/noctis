@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
@@ -143,7 +143,6 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
       }
 
       if (finalStatus !== 'granted') {
-        console.log('Notification permissions not granted');
         return false;
       }
 
@@ -192,8 +191,6 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
           repeats: true,
         },
       });
-
-      console.log('Daily reminder scheduled for', settings.dailyReminderTime);
     } catch (error) {
       console.error('Error scheduling daily reminder:', error);
     }
@@ -202,7 +199,6 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   const cancelDailyReminder = async () => {
     try {
       await Notifications.cancelScheduledNotificationAsync(DAILY_REMINDER_IDENTIFIER);
-      console.log('Daily reminder cancelled');
     } catch (error) {
       console.error('Error cancelling daily reminder:', error);
     }
