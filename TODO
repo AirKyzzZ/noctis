@@ -71,7 +71,7 @@ Dream Forecast Feature:
   ✔ Localisation fixe a BORDEAUX (lat = 44.8667, lng = -0.5597) @done(25-10-07 19:48)
   ✔ MAXIMUM 10 REQUETES par jour - optimiser les requetes au maximum @critical @done(25-10-07 19:48)
   ✔ Faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire @done(25-10-07 19:48)
-  ☐ Ajouter une card dans la home page pour la dream forecast feature
+  ✔ Ajouter une card dans la home page pour la dream forecast feature @done(25-10-07 19:56)
 
 Notifications:
   ☐ Notifications pour rappeler d'ajouter ses reves tout les jours @high
@@ -81,13 +81,14 @@ Notifications:
   ☐ Ajouter un component logique qui permet d'afficher un badge rouge a cote de l'icone bell dans la navbar quand il y a des notifications non lues @high
 
 Theme System:
-  ☐ Faire un light et un dark theme switcher
-  ☐ Juste échanger background et foreground pas besoin de modifier la couleur d'accent
+  ✔ Faire un light et un dark theme switcher @done(25-10-07 19:53)
+  ✔ Juste échanger background et foreground pas besoin de modifier la couleur d'accent @done(25-10-07 19:53)
 
 Gamification & Achievements:
   ☐ Défis : ex. "Note tes rêves 7 jours d'affilée"
   ☐ Succès / badges : "Premier rêve lucide enregistré ! 🏆"
   ☐ Voir tout les badges collectés dans la page de profil
+  ☐ Faire un exercice de méditation dynamique pour se relaxer avant de dormir
 
 Audio Features:
   ☐ Audio journal : possibilité d'enregistrer à la voix ton rêve
