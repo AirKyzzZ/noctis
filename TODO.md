@@ -36,6 +36,9 @@ et la possibilité de les gérer donc les ajouter les modifier les supprimer et 
 - [ x ] Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
 - [ x ] Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
 
+- [  ] When i add a dream it dosn't say day streak 1 it stays at 0
+- [  ] In the dream graph i want the node info when clicked to display above the dream types so the user can easially see the dreams, i want the graph naviguation section to have a little bit less height
+- [  ] Make the WeekCalendar clickable do display the dreams you had that specific day or display none if you didn't register any dream and let you add one for this specific day
 - [  ] Diagramme de Kiviat avec les différents types de sommeil a mettre dans la page journal de reves pour avoir une stat supplémentaire
 - [  ] card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels, pour l'instant ne rempli pas cette page j'ai juste besoin de la card sur la home page tout en bas
 - [  ] Feature + nouvelle page "your dream forecast" qui permet en fonction des cycles lunaires (Api: https://docs.stormglass.io/#/astronomy) avec une localisation fixe a BORDEAUX pour permettre de faire un seul call api par jour pour avoir les cycles de la lune et un peu d'aléatoire de "prévoir" les reves des utilisateurs avec end la date du jour lat = 44.8667 lng = -0.5597 MAXIMUM 10 REQUETES par jour optimiser les requetes au maximum car je suis en version gratuit donc MAX 10 REQUETES PAR JOUR
@@ -176,6 +179,8 @@ Checklists lucides : suivi des méthodes utilisées (MILD, WBTB, etc.).
 Suivi de progression : “Tu as eu 3 rêves lucides ce mois-ci, +50% par rapport au précédent.”
 
 Bibliothèque de techniques : explications rapides pour s’entraîner à rêver lucide.
+- [  ] REMOVE COMMENTS
+- [  ] Remake home made comments
 - [  ] POSTER DANS LE PLAY STORE
 
 

@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../../providers/DreamContext';
 import { useTheme } from '../../providers/ThemeContext';
+import DreamGraph from './DreamGraphCard';
 
 export default function StatsOverview() {
   const router = useRouter();
@@ -44,42 +45,8 @@ export default function StatsOverview() {
 
       {/* Stats Grid */}
       <View className="flex-row" style={{ height: 140 }}>
-        {/* Left Card - Purple (Total Dreams) */}
-        <View className="w-1/2 pr-1.5">
-          <View
-            className="flex-1 flex-row items-center rounded-2xl p-3"
-            style={{
-              backgroundColor: '#8B5CF6', // Purple
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 6,
-              elevation: 3,
-            }}
-          >
-            {/* Icon */}
-            <View
-              className="mr-3 items-center justify-center rounded-full"
-              style={{
-                width: 40,
-                height: 40,
-                backgroundColor: 'rgba(255, 255, 255, 0.25)',
-              }}
-            >
-              <Feather name="book" size={20} color="#FFFFFF" />
-            </View>
-
-            {/* Value */}
-            <View className="flex-1">
-              <Text className="text-3xl font-bold text-white">
-                {stats.totalDreams}
-              </Text>
-              <Text className="text-xs font-medium text-white/90">
-                Total Dreams
-              </Text>
-            </View>
-          </View>
-        </View>
+        {/* Left Card - Dream Graph */}
+        <DreamGraph />
 
         {/* Right Side - Stacked Cards */}
         <View className="w-1/2 pl-1.5">
