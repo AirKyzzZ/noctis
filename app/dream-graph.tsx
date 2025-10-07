@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { View, Text, ScrollView, Dimensions, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import Svg, { Circle, Line, G, Text as SvgText } from 'react-native-svg';
+import Svg, { Circle, Line, G } from 'react-native-svg';
 import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../providers/DreamContext';
 import { useTheme } from '../providers/ThemeContext';
@@ -33,7 +33,7 @@ interface GraphData {
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const GRAPH_WIDTH = SCREEN_WIDTH - 32;
-const GRAPH_HEIGHT = SCREEN_HEIGHT - 200;
+const GRAPH_HEIGHT = Math.min(SCREEN_HEIGHT * 0.5, 400); // Reduced height: 50% of screen or 400px max
 const NODE_RADIUS = 8;
 const MAX_NODES = 50; // Show more nodes on full screen
 
@@ -42,7 +42,7 @@ export default function DreamGraphScreen() {
   const { dreams } = useDreams();
   const { colors } = useTheme();
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
-  const [iteration, setIteration] = useState(0);
+  const [, setIteration] = useState(0);
 
   // Build graph data structure
   const graphData = useMemo((): GraphData => {
@@ -358,34 +358,7 @@ export default function DreamGraphScreen() {
           </View>
         </View>
 
-        {/* Legend */}
-        <View className="mx-4 mb-4">
-          <Text className="mb-2 font-semibold" style={{ color: colors.textPrimary }}>
-            Dream Types
-          </Text>
-          <View className="flex-row flex-wrap">
-            {[
-              { type: 'lucid', color: '#60A5FA', label: 'Lucid' },
-              { type: 'nightmare', color: '#EF4444', label: 'Nightmare' },
-              { type: 'recurring', color: '#F59E0B', label: 'Recurring' },
-              { type: 'prophetic', color: '#A78BFA', label: 'Prophetic' },
-              { type: 'healing', color: '#10B981', label: 'Healing' },
-              { type: 'ordinary', color: '#E5E7EB', label: 'Ordinary' },
-            ].map((item) => (
-              <View key={item.type} className="flex-row items-center mr-4 mb-2">
-                <View
-                  className="rounded-full mr-1.5"
-                  style={{ width: 12, height: 12, backgroundColor: item.color }}
-                />
-                <Text className="text-xs" style={{ color: colors.textSecondary }}>
-                  {item.label}
-                </Text>
-              </View>
-            ))}
-          </View>
-        </View>
-
-        {/* Selected Node Details */}
+        {/* Selected Node Details - Moved above Legend */}
         {selectedNode && (
           <View className="mx-4 mb-4 rounded-2xl p-4" style={{ backgroundColor: colors.cardBackground }}>
             <View className="flex-row items-start justify-between mb-3">
@@ -456,6 +429,33 @@ export default function DreamGraphScreen() {
             </Pressable>
           </View>
         )}
+
+        {/* Legend */}
+        <View className="mx-4 mb-4">
+          <Text className="mb-2 font-semibold" style={{ color: colors.textPrimary }}>
+            Dream Types
+          </Text>
+          <View className="flex-row flex-wrap">
+            {[
+              { type: 'lucid', color: '#60A5FA', label: 'Lucid' },
+              { type: 'nightmare', color: '#EF4444', label: 'Nightmare' },
+              { type: 'recurring', color: '#F59E0B', label: 'Recurring' },
+              { type: 'prophetic', color: '#A78BFA', label: 'Prophetic' },
+              { type: 'healing', color: '#10B981', label: 'Healing' },
+              { type: 'ordinary', color: '#E5E7EB', label: 'Ordinary' },
+            ].map((item) => (
+              <View key={item.type} className="flex-row items-center mr-4 mb-2">
+                <View
+                  className="rounded-full mr-1.5"
+                  style={{ width: 12, height: 12, backgroundColor: item.color }}
+                />
+                <Text className="text-xs" style={{ color: colors.textSecondary }}>
+                  {item.label}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
