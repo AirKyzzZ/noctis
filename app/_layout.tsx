@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
+import * as Notifications from 'expo-notifications';
 import { AuthProvider, useAuth } from '../providers/AuthContext';
 import { ProfileProvider } from '../providers/ProfileContext';
 import { DreamProvider } from '../providers/DreamContext';
 import { ThemeProvider, useTheme } from '../providers/ThemeContext';
 import { MoonProvider } from '../providers/MoonContext';
+import { NotificationProvider, useNotifications } from '../providers/NotificationContext';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
@@ -57,6 +59,7 @@ function ThemeTransitionOverlay() {
 function RootLayoutNav() {
   const { isAuthenticated, loading, showConfetti } = useAuth();
   const { isDark } = useTheme();
+  const { addNotification } = useNotifications();
   const segments = useSegments();
   const router = useRouter();
 
@@ -78,6 +81,33 @@ function RootLayoutNav() {
   useEffect(() => {
     StatusBar.setBarStyle(isDark ? 'light-content' : 'dark-content', true);
   }, [isDark]);
+
+  // Listen for notification responses (when user taps on a notification)
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const data = response.notification.request.content.data as {
+        type?: string;
+        actionUrl?: string;
+      };
+
+      // Add notification to in-app list
+      if (data.type) {
+        addNotification({
+          type: data.type as any,
+          title: response.notification.request.content.title || 'Notification',
+          message: response.notification.request.content.body || '',
+          actionUrl: data.actionUrl,
+        });
+      }
+
+      // Navigate to action URL if available
+      if (data.actionUrl && isAuthenticated) {
+        router.push(data.actionUrl as any);
+      }
+    });
+
+    return () => subscription.remove();
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -127,7 +157,9 @@ export default function RootLayout() {
         <ProfileProvider>
           <DreamProvider>
             <MoonProvider>
-              <RootLayoutNav />
+              <NotificationProvider>
+                <RootLayoutNav />
+              </NotificationProvider>
             </MoonProvider>
           </DreamProvider>
         </ProfileProvider>

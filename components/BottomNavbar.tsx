@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable, Animated } from 'react-native';
+import { View, Pressable, Animated, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../providers/ThemeContext';
@@ -10,6 +10,7 @@ export type BottomTabItem = {
   key: string;
   icon: FeatherIconName;
   label?: string;
+  badge?: number;
 };
 
 type BottomNavbarProps = {
@@ -128,6 +129,27 @@ function TabButton({ tab, isActive, isDark, inactiveIconColor, onPress }: TabBut
         }}
       >
         <Feather name={tab.icon} size={24} color={iconColor} />
+        {tab.badge !== undefined && tab.badge > 0 && (
+          <View
+            className="absolute -top-1 -right-1 rounded-full items-center justify-center"
+            style={{
+              backgroundColor: '#EF4444',
+              minWidth: 18,
+              height: 18,
+              paddingHorizontal: 4,
+            }}
+          >
+            <Text
+              className="font-bold"
+              style={{
+                color: '#FFFFFF',
+                fontSize: 10,
+              }}
+            >
+              {tab.badge > 99 ? '99+' : tab.badge}
+            </Text>
+          </View>
+        )}
       </Animated.View>
     </Pressable>
   );

@@ -54,7 +54,7 @@ Stats & Analytics:
 
 Profile & Settings:
   ✔ Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
-  ☐ Ajouter un form de retour feedback et des pages légales dans la page de settings
+  ☐ Ajouter un form de retour feedback et des pages légales dans la page de settings pour pouvoir les ajouter aux stores
   ☐ Bouton buy me a coffee in the settings qui redirige vers le lien de paiment stripe
 
 Search & Filters:
@@ -74,11 +74,11 @@ Dream Forecast Feature:
   ✔ Ajouter une card dans la home page pour la dream forecast feature @done(25-10-07 19:56)
 
 Notifications:
-  ☐ Notifications pour rappeler d'ajouter ses reves tout les jours @high
-  ☐ Possibilité d'afficher les notifications dans le notifications tab
-  ☐ Permettre de les marquer comme lu ou de les supprimer
-  ☐ Cliquer dessus pour ajouter un nouveau rêve
-  ☐ Ajouter un component logique qui permet d'afficher un badge rouge a cote de l'icone bell dans la navbar quand il y a des notifications non lues @high
+  ✔ Notifications pour rappeler d'ajouter ses reves tout les jours @high @done(25-10-07 20:13)
+  ✔ Possibilité d'afficher les notifications dans le notifications tab @done(25-10-07 20:13)
+  ✔ Permettre de les marquer comme lu ou de les supprimer @done(25-10-07 20:13)
+  ✔ Cliquer dessus pour ajouter un nouveau rêve @done(25-10-07 20:13)
+  ✔ Ajouter un component logique qui permet d'afficher un badge rouge a cote de l'icone bell dans la navbar quand il y a des notifications non lues @high @done(25-10-07 20:13)
 
 Theme System:
   ✔ Faire un light et un dark theme switcher @done(25-10-07 19:53)

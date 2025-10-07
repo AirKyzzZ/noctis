@@ -2,10 +2,12 @@ import React from 'react';
 import { View } from 'react-native';
 import { Tabs, useRouter, usePathname } from 'expo-router';
 import BottomNavbar, { type BottomTabItem } from '../../components/BottomNavbar';
+import { useNotifications } from '../../providers/NotificationContext';
 
 export default function TabsLayout() {
   const router = useRouter();
   const pathname = usePathname();
+  const { unreadCount } = useNotifications();
   
   // Map pathname to active tab key
   const getActiveKey = () => {
@@ -30,7 +32,7 @@ export default function TabsLayout() {
     { key: 'book', icon: 'book' as const, label: 'Dreams' },
     { key: 'moon', icon: 'moon' as const, label: 'Prévisions' },
     { key: 'search', icon: 'search' as const, label: 'Recherche' },
-    { key: 'bell', icon: 'bell' as const, label: 'Notifications' },
+    { key: 'bell', icon: 'bell' as const, label: 'Notifications', badge: unreadCount },
     { key: 'user', icon: 'user' as const, label: 'Profil' },
   ];
 
