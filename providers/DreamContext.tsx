@@ -147,45 +147,57 @@ export const DreamProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     let currentStreak = 0;
     let longestStreak = 0;
     let tempStreak = 1;
-    let lastDate: number | null = null;
+    
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayTime = today.getTime();
+    
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayTime = yesterday.getTime();
 
-    uniqueDates.forEach((dateTime, index) => {
-      if (index === 0) {
-        lastDate = dateTime;
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-
-        // Current streak starts if dream is today or yesterday
-        if (dateTime === today.getTime() || dateTime === yesterday.getTime()) {
-          currentStreak = 1;
-        }
-      } else if (lastDate !== null) {
-        const diffTime = lastDate - dateTime;
-        const diffDays = diffTime / (1000 * 60 * 60 * 24);
-
-        if (diffDays === 1) {
-          // Consecutive day
-          tempStreak++;
-          if (index === 1 || currentStreak > 0) {
+    // Check if the most recent dream is today or yesterday
+    if (uniqueDates.length > 0) {
+      const mostRecentDream = uniqueDates[0];
+      if (mostRecentDream === todayTime || mostRecentDream === yesterdayTime) {
+        currentStreak = 1;
+        
+        // Count consecutive days
+        for (let i = 1; i < uniqueDates.length; i++) {
+          const prevDate = uniqueDates[i - 1];
+          const currDate = uniqueDates[i];
+          const diffTime = prevDate - currDate;
+          const diffDays = diffTime / (1000 * 60 * 60 * 24);
+          
+          if (diffDays === 1) {
             currentStreak++;
-          }
-        } else {
-          // Streak broken
-          longestStreak = Math.max(longestStreak, tempStreak);
-          tempStreak = 1;
-          if (index === 1) {
-            currentStreak = 0;
+            tempStreak++;
+          } else {
+            break;
           }
         }
-        lastDate = dateTime;
       }
-    });
+    }
 
+    // Calculate longest streak
+    tempStreak = 1;
+    for (let i = 1; i < uniqueDates.length; i++) {
+      const prevDate = uniqueDates[i - 1];
+      const currDate = uniqueDates[i];
+      const diffTime = prevDate - currDate;
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      
+      if (diffDays === 1) {
+        tempStreak++;
+      } else {
+        longestStreak = Math.max(longestStreak, tempStreak);
+        tempStreak = 1;
+      }
+    }
     longestStreak = Math.max(longestStreak, tempStreak);
+
     newStats.currentStreak = currentStreak;
-    newStats.longestStreak = longestStreak;
+    newStats.longestStreak = Math.max(longestStreak, currentStreak);
 
     // Calculate dream type distribution
     dreamList.forEach((dream) => {
