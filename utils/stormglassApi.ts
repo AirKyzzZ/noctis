@@ -158,7 +158,8 @@ export const fetchAstronomyData = async (
     const jsonData: AstronomyResponse = await response.json();
 
     if (jsonData.data && jsonData.data.length > 0) {
-      const astronomyData = jsonData.data[0];
+      // Use the last entry as it corresponds to the requested date
+      const astronomyData = jsonData.data[jsonData.data.length - 1];
       
       // Increment request count
       await incrementRequestCount();

@@ -108,6 +108,7 @@ export const MoonProvider: React.FC<MoonProviderProps> = ({ children }) => {
   };
 
   const refreshForecast = async () => {
+    // Just reload data (will use cache if available)
     await loadAstronomyData();
   };
 
