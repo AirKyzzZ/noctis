@@ -17,6 +17,7 @@ import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../../providers/DreamContext';
 import { useTheme } from '../../providers/ThemeContext';
 import { format } from '../../utils/dateFormat';
+import { DreamKiviatChart } from '../../components/dreams';
 import {
   DreamType,
   EmotionalState,
@@ -419,6 +420,9 @@ function ReadOnlyView({ dream }: { dream: Dream }) {
           </Text>
         </InfoSection>
       )}
+
+      {/* Kiviat Chart */}
+      <DreamKiviatChart dream={dream} />
     </>
   );
 }

@@ -36,6 +36,7 @@ Dream Management System:
   ✔ Gamification - tout les jours ca ajoute un et ca permet que l'utilisateur reste plus sur l'application
   ✔ Possibilité de modifier ou supprimer un reve après l'avoir ajouté
   ✔ Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
+  ☐ Modifier la couleur du texte en dark mode car le gris n'est pas lisible actuellement
 
 Home Page Features:
   ✔ Calendar avec les jours
@@ -50,7 +51,7 @@ Stats & Analytics:
   ✔ Inclure plein de stats et des graphiques dans une page dédiée
   ✔ Fix bug quand y'a deux reves le même jour ca reset la streak, si jamais il y en a deux dans la même journée ca compte pour 1
   ✔ When i add a dream it dosn't say day streak 1 it stays at 0
-  ☐ Implémenter un diagramme de Kiviat avec les différents types de sommeil a mettre dans la page journal de reves pour avoir une stat supplémentaire
+  ☐ Implémenter un diagramme de Kiviat avec les différents types de reves/sommeil a mettre dans la page journal de reves pour avoir une bonne stat supplémentaire
 
 Profile & Settings:
   ✔ Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
@@ -91,8 +92,7 @@ Gamification & Achievements:
   ☐ Faire un exercice de méditation dynamique pour se relaxer avant de dormir
 
 Audio Features:
-  ☐ Audio journal : possibilité d'enregistrer à la voix ton rêve
-  ☐ Utile au réveil quand tu es trop fatigué pour écrire
+  ☐ Audio journal : possibilité d'enregistrer à la voix ton rêve (Utile au réveil quand tu es trop fatigué pour écrire)
   ☐ EN SPEECH TO TEXT en utilisant : React Native Voice
   ☐ Repo : https://github.com/react-native-voice/voice
 
@@ -110,9 +110,8 @@ Export & Backup:
   ☐ Choisi par l'utilisateur : txt pdf google drive etc
 
 Documentation & Presentation:
-  ☐ Faire le readme pour bien expliquer le projet
+  ☐ Faire le readme pour bien expliquer le projet (Afin de le présenter durant l'oral de 2h du bts sio)
   ☐ Expliquer que dans le futur ce projet sera encore amélioré notamment avec supabase
-  ☐ Afin de le présenter durant l'oral de 2h du bts sio
   ☐ Faire une pres canva pour présentation orale bien détaillée sur l'app
 
 Psychological Features:

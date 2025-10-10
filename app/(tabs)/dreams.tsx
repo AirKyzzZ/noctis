@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { useDreams } from '../../providers/DreamContext';
 import { useTheme } from '../../providers/ThemeContext';
-import { DreamCard, StreakBanner, StatsGrid } from '../../components/dreams';
+import { DreamCard, StreakBanner, StatsGrid, DreamKiviatChartAggregate } from '../../components/dreams';
 
 export default function DreamsScreen() {
   const router = useRouter();
@@ -83,6 +83,9 @@ export default function DreamsScreen() {
 
         {/* Stats Grid */}
         {dreams.length > 0 && <StatsGrid stats={stats} />}
+
+        {/* Kiviat Chart - Overall Statistics */}
+        {dreams.length > 0 && <DreamKiviatChartAggregate dreams={dreams} />}
 
         {/* Sort Options */}
         {dreams.length > 0 && (
