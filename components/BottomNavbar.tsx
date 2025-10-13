@@ -30,9 +30,8 @@ export default function BottomNavbar(props: BottomNavbarProps) {
 
   return (
     <View
-      pointerEvents="box-none"
       className="absolute left-0 right-0"
-      style={{ bottom: 0, paddingBottom: containerPaddingBottom }}
+      style={{ bottom: 0, paddingBottom: containerPaddingBottom, pointerEvents: 'box-none' }}
     >
       <View className="px-5">
         <View
@@ -42,10 +41,9 @@ export default function BottomNavbar(props: BottomNavbarProps) {
             paddingVertical: 10,
             paddingHorizontal: 14,
             backgroundColor: containerBgColor,
-            shadowColor: '#000',
-            shadowOpacity: isDark ? 0.55 : 0.15,
-            shadowOffset: { width: 0, height: 8 },
-            shadowRadius: 20,
+            boxShadow: isDark 
+              ? '0px 8px 20px rgba(0, 0, 0, 0.55)' 
+              : '0px 8px 20px rgba(0, 0, 0, 0.15)',
             elevation: 14,
           }}
         >
@@ -117,7 +115,13 @@ function TabButton({ tab, isActive, isDark, inactiveIconColor, onPress }: TabBut
       onPress={onPress}
       hitSlop={12}
       className="items-center justify-center rounded-full"
-      style={{ width: 56, height: 40 }}
+      style={{ 
+        width: 56, 
+        height: 40, 
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
       <Animated.View
         className="items-center justify-center rounded-full"
@@ -126,6 +130,9 @@ function TabButton({ tab, isActive, isDark, inactiveIconColor, onPress }: TabBut
           height: 40,
           backgroundColor: circleFillColor,
           transform: [{ scale }],
+          borderRadius: 20,
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Feather name={tab.icon} size={24} color={iconColor} />
