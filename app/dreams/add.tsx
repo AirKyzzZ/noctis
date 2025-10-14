@@ -56,7 +56,7 @@ const overallTones: { value: OverallTone; label: string; emoji: string }[] = [
 export default function AddDreamScreen() {
   const router = useRouter();
   const { addDream } = useDreams();
-  const { colors } = useTheme();
+  const { colors, isDark } = useTheme();
 
   const [dreamDate, setDreamDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -166,7 +166,7 @@ export default function AddDreamScreen() {
           <View className="px-4 py-5">
             {/* Dream Type */}
             <View className="mb-6">
-              <Text className="mb-3 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-3 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Dream Type
               </Text>
               <View className="flex-row flex-wrap">
@@ -176,15 +176,15 @@ export default function AddDreamScreen() {
                     onPress={() => setDreamType(type.value)}
                     className="mb-2 mr-2 flex-row items-center rounded-xl px-4 py-3"
                     style={{
-                      backgroundColor: dreamType === type.value ? '#8B5CF6' : '#FFFFFF',
+                      backgroundColor: dreamType === type.value ? colors.accent : colors.cardBackground,
                       borderWidth: 1,
-                      borderColor: dreamType === type.value ? '#8B5CF6' : '#E5E7EB',
+                      borderColor: dreamType === type.value ? colors.accent : colors.border,
                     }}
                   >
                     <Text className="mr-2 text-base">{type.icon}</Text>
                     <Text
                       className="text-sm font-semibold"
-                      style={{ color: dreamType === type.value ? '#FFFFFF' : '#4B5563' }}
+                      style={{ color: dreamType === type.value ? '#FFFFFF' : colors.textSecondary }}
                     >
                       {type.label}
                     </Text>
@@ -195,24 +195,25 @@ export default function AddDreamScreen() {
 
             {/* Dream Date */}
             <View className="mb-6">
-              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Dream Date
               </Text>
               <Pressable
                 onPress={() => setShowDatePicker(true)}
-                className="flex-row items-center justify-between rounded-xl bg-white p-4"
+                className="flex-row items-center justify-between rounded-xl p-4"
                 style={{
+                  backgroundColor: colors.cardBackground,
                   borderWidth: 1,
-                  borderColor: '#E5E7EB',
+                  borderColor: colors.border,
                 }}
               >
                 <View className="flex-row items-center">
-                  <Feather name="calendar" size={20} color="#8B5CF6" />
-                  <Text className="ml-3 text-base" style={{ color: '#1F2937' }}>
+                  <Feather name="calendar" size={20} color={colors.accent} />
+                  <Text className="ml-3 text-base" style={{ color: colors.textPrimary }}>
                     {formatDate(dreamDate)}
                   </Text>
                 </View>
-                <Feather name="chevron-right" size={20} color="#9CA3AF" />
+                <Feather name="chevron-right" size={20} color={colors.textTertiary} />
               </Pressable>
               {(showDatePicker || Platform.OS === 'ios') && (
                 <View className="mt-3">
@@ -222,6 +223,7 @@ export default function AddDreamScreen() {
                     display={Platform.OS === 'ios' ? 'spinner' : 'default'}
                     onChange={handleDateChange}
                     maximumDate={new Date()}
+                    themeVariant={isDark ? 'dark' : 'light'}
                   />
                 </View>
               )}
@@ -229,22 +231,23 @@ export default function AddDreamScreen() {
 
             {/* Dream Description */}
             <View className="mb-6">
-              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Dream Description *
               </Text>
               <TextInput
                 value={description}
                 onChangeText={setDescription}
                 placeholder="Describe your dream in detail..."
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor={colors.textTertiary}
                 multiline
                 numberOfLines={6}
                 textAlignVertical="top"
-                className="rounded-xl bg-white p-4 text-base"
+                className="rounded-xl p-4 text-base"
                 style={{
+                  backgroundColor: colors.cardBackground,
                   borderWidth: 1,
-                  borderColor: '#E5E7EB',
-                  color: '#1F2937',
+                  borderColor: colors.border,
+                  color: colors.textPrimary,
                   minHeight: 120,
                 }}
               />
@@ -252,7 +255,7 @@ export default function AddDreamScreen() {
 
             {/* Emotional State Before */}
             <View className="mb-6">
-              <Text className="mb-3 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-3 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Emotional State Before Sleep
               </Text>
               <View className="flex-row flex-wrap">
@@ -262,14 +265,14 @@ export default function AddDreamScreen() {
                     onPress={() => setEmotionalStateBefore(state.value)}
                     className="mb-2 mr-2 rounded-xl px-4 py-2.5"
                     style={{
-                      backgroundColor: emotionalStateBefore === state.value ? '#8B5CF6' : '#FFFFFF',
+                      backgroundColor: emotionalStateBefore === state.value ? colors.accent : colors.cardBackground,
                       borderWidth: 1,
-                      borderColor: emotionalStateBefore === state.value ? '#8B5CF6' : '#E5E7EB',
+                      borderColor: emotionalStateBefore === state.value ? colors.accent : colors.border,
                     }}
                   >
                     <Text
                       className="text-sm"
-                      style={{ color: emotionalStateBefore === state.value ? '#FFFFFF' : '#4B5563' }}
+                      style={{ color: emotionalStateBefore === state.value ? '#FFFFFF' : colors.textSecondary }}
                     >
                       {state.label}
                     </Text>
@@ -280,7 +283,7 @@ export default function AddDreamScreen() {
 
             {/* Emotional State After */}
             <View className="mb-6">
-              <Text className="mb-3 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-3 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Emotional State After Waking
               </Text>
               <View className="flex-row flex-wrap">
@@ -290,14 +293,14 @@ export default function AddDreamScreen() {
                     onPress={() => setEmotionalStateAfter(state.value)}
                     className="mb-2 mr-2 rounded-xl px-4 py-2.5"
                     style={{
-                      backgroundColor: emotionalStateAfter === state.value ? '#8B5CF6' : '#FFFFFF',
+                      backgroundColor: emotionalStateAfter === state.value ? colors.accent : colors.cardBackground,
                       borderWidth: 1,
-                      borderColor: emotionalStateAfter === state.value ? '#8B5CF6' : '#E5E7EB',
+                      borderColor: emotionalStateAfter === state.value ? colors.accent : colors.border,
                     }}
                   >
                     <Text
                       className="text-sm"
-                      style={{ color: emotionalStateAfter === state.value ? '#FFFFFF' : '#4B5563' }}
+                      style={{ color: emotionalStateAfter === state.value ? '#FFFFFF' : colors.textSecondary }}
                     >
                       {state.label}
                     </Text>
@@ -308,38 +311,40 @@ export default function AddDreamScreen() {
 
             {/* Characters */}
             <View className="mb-6">
-              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Characters Present
               </Text>
               <TextInput
                 value={characters}
                 onChangeText={setCharacters}
                 placeholder="Separate names with commas (e.g., Friend, Family member)"
-                placeholderTextColor="#9CA3AF"
-                className="rounded-xl bg-white p-4 text-base"
+                placeholderTextColor={colors.textTertiary}
+                className="rounded-xl p-4 text-base"
                 style={{
+                  backgroundColor: colors.cardBackground,
                   borderWidth: 1,
-                  borderColor: '#E5E7EB',
-                  color: '#1F2937',
+                  borderColor: colors.border,
+                  color: colors.textPrimary,
                 }}
               />
             </View>
 
             {/* Location */}
             <View className="mb-6">
-              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Location
               </Text>
               <TextInput
                 value={location}
                 onChangeText={setLocation}
                 placeholder="Where did the dream take place?"
-                placeholderTextColor="#9CA3AF"
-                className="rounded-xl bg-white p-4 text-base"
+                placeholderTextColor={colors.textTertiary}
+                className="rounded-xl p-4 text-base"
                 style={{
+                  backgroundColor: colors.cardBackground,
                   borderWidth: 1,
-                  borderColor: '#E5E7EB',
-                  color: '#1F2937',
+                  borderColor: colors.border,
+                  color: colors.textPrimary,
                 }}
               />
             </View>
@@ -370,7 +375,7 @@ export default function AddDreamScreen() {
 
             {/* Overall Tone */}
             <View className="mb-6">
-              <Text className="mb-3 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-3 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Overall Tone
               </Text>
               <View className="flex-row flex-wrap">
@@ -380,15 +385,15 @@ export default function AddDreamScreen() {
                     onPress={() => setOverallTone(tone.value)}
                     className="mb-2 mr-2 flex-row items-center rounded-xl px-4 py-3"
                     style={{
-                      backgroundColor: overallTone === tone.value ? '#8B5CF6' : '#FFFFFF',
+                      backgroundColor: overallTone === tone.value ? colors.accent : colors.cardBackground,
                       borderWidth: 1,
-                      borderColor: overallTone === tone.value ? '#8B5CF6' : '#E5E7EB',
+                      borderColor: overallTone === tone.value ? colors.accent : colors.border,
                     }}
                   >
                     <Text className="mr-2 text-base">{tone.emoji}</Text>
                     <Text
                       className="text-sm font-semibold"
-                      style={{ color: overallTone === tone.value ? '#FFFFFF' : '#4B5563' }}
+                      style={{ color: overallTone === tone.value ? '#FFFFFF' : colors.textSecondary }}
                     >
                       {tone.label}
                     </Text>
@@ -399,41 +404,43 @@ export default function AddDreamScreen() {
 
             {/* Tags */}
             <View className="mb-6">
-              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Tags / Keywords
               </Text>
               <TextInput
                 value={tags}
                 onChangeText={setTags}
                 placeholder="Separate tags with commas (e.g., flying, water, family)"
-                placeholderTextColor="#9CA3AF"
-                className="rounded-xl bg-white p-4 text-base"
+                placeholderTextColor={colors.textTertiary}
+                className="rounded-xl p-4 text-base"
                 style={{
+                  backgroundColor: colors.cardBackground,
                   borderWidth: 1,
-                  borderColor: '#E5E7EB',
-                  color: '#1F2937',
+                  borderColor: colors.border,
+                  color: colors.textPrimary,
                 }}
               />
             </View>
 
             {/* Personal Meaning */}
             <View className="mb-6">
-              <Text className="mb-2 text-sm font-semibold" style={{ color: '#374151' }}>
+              <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Personal Meaning
               </Text>
               <TextInput
                 value={personalMeaning}
                 onChangeText={setPersonalMeaning}
                 placeholder="What does this dream mean to you?"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor={colors.textTertiary}
                 multiline
                 numberOfLines={4}
                 textAlignVertical="top"
-                className="rounded-xl bg-white p-4 text-base"
+                className="rounded-xl p-4 text-base"
                 style={{
+                  backgroundColor: colors.cardBackground,
                   borderWidth: 1,
-                  borderColor: '#E5E7EB',
-                  color: '#1F2937',
+                  borderColor: colors.border,
+                  color: colors.textPrimary,
                   minHeight: 100,
                 }}
               />
@@ -454,9 +461,11 @@ interface RatingFieldProps {
 }
 
 function RatingField({ label, value, onChange, icon }: RatingFieldProps) {
+  const { colors } = useTheme();
+  
   return (
     <View className="mb-6">
-      <Text className="mb-3 text-sm font-semibold" style={{ color: '#374151' }}>
+      <Text className="mb-3 text-sm font-semibold" style={{ color: colors.textPrimary }}>
         {label}
       </Text>
       <View className="flex-row items-center justify-between">
@@ -468,15 +477,15 @@ function RatingField({ label, value, onChange, icon }: RatingFieldProps) {
             style={{
               width: 60,
               height: 60,
-              backgroundColor: value >= rating ? '#8B5CF6' : '#FFFFFF',
+              backgroundColor: value >= rating ? colors.accent : colors.cardBackground,
               borderWidth: 1,
-              borderColor: value >= rating ? '#8B5CF6' : '#E5E7EB',
+              borderColor: value >= rating ? colors.accent : colors.border,
             }}
           >
-            <Feather name={icon} size={24} color={value >= rating ? '#FFFFFF' : '#9CA3AF'} />
+            <Feather name={icon} size={24} color={value >= rating ? '#FFFFFF' : colors.textTertiary} />
             <Text
               className="mt-1 text-xs font-semibold"
-              style={{ color: value >= rating ? '#FFFFFF' : '#6B7280' }}
+              style={{ color: value >= rating ? '#FFFFFF' : colors.textSecondary }}
             >
               {rating}
             </Text>
