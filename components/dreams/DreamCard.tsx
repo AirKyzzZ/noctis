@@ -3,7 +3,7 @@ import { View, Text, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Dream } from '../../types/dream';
 import { format } from '../../../noctis/utils/dateFormat';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface DreamCardProps {
   dream: Dream;

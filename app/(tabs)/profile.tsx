@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, Alert, TextInput, Image, ScrollView, ActivityIndicator, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { useAuth } from '../../providers/AuthContext';
-import { useProfile } from '../../providers/ProfileContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useAuth } from '../../services/AuthService';
+import { useProfile } from '../../services/ProfileService';
+import { useTheme } from '../../services/ThemeService';
 import { pickImage } from '../../utils/imagePicker';
 
 export default function ProfileScreen() {

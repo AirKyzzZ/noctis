@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface EmptyStateProps {
   hasActiveFilters: boolean;

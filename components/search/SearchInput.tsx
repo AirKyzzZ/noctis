@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface SearchInputProps {
   value: string;

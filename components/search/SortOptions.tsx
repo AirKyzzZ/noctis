@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 export type SortOption = 'date-desc' | 'date-asc' | 'clarity-desc' | 'clarity-asc' | 'quality-desc';
 

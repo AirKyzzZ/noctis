@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useMoon } from '../../providers/MoonContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useMoon } from '../../services/MoonService';
+import { useTheme } from '../../services/ThemeService';
 import { getDreamTypeLabel } from '../../utils/dreamForecastAlgorithm';
 
 const DreamForecastCard: React.FC = () => {

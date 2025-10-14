@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface ChipSelectorProps<T extends string> {
   options: T[];

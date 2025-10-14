@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { MoonPhase } from '../../types/astronomy';
 import { getMoonPhaseEmoji } from '../../utils/dreamForecastAlgorithm';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface MoonPhaseCardProps {
   moonPhase: MoonPhase;

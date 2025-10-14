@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { DreamForecast } from '../../types/astronomy';
 import { getDreamTypeLabel } from '../../utils/dreamForecastAlgorithm';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface ForecastCardProps {
   forecast: DreamForecast;

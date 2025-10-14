@@ -3,8 +3,8 @@ import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../../providers/ThemeContext';
-import { useNotifications } from '../../providers/NotificationContext';
+import { useTheme } from '../../services/ThemeService';
+import { useNotifications } from '../../services/NotificationService';
 import { NotificationList, NotificationSettings } from '../../components/notifications';
 import { Notification } from '../../types/notification';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 import { Notification } from '../../types/notification';
 import { NotificationItem } from './NotificationItem';
 

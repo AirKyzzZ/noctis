@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Slot, useRouter, useSegments } from 'expo-router';
 import * as Notifications from 'expo-notifications';
-import { AuthProvider, useAuth } from '../providers/AuthContext';
-import { ProfileProvider } from '../providers/ProfileContext';
-import { DreamProvider } from '../providers/DreamContext';
-import { ThemeProvider, useTheme } from '../providers/ThemeContext';
-import { MoonProvider } from '../providers/MoonContext';
-import { NotificationProvider, useNotifications } from '../providers/NotificationContext';
+import { AuthProvider, useAuth } from '../services/AuthService';
+import { ProfileProvider } from '../services/ProfileService';
+import { DreamProvider } from '../services/DreamService';
+import { ThemeProvider, useTheme } from '../services/ThemeService';
+import { MoonProvider } from '../services/MoonService';
+import { NotificationProvider, useNotifications } from '../services/NotificationService';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';

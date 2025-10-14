@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { router } from 'expo-router';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 import { Dream } from '../../types/dream';
 import DreamCard from '../dreams/DreamCard';
 

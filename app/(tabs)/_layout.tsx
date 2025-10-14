@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Tabs, useRouter, usePathname } from 'expo-router';
 import BottomNavbar, { type BottomTabItem } from '../../components/BottomNavbar';
-import { useNotifications } from '../../providers/NotificationContext';
+import { useNotifications } from '../../services/NotificationService';
 
 export default function TabsLayout() {
   const router = useRouter();

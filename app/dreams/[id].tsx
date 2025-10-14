@@ -14,8 +14,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
-import { useDreams } from '../../providers/DreamContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useDreams } from '../../services/DreamService';
+import { useTheme } from '../../services/ThemeService';
 import { format } from '../../utils/dateFormat';
 import { DreamKiviatChart } from '../../components/dreams';
 import {

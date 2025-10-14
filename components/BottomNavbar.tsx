@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Pressable, Animated, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from '../providers/ThemeContext';
+import { useTheme } from '../services/ThemeService';
 
 type FeatherIconName = keyof typeof Feather.glyphMap;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, RefreshControl, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useMoon } from '../../providers/MoonContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useMoon } from '../../services/MoonService';
+import { useTheme } from '../../services/ThemeService';
 import { 
   MoonPhaseCard, 
   ForecastCard, 

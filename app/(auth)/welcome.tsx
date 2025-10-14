@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { OnboardingCarousel } from '../../components/auth/OnboardingCarousel';
-import { useAuth } from '../../providers/AuthContext';
+import { useAuth } from '../../services/AuthService';
 
 export default function WelcomeScreen() {
   const { enterApp } = useAuth();

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import Svg, { Circle, Polygon, Line, Text as SvgText } from 'react-native-svg';
 import { Dream, DreamType } from '../../types/dream';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 
 interface DreamKiviatChartAggregateProps {
   dreams: Dream[];

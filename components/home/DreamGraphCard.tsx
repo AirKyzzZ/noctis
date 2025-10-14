@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { View, Text, Pressable, Dimensions } from 'react-native';
 import Svg, { Circle, Line, G } from 'react-native-svg';
 import { useRouter } from 'expo-router';
-import { useDreams } from '../../providers/DreamContext';
+import { useDreams } from '../../services/DreamService';
 import { Dream } from '../../types/dream';
 
 interface GraphNode {

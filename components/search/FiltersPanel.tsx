@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { useTheme } from '../../providers/ThemeContext';
+import { useTheme } from '../../services/ThemeService';
 import { DreamType, OverallTone } from '../../types/dream';
 import FilterSection from './FilterSection';
 import ChipSelector from './ChipSelector';

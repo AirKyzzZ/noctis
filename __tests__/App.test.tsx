@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { render, waitFor } from '@testing-library/react-native';
-import { AuthProvider } from '../providers/AuthContext';
-import { ProfileProvider } from '../providers/ProfileContext';
+import { AuthProvider } from '../services/AuthService';
+import { ProfileProvider } from '../services/ProfileService';
 
 describe('App Providers', () => {
   it('renders AuthProvider without crashing', async () => {

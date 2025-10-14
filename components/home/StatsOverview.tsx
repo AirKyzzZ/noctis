@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
-import { useDreams } from '../../providers/DreamContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useDreams } from '../../services/DreamService';
+import { useTheme } from '../../services/ThemeService';
 import DreamGraph from './DreamGraphCard';
 
 export default function StatsOverview() {

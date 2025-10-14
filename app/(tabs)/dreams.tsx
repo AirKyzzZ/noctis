@@ -3,8 +3,8 @@ import { View, Text, ScrollView, Pressable, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
-import { useDreams } from '../../providers/DreamContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useDreams } from '../../services/DreamService';
+import { useTheme } from '../../services/ThemeService';
 import { DreamCard, StreakBanner, StatsGrid, DreamKiviatChartAggregate } from '../../components/dreams';
 
 export default function DreamsScreen() {

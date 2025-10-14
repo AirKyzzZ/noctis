@@ -15,8 +15,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useDreams } from '../../providers/DreamContext';
-import { useTheme } from '../../providers/ThemeContext';
+import { useDreams } from '../../services/DreamService';
+import { useTheme } from '../../services/ThemeService';
 import {
   DreamType,
   EmotionalState,

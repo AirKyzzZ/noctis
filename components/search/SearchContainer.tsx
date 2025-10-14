@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { View } from 'react-native';
-import { useTheme } from '../../providers/ThemeContext';
-import { useDreams } from '../../providers/DreamContext';
+import { useTheme } from '../../services/ThemeService';
+import { useDreams } from '../../services/DreamService';
 import { DreamType, OverallTone } from '../../types/dream';
 import SearchHeader from './SearchHeader';
 import SearchInput from './SearchInput';
