@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, Alert, Modal, ActivityIndicator, ScrollView, Platform } from 'react-native';
+import { View, Text, Pressable, Alert, Modal, ActivityIndicator, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from '../../services/ThemeService';
 import { useDreams } from '../../services/DreamService';
@@ -146,7 +146,7 @@ export const ExportDreams: React.FC = () => {
 
       <Modal
         animationType="slide"
-        transparent={true}
+        transparent
         visible={modalVisible}
         onRequestClose={() => !exporting && setModalVisible(false)}
       >
