@@ -6,6 +6,7 @@ import { useAuth } from '../../services/AuthService';
 import { useProfile } from '../../services/ProfileService';
 import { useTheme } from '../../services/ThemeService';
 import { pickImage } from '../../utils/imagePicker';
+import { ExportDreams } from '../../components/profile';
 
 export default function ProfileScreen() {
   const { exitApp } = useAuth();
@@ -88,7 +89,11 @@ export default function ProfileScreen() {
         keyboardVerticalOffset={0}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ScrollView className="flex-1">
+          <ScrollView 
+            className="flex-1"
+            contentContainerStyle={{ paddingBottom: 100 }}
+            showsVerticalScrollIndicator={false}
+          >
             <View className="flex-1 px-8 py-8">
           {/* Header with Settings Icon */}
           <View className="flex-row items-center justify-between mb-8">
@@ -179,6 +184,14 @@ export default function ProfileScreen() {
                 <Text className="text-white text-center font-bold text-lg">Save Profile</Text>
               )}
             </Pressable>
+          </View>
+
+          {/* Export Section */}
+          <View className="mb-6">
+            <Text className="text-lg font-semibold mb-3" style={{ color: colors.textPrimary }}>
+              Data Management
+            </Text>
+            <ExportDreams />
           </View>
 
           <View className="gap-4 mb-8">

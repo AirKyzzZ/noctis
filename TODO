@@ -36,7 +36,7 @@ Dream Management System:
   ✔ Gamification - tout les jours ca ajoute un et ca permet que l'utilisateur reste plus sur l'application
   ✔ Possibilité de modifier ou supprimer un reve après l'avoir ajouté
   ✔ Ajouter un date picker dans l'ajout de reves pour permettre a l'utilisateur de choisir la date de son reve
-  ☐ Modifier la couleur du texte en dark mode car le gris n'est pas lisible actuellement
+  ✔ Modifier la couleur du texte en dark mode car le gris n'est pas lisible actuellement @done(25-10-14 22:03)
 
 Home Page Features:
   ✔ Calendar avec les jours
@@ -106,8 +106,8 @@ Internationalization:
   ☐ i18n using : react-native-localize
 
 Export & Backup:
-  ☐ Possibilité d'exporter les reves dans un fichier a télécharger ou dans le cloud
-  ☐ Choisi par l'utilisateur : txt pdf google drive etc
+  ✔ Possibilité d'exporter les reves dans un fichier a télécharger ou dans le cloud @done(25-10-15 12:44)
+  ✔ Choisi par l'utilisateur : txt pdf google drive etc @done(25-10-15 12:44)
 
 Documentation & Presentation:
   ☐ Faire le readme pour bien expliquer le projet (Afin de le présenter durant l'oral de 2h du bts sio)
@@ -129,9 +129,6 @@ Lucid Dreaming Features:
 Code Quality:
   ☐ REMOVE COMMENTS ON THE ENTIRE PROJECT @critical
   ☐ Remake home made comments
-
-UX Design:
-  ☐ Exporter le projet sous forme de maquette pour le projet d'UX
 
 Deployment:
   ☐ POSTER DANS LE PLAY STORE @critical

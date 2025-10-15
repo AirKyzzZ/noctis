@@ -33,3 +33,21 @@ export function format(date: Date, formatStr: string): string {
     .replace('a', ampm);
 }
 
+/**
+ * Format date with predefined format types
+ */
+export function formatDate(date: Date, type: 'full' | 'short' | 'date' | 'time'): string {
+  switch (type) {
+    case 'full':
+      return format(date, 'MMM dd, yyyy hh:mm a');
+    case 'short':
+      return format(date, 'MMM dd, yyyy');
+    case 'date':
+      return format(date, 'yyyy-MM-dd');
+    case 'time':
+      return format(date, 'hh:mm a');
+    default:
+      return format(date, 'MMM dd, yyyy hh:mm a');
+  }
+}
+
