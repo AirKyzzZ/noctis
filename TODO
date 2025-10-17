@@ -44,7 +44,7 @@ Home Page Features:
   ✔ Overview de quelques stats comme le nombre total de rêves et la streak actuel et un petit troisième truc + bouton voir plus qui amène sur la page journal
   ✔ Faire en sorte que l'icone de photo de profil dans le header de la home page ammène sur la page profil et remplacer le logo paramètre par un theme switcher
   ✔ Dream-graph : réseau interactif en 2D de tous tes rêves connectés par symboles communs. A REMPLACER DANS LA HOMEPAGE A LA PLACE DE LA CARD TOTAL DREAMS
-  ☐ Make the WeekCalendar clickable do display the dreams you had that specific day or display none if you didn't register any dream and let you add one for this specific day @high
+  ✔ Make the WeekCalendar clickable do display the dreams you had that specific day or display none if you didn't register any dream and let you add one for this specific day @high @done(25-10-17 19:46)
   ☐ Card bibliothèque avec une icone de livre qui amène vers la documentation sur les reves et les reves lucides et les tutoriels
 
 Stats & Analytics:
@@ -110,7 +110,7 @@ Export & Backup:
   ✔ Choisi par l'utilisateur : txt pdf google drive etc @done(25-10-15 12:44)
 
 Documentation & Presentation:
-  ☐ Faire le readme pour bien expliquer le projet (Afin de le présenter durant l'oral de 2h du bts sio)
+  ☐ Refaire le readme pour bien expliquer le projet (Afin de le présenter durant l'oral de 2h du bts sio)
   ☐ Expliquer que dans le futur ce projet sera encore amélioré notamment avec supabase
   ☐ Faire une pres canva pour présentation orale bien détaillée sur l'app
 
