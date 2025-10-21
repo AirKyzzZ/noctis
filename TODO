@@ -121,12 +121,11 @@ Documentation & Presentation:
 
 Psychological Features:
   ✔ Cartographie des émotions : chaque rêve noté avec une émotion dominante → stats (ex. : 40% joyeux, 30% anxieux) @done(25-10-21 09:01)
-  ☐ Analyse de symboles : ex. "Tu rêves souvent d'eau, ce symbole peut être lié à…"
   ☐ Journal parallèle : possibilité d'ajouter ce que tu vivais la veille (stress, activité, repas) → pour détecter corrélations
   ☐ Détection des personnages récurrents : l'app identifie les "personnages clés" de tes rêves
 
 Lucid Dreaming Features:
-  ☐ Checklists lucides pas obligatoire quand l'utilisateur rentre son rêve : suivi des méthodes utilisées (MILD, WBTB, etc.)
+  ✔ Checklists lucides pas obligatoire quand l'utilisateur rentre son rêve : suivi des méthodes utilisées (MILD, WBTB, etc.) @done(25-10-21 18:45)
   ☐ Suivi de progression : "Tu as eu 3 rêves lucides ce mois-ci, +50% par rapport au précédent" dans la page de stats
   ✔ Bibliothèque de techniques : explications rapides pour s'entraîner à rêver lucide @done(25-10-21 09:49)
 

@@ -24,6 +24,18 @@ export type EmotionalIntensity = 1 | 2 | 3 | 4 | 5;
 
 export type DreamClarity = 1 | 2 | 3 | 4 | 5;
 
+export type LucidDreamTechnique = 
+  | 'MILD' // Mnemonic Induction of Lucid Dreams
+  | 'WBTB' // Wake Back To Bed
+  | 'FILD' // Finger Induced Lucid Dream
+  | 'WILD' // Wake Initiated Lucid Dream
+  | 'DILD' // Dream Initiated Lucid Dream
+  | 'SSILD' // Senses Initiated Lucid Dream
+  | 'CAT' // Cycle Adjustment Technique
+  | 'DEILD' // Dream Exit Induced Lucid Dream
+  | 'Reality Check'
+  | 'Other';
+
 export interface Dream {
   id: string;
   dateTime: string; // ISO string
@@ -39,6 +51,7 @@ export interface Dream {
   personalMeaning: string;
   overallTone: OverallTone;
   description: string; // Full dream description
+  lucidTechniques?: LucidDreamTechnique[]; // Optional: techniques used for lucid dreaming
   createdAt: string; // ISO string
   updatedAt: string; // ISO string
 }

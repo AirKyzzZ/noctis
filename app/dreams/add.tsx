@@ -26,6 +26,7 @@ import {
   SleepQuality,
   EmotionalIntensity,
   DreamClarity,
+  LucidDreamTechnique,
 } from '../../types/dream';
 
 const dreamTypes: { value: DreamType; label: string; icon: string }[] = [
@@ -55,6 +56,19 @@ const overallTones: { value: OverallTone; label: string; emoji: string }[] = [
   { value: 'mixed', label: 'Mixed', emoji: '🤔' },
 ];
 
+const lucidTechniques: { value: LucidDreamTechnique; label: string; description: string }[] = [
+  { value: 'MILD', label: 'MILD', description: 'Mnemonic Induction' },
+  { value: 'WBTB', label: 'WBTB', description: 'Wake Back To Bed' },
+  { value: 'FILD', label: 'FILD', description: 'Finger Induced' },
+  { value: 'WILD', label: 'WILD', description: 'Wake Initiated' },
+  { value: 'DILD', label: 'DILD', description: 'Dream Initiated' },
+  { value: 'SSILD', label: 'SSILD', description: 'Senses Initiated' },
+  { value: 'CAT', label: 'CAT', description: 'Cycle Adjustment' },
+  { value: 'DEILD', label: 'DEILD', description: 'Dream Exit Induced' },
+  { value: 'Reality Check', label: 'Reality Check', description: 'Reality Testing' },
+  { value: 'Other', label: 'Other', description: 'Other Technique' },
+];
+
 export default function AddDreamScreen() {
   const router = useRouter();
   const { addDream } = useDreams();
@@ -75,6 +89,7 @@ export default function AddDreamScreen() {
   const [sleepQuality, setSleepQuality] = useState<SleepQuality>(3);
   const [personalMeaning, setPersonalMeaning] = useState('');
   const [overallTone, setOverallTone] = useState<OverallTone>('neutral');
+  const [selectedLucidTechniques, setSelectedLucidTechniques] = useState<LucidDreamTechnique[]>([]);
   const [saving, setSaving] = useState(false);
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
@@ -128,6 +143,7 @@ export default function AddDreamScreen() {
         sleepQuality,
         personalMeaning: personalMeaning.trim(),
         overallTone,
+        lucidTechniques: dreamType === 'lucid' && selectedLucidTechniques.length > 0 ? selectedLucidTechniques : undefined,
       });
 
       router.push('/(tabs)/dreams');
@@ -195,6 +211,63 @@ export default function AddDreamScreen() {
                 ))}
               </View>
             </View>
+
+            {/* Lucid Dream Techniques - Only show when dream type is lucid */}
+            {dreamType === 'lucid' && (
+              <View className="mb-6">
+                <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
+                  Lucid Dream Techniques Used (Optional)
+                </Text>
+                <Text className="mb-3 text-xs" style={{ color: colors.textTertiary }}>
+                  Select the techniques you used to induce this lucid dream
+                </Text>
+                <View className="flex-row flex-wrap">
+                  {lucidTechniques.map((technique) => (
+                    <Pressable
+                      key={technique.value}
+                      onPress={() => {
+                        setSelectedLucidTechniques(prev => 
+                          prev.includes(technique.value)
+                            ? prev.filter(t => t !== technique.value)
+                            : [...prev, technique.value]
+                        );
+                      }}
+                      className="mb-2 mr-2 rounded-xl px-3 py-2"
+                      style={{
+                        backgroundColor: selectedLucidTechniques.includes(technique.value) 
+                          ? colors.accent 
+                          : colors.cardBackground,
+                        borderWidth: 1,
+                        borderColor: selectedLucidTechniques.includes(technique.value) 
+                          ? colors.accent 
+                          : colors.border,
+                      }}
+                    >
+                      <Text
+                        className="text-sm font-semibold"
+                        style={{ 
+                          color: selectedLucidTechniques.includes(technique.value) 
+                            ? '#FFFFFF' 
+                            : colors.textSecondary 
+                        }}
+                      >
+                        {technique.label}
+                      </Text>
+                      <Text
+                        className="text-xs mt-0.5"
+                        style={{ 
+                          color: selectedLucidTechniques.includes(technique.value) 
+                            ? '#FFFFFF' 
+                            : colors.textTertiary 
+                        }}
+                      >
+                        {technique.description}
+                      </Text>
+                    </Pressable>
+                  ))}
+                </View>
+              </View>
+            )}
 
             {/* Dream Date */}
             <View className="mb-6">
