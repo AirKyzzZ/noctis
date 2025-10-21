@@ -92,9 +92,9 @@ Gamification & Achievements:
   ✔ Faire un exercice de méditation dynamique pour se relaxer avant de dormir @done(25-10-21 16:30)
 
 Audio Features:
-  ☐ Audio journal : possibilité d'enregistrer à la voix ton rêve (Utile au réveil quand tu es trop fatigué pour écrire)
-  ☐ EN SPEECH TO TEXT en utilisant : React Native Voice
-  ☐ Repo : https://github.com/react-native-voice/voice
+  ✔ Audio journal : possibilité d'enregistrer à la voix ton rêve (Utile au réveil quand tu es trop fatigué pour écrire) @done(25-10-21 18:00)
+  ✔ EN SPEECH TO TEXT en utilisant : React Native Voice @done(25-10-21 18:00)
+  ✔ Repo : https://github.com/react-native-voice/voice @done(25-10-21 18:00)
 
 AI & Personalization:
   ✔ Forecast de thèmes de rêve (ex. : "Cette semaine tu risques de rêver de voyages car…") @done(25-10-21 08:56)
@@ -126,9 +126,9 @@ Psychological Features:
   ☐ Détection des personnages récurrents : l'app identifie les "personnages clés" de tes rêves
 
 Lucid Dreaming Features:
-  ☐ Checklists lucides : suivi des méthodes utilisées (MILD, WBTB, etc.)
+  ☐ Checklists lucides pas obligatoire quand l'utilisateur rentre son rêve : suivi des méthodes utilisées (MILD, WBTB, etc.)
   ☐ Suivi de progression : "Tu as eu 3 rêves lucides ce mois-ci, +50% par rapport au précédent" dans la page de stats
-  ☐ Bibliothèque de techniques : explications rapides pour s'entraîner à rêver lucide
+  ✔ Bibliothèque de techniques : explications rapides pour s'entraîner à rêver lucide @done(25-10-21 09:49)
 
 Code Quality:
   ☐ REMOVE COMMENTS ON THE ENTIRE PROJECT @critical

@@ -17,6 +17,7 @@ import { Feather } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useDreams } from '../../services/DreamService';
 import { useTheme } from '../../services/ThemeService';
+import { VoiceInput } from '../../components/dreams';
 import {
   DreamType,
   EmotionalState,
@@ -234,6 +235,17 @@ export default function AddDreamScreen() {
               <Text className="mb-2 text-sm font-semibold" style={{ color: colors.textPrimary }}>
                 Dream Description *
               </Text>
+              
+              {/* Voice Input */}
+              <VoiceInput
+                onTranscript={(text) => {
+                  if (text) {
+                    setDescription(prev => prev ? `${prev} ${text}` : text);
+                  }
+                }}
+                placeholder="Record your dream with your voice"
+              />
+
               <TextInput
                 value={description}
                 onChangeText={setDescription}
