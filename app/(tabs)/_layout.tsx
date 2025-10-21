@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Tabs, useRouter, usePathname } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import BottomNavbar, { type BottomTabItem } from '../../components/BottomNavbar';
 import { useNotifications } from '../../services/NotificationService';
 
@@ -8,6 +9,7 @@ export default function TabsLayout() {
   const router = useRouter();
   const pathname = usePathname();
   const { unreadCount } = useNotifications();
+  const { t } = useTranslation();
   
   // Map pathname to active tab key
   const getActiveKey = () => {
@@ -28,12 +30,12 @@ export default function TabsLayout() {
   }, [pathname]);
   
   const tabs: BottomTabItem[] = [
-    { key: 'home', icon: 'home' as const, label: 'Accueil' },
-    { key: 'book', icon: 'book' as const, label: 'Dreams' },
-    { key: 'moon', icon: 'moon' as const, label: 'Prévisions' },
-    { key: 'search', icon: 'search' as const, label: 'Recherche' },
-    { key: 'bell', icon: 'bell' as const, label: 'Notifications', badge: unreadCount },
-    { key: 'user', icon: 'user' as const, label: 'Profil' },
+    { key: 'home', icon: 'home' as const, label: t('tabs.home') },
+    { key: 'book', icon: 'book' as const, label: t('tabs.dreams') },
+    { key: 'moon', icon: 'moon' as const, label: t('tabs.forecast') },
+    { key: 'search', icon: 'search' as const, label: t('tabs.search') },
+    { key: 'bell', icon: 'bell' as const, label: t('tabs.notifications'), badge: unreadCount },
+    { key: 'user', icon: 'user' as const, label: t('tabs.profile') },
   ];
 
   const handleTabPress = (key: string) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { useMoon } from '../../services/MoonService';
 import { useTheme } from '../../services/ThemeService';
 import { getDreamTypeLabel } from '../../utils/dreamForecastAlgorithm';
@@ -9,6 +10,7 @@ const DreamForecastCard: React.FC = () => {
   const router = useRouter();
   const { dreamForecast, loading } = useMoon();
   const { colors } = useTheme();
+  const { t } = useTranslation();
 
   // Helper function to render stars
   const renderStars = (count: number) => {
@@ -19,7 +21,7 @@ const DreamForecastCard: React.FC = () => {
     return (
       <View className="mx-6 mb-4 rounded-3xl p-6 shadow-sm" style={{ backgroundColor: colors.cardBackground }}>
         <Text className="text-center" style={{ color: colors.textSecondary }}>
-          Loading forecast...
+          {t('forecast.loading')}
         </Text>
       </View>
     );
@@ -42,10 +44,10 @@ const DreamForecastCard: React.FC = () => {
       <View className="flex-row items-center justify-between mb-3">
         <View className="flex-1">
           <Text className="text-sm font-semibold mb-1" style={{ color: colors.accent }}>
-            TODAY'S PREDICTION
+            {t('forecast.prediction').toUpperCase()}
           </Text>
           <Text className="text-xl font-bold" style={{ color: colors.textPrimary }}>
-            {dreamTypeLabel} Dream
+            {dreamTypeLabel} {t('tabs.dreams')}
           </Text>
         </View>
         <Text className="text-3xl">🔮</Text>
@@ -55,7 +57,7 @@ const DreamForecastCard: React.FC = () => {
       <View className="flex-row items-center justify-between mb-4">
         <View className="flex-1 mr-4">
           <Text className="text-xs font-medium mb-1" style={{ color: colors.textSecondary }}>
-            Intensity
+            {t('forecast.intensity')}
           </Text>
           <Text className="text-base" style={{ color: colors.accent }}>
             {renderStars(dreamForecast.intensity)}
@@ -63,7 +65,7 @@ const DreamForecastCard: React.FC = () => {
         </View>
         <View className="flex-1">
           <Text className="text-xs font-medium mb-1" style={{ color: colors.textSecondary }}>
-            Lucid Chance
+            {t('dreams.types.lucid')}
           </Text>
           <Text className="text-lg font-bold" style={{ color: colors.accent }}>
             {dreamForecast.lucidProbability}%
@@ -79,7 +81,7 @@ const DreamForecastCard: React.FC = () => {
           </Text>
         </View>
         <Text className="text-xs font-semibold" style={{ color: colors.accent }}>
-          View Details →
+          {t('common.viewDetails')} →
         </Text>
       </View>
     </TouchableOpacity>

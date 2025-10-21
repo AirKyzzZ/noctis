@@ -8,6 +8,7 @@ import { ThemeProvider, useTheme } from '../services/ThemeService';
 import { MoonProvider } from '../services/MoonService';
 import { NotificationProvider, useNotifications } from '../services/NotificationService';
 import { AchievementProvider } from '../services/AchievementService';
+import { I18nProvider } from '../services/I18nProvider';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
@@ -153,21 +154,23 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <ProfileProvider>
-          <DreamProvider>
-            <AchievementProvider>
-              <MoonProvider>
-                <NotificationProvider>
-                  <RootLayoutNav />
-                </NotificationProvider>
-              </MoonProvider>
-            </AchievementProvider>
-          </DreamProvider>
-        </ProfileProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <I18nProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <ProfileProvider>
+            <DreamProvider>
+              <AchievementProvider>
+                <MoonProvider>
+                  <NotificationProvider>
+                    <RootLayoutNav />
+                  </NotificationProvider>
+                </MoonProvider>
+              </AchievementProvider>
+            </DreamProvider>
+          </ProfileProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </I18nProvider>
   );
 }
 

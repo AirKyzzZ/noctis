@@ -3,8 +3,9 @@ import { View, Text, Pressable, ScrollView, Linking, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../services/ThemeService';
-import { SettingsSection, SettingsItem } from '../components/settings';
+import { SettingsSection, SettingsItem, LanguageSelector } from '../components/settings';
 
 const BUY_ME_COFFEE_URL = 'https://www.maximemansiet.fr/';
 
@@ -13,6 +14,7 @@ const APP_VERSION = '1.0.0';
 export default function SettingsScreen() {
   const { colors, isDark, toggleTheme } = useTheme();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const handleBuyMeCoffee = async () => {
     try {
@@ -29,11 +31,11 @@ export default function SettingsScreen() {
 
   const settingsSections: { title: string; items: SettingsItem[] }[] = [
     {
-      title: 'Appearance',
+      title: t('settings.appearance'),
       items: [
         {
           icon: 'moon',
-          label: 'Dark Mode',
+          label: t('settings.theme'),
           type: 'toggle',
           value: isDark,
           onPress: toggleTheme,
@@ -41,45 +43,45 @@ export default function SettingsScreen() {
       ],
     },
     {
-      title: 'Feedback & Support',
+      title: t('settings.feedback'),
       items: [
         {
           icon: 'message-square',
-          label: 'Send Feedback',
+          label: t('settings.feedback'),
           type: 'navigation',
           onPress: () => router.push('/feedback'),
         },
         {
           icon: 'coffee',
-          label: 'Buy Me a Coffee',
+          label: t('settings.buyMeCoffee'),
           type: 'navigation',
           onPress: handleBuyMeCoffee,
         },
       ],
     },
     {
-      title: 'Legal',
+      title: t('settings.legal'),
       items: [
         {
           icon: 'file-text',
-          label: 'Terms of Service',
+          label: t('settings.terms'),
           type: 'navigation',
           onPress: () => router.push('/legal/terms'),
         },
         {
           icon: 'shield',
-          label: 'Privacy Policy',
+          label: t('settings.privacy'),
           type: 'navigation',
           onPress: () => router.push('/legal/privacy'),
         },
       ],
     },
     {
-      title: 'About',
+      title: t('settings.general'),
       items: [
         {
           icon: 'info',
-          label: 'Version',
+          label: t('settings.version'),
           type: 'info',
           value: APP_VERSION,
         },
@@ -97,8 +99,21 @@ export default function SettingsScreen() {
               <Feather name="arrow-left" size={24} color={colors.textPrimary} />
             </Pressable>
             <Text className="text-3xl font-bold" style={{ color: colors.textPrimary }}>
-              Settings
+              {t('settings.title')}
             </Text>
+          </View>
+
+          {/* Language Selector */}
+          <View className="mb-6">
+            <Text
+              className="text-sm font-semibold mb-3 uppercase"
+              style={{ color: colors.textSecondary }}
+            >
+              {t('settings.language')}
+            </Text>
+            <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.gray100 }}>
+              <LanguageSelector />
+            </View>
           </View>
 
           {/* Settings Sections */}

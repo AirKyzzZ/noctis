@@ -3,11 +3,13 @@ import { View, Text, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../services/ThemeService';
 
 export default function QuickAddDreamCard() {
   const router = useRouter();
   const { isDark } = useTheme();
+  const { t } = useTranslation();
 
   const handleAddDream = () => {
     router.push('/dreams/add');
@@ -45,7 +47,7 @@ export default function QuickAddDreamCard() {
               className="mb-4 text-xl font-bold leading-tight"
               style={{ color: isDark ? '#E9D5FF' : '#4C1D95' }}
             >
-              Your dream journal awaits
+              {t('home.dreamJournalAwaits')}
             </Text>
             
             <Pressable
@@ -63,7 +65,7 @@ export default function QuickAddDreamCard() {
               <View className="flex-row items-center">
                 <Feather name="plus" size={18} color="#FFFFFF" />
                 <Text className="ml-2 text-base font-bold text-white">
-                  Add Dream
+                  {t('home.addDream')}
                 </Text>
               </View>
             </Pressable>

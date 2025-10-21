@@ -101,9 +101,9 @@ AI & Personalization:
   ✔ Conseils personnalisés : "Essaie de te coucher 30 min plus tôt pour favoriser les rêves lucides" @done(25-10-21 08:59)
 
 Internationalization:
-  ☐ Possibilité de changer la langue mais celle par défaut est le francais
-  ☐ Il y a aussi de l'anglais disponible pour l'instant
-  ☐ i18n using : react-native-localize
+  ✔ Possibilité de changer la langue mais celle par défaut est l'anglais @done(25-10-21 18:30)
+  ✔ Il y a aussi du français disponible pour l'instant @done(25-10-21 18:30)
+  ✔ i18n using : i18next, react-i18next, expo-localization @done(25-10-21 18:30)
 
 Export & Backup:
   ✔ Possibilité d'exporter les reves dans un fichier a télécharger ou dans le cloud @done(25-10-15 12:44)

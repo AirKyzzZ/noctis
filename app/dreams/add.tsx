@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useTranslation } from 'react-i18next';
 import { useDreams } from '../../services/DreamService';
 import { useTheme } from '../../services/ThemeService';
 import { VoiceInput } from '../../components/dreams';
@@ -58,6 +59,7 @@ export default function AddDreamScreen() {
   const router = useRouter();
   const { addDream } = useDreams();
   const { colors, isDark } = useTheme();
+  const { t } = useTranslation();
 
   const [dreamDate, setDreamDate] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -95,7 +97,7 @@ export default function AddDreamScreen() {
 
   const handleSave = async () => {
     if (!description.trim()) {
-      Alert.alert('Missing Information', 'Please provide a dream description.');
+      Alert.alert(t('common.error'), t('dreams.requiredField'));
       return;
     }
 
@@ -130,7 +132,7 @@ export default function AddDreamScreen() {
 
       router.push('/(tabs)/dreams');
     } catch (error) {
-      Alert.alert('Error', 'Failed to save dream. Please try again.');
+      Alert.alert(t('common.error'), t('errors.saveError'));
       console.error('Error saving dream:', error);
     } finally {
       setSaving(false);
@@ -150,14 +152,14 @@ export default function AddDreamScreen() {
             <Feather name="x" size={24} color={colors.textPrimary} />
           </Pressable>
           <Text className="text-lg font-bold" style={{ color: colors.textPrimary }}>
-            New Dream
+            {t('dreams.newDream')}
           </Text>
           <Pressable onPress={handleSave} disabled={saving} hitSlop={12}>
             <Text
               className="text-base font-semibold"
               style={{ color: saving ? colors.textTertiary : colors.accent }}
             >
-              {saving ? 'Saving...' : 'Save'}
+              {saving ? t('common.saving') : t('common.save')}
             </Text>
           </Pressable>
         </View>

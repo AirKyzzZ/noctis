@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Pressable, Alert, Platform, Animated } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../services/ThemeService';
 
 // Conditionally import Voice module
@@ -20,12 +21,14 @@ interface VoiceInputProps {
   placeholder?: string;
 }
 
-export default function VoiceInput({ onTranscript, placeholder = 'Tap to record your dream' }: VoiceInputProps) {
+export default function VoiceInput({ onTranscript, placeholder }: VoiceInputProps) {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [pulseAnim] = useState(new Animated.Value(1));
   const isVoiceAvailable = Voice !== null;
+  const defaultPlaceholder = placeholder || t('dreams.voiceInputPlaceholder');
 
   useEffect(() => {
     if (!isVoiceAvailable) return;
@@ -87,14 +90,14 @@ export default function VoiceInput({ onTranscript, placeholder = 'Tap to record 
     
     if (event.error?.code === 'permissions') {
       Alert.alert(
-        'Permission Required',
-        'Please grant microphone and speech recognition permissions in your device settings to use voice input.',
+        t('voice.permissionRequired'),
+        t('voice.permissionMessage'),
         [{ text: 'OK' }]
       );
     } else if (event.error?.code !== 'no-speech') {
       Alert.alert(
-        'Voice Recognition Error',
-        'Failed to recognize speech. Please try again.',
+        t('voice.recognitionError'),
+        t('voice.recognitionErrorMessage'),
         [{ text: 'OK' }]
       );
     }
@@ -125,8 +128,8 @@ export default function VoiceInput({ onTranscript, placeholder = 'Tap to record 
   const handlePress = () => {
     if (!isVoiceAvailable) {
       Alert.alert(
-        'Voice Input Not Available',
-        'Voice input requires a development build. Please run: npx expo run:ios',
+        t('voice.notAvailableTitle'),
+        t('voice.notAvailableMessage'),
         [{ text: 'OK' }]
       );
       return;
@@ -177,7 +180,7 @@ export default function VoiceInput({ onTranscript, placeholder = 'Tap to record 
           className="mb-1 text-base font-semibold"
           style={{ color: isRecording ? colors.accent : colors.textPrimary }}
         >
-          {isRecording ? 'Listening...' : isVoiceAvailable ? 'Voice Input' : 'Voice Input (Unavailable)'}
+          {isRecording ? t('voice.listening') : isVoiceAvailable ? t('dreams.voiceInput') : t('voice.unavailable')}
         </Text>
 
         <Text
@@ -185,17 +188,17 @@ export default function VoiceInput({ onTranscript, placeholder = 'Tap to record 
           style={{ color: colors.textSecondary }}
         >
           {isRecording 
-            ? 'Speak clearly to record your dream' 
+            ? t('voice.speakClearly')
             : isVoiceAvailable 
-              ? placeholder 
-              : 'Run dev build to use voice input'
+              ? defaultPlaceholder
+              : t('voice.devBuildRequired')
           }
         </Text>
 
         {transcript && !isRecording && (
           <View className="mt-3 rounded-lg bg-opacity-50 p-3" style={{ backgroundColor: colors.accent + '20' }}>
             <Text className="text-xs" style={{ color: colors.textSecondary }}>
-              Last transcription:
+              {t('voice.lastTranscription')}
             </Text>
             <Text className="mt-1 text-sm" style={{ color: colors.textPrimary }}>
               {transcript.substring(0, 100)}
@@ -209,10 +212,10 @@ export default function VoiceInput({ onTranscript, placeholder = 'Tap to record 
         <Feather name="info" size={14} color={colors.textTertiary} />
         <Text className="ml-1 text-xs" style={{ color: colors.textTertiary }}>
           {isRecording 
-            ? 'Tap again to stop recording' 
+            ? t('voice.tapToStop')
             : isVoiceAvailable 
-              ? 'Tap the microphone to start recording'
-              : 'Available only in development builds'
+              ? t('voice.tapToRecord')
+              : t('voice.devBuildRequired')
           }
         </Text>
       </View>

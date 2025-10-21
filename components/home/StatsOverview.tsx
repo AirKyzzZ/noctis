@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { useDreams } from '../../services/DreamService';
 import { useTheme } from '../../services/ThemeService';
 import DreamGraph from './DreamGraphCard';
@@ -10,6 +11,7 @@ export default function StatsOverview() {
   const router = useRouter();
   const { stats, dreams } = useDreams();
   const { colors } = useTheme();
+  const { t } = useTranslation();
 
   // Calculate dreams this week
   const getDreamsThisWeek = () => {
@@ -30,14 +32,14 @@ export default function StatsOverview() {
       {/* Header */}
       <View className="mb-2 flex-row items-center justify-between">
         <Text className="text-base font-bold" style={{ color: colors.textPrimary }}>
-          Your Progress
+          {t('home.statsOverview')}
         </Text>
         <Pressable
           onPress={() => router.push('/(tabs)/dreams')}
           className="flex-row items-center"
         >
           <Text className="mr-1 text-sm font-semibold" style={{ color: colors.accent }}>
-            See More
+            {t('common.seeMore')}
           </Text>
           <Feather name="arrow-right" size={14} color={colors.accent} />
         </Pressable>
@@ -80,11 +82,11 @@ export default function StatsOverview() {
                 <Text className="text-xl font-bold text-white">
                   {stats.currentStreak}
                   <Text className="text-xs text-white/80">
-                    {' '}{stats.currentStreak === 1 ? 'day' : 'days'}
+                    {' '}{stats.currentStreak === 1 ? t('dreams.day') : t('dreams.days')}
                   </Text>
                 </Text>
                 <Text className="text-xs font-medium text-white/90">
-                  Current Streak
+                  {t('dreams.stats.currentStreak')}
                 </Text>
               </View>
             </View>
@@ -120,11 +122,11 @@ export default function StatsOverview() {
                 <Text className="text-xl font-bold text-white">
                   {dreamsThisWeek}
                   <Text className="text-xs text-white/80">
-                    {' '}{dreamsThisWeek === 1 ? 'dream' : 'dreams'}
+                    {' '}{dreamsThisWeek === 1 ? t('tabs.dreams').toLowerCase() : t('tabs.dreams').toLowerCase()}
                   </Text>
                 </Text>
                 <Text className="text-xs font-medium text-white/90">
-                  This Week
+                  {t('home.thisWeek')}
                 </Text>
               </View>
             </View>
