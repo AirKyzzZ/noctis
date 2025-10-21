@@ -22,12 +22,12 @@ export default function SettingsScreen() {
       } else {
         Alert.alert('Error', 'Unable to open the link. Please try again later.');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to open the link.');
     }
   };
 
-  const settingsSections: Array<{ title: string; items: SettingsItem[] }> = [
+  const settingsSections: { title: string; items: SettingsItem[] }[] = [
     {
       title: 'Appearance',
       items: [

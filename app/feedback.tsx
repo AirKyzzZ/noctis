@@ -68,7 +68,7 @@ export default function FeedbackScreen() {
           'Please email us directly at support@noctis.app'
         );
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to send feedback. Please try again.');
     } finally {
       setIsSubmitting(false);
