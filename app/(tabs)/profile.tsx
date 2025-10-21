@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, Alert, TextInput, Image, ScrollView, ActivityIndicator, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { useAuth } from '../../services/AuthService';
 import { useProfile } from '../../services/ProfileService';
 import { useTheme } from '../../services/ThemeService';
@@ -12,6 +13,7 @@ export default function ProfileScreen() {
   const { exitApp } = useAuth();
   const { profile, updateProfile, loading } = useProfile();
   const { colors } = useTheme();
+  const router = useRouter();
   const [name, setName] = useState(profile.name);
   const [surname, setSurname] = useState(profile.surname);
   const [isSaving, setIsSaving] = useState(false);
@@ -23,7 +25,7 @@ export default function ProfileScreen() {
   }, [profile]);
 
   const handleSettingsPress = () => {
-    // TODO: Implement settings page
+    router.push('/settings');
   };
 
   const handleSaveProfile = async () => {

@@ -55,8 +55,8 @@ Stats & Analytics:
 
 Profile & Settings:
   ✔ Mettre icone paramètre dans la page profil et pas dans la home page mais c'est la meme qu'avant c'est a dire ronde et en haut a droite
-  ☐ Ajouter un form de retour feedback et des pages légales dans la page de settings pour pouvoir les ajouter aux stores
-  ☐ Bouton buy me a coffee in the settings qui redirige vers le lien de paiment stripe
+  ✔ Ajouter un form de retour feedback et des pages légales dans la page de settings pour pouvoir les ajouter aux stores @done(25-10-21 15:30)
+  ✔ Bouton buy me a coffee in the settings qui redirige vers le lien de paiment stripe @done(25-10-21 15:30)
 
 Search & Filters:
   ✔ Implémenter la page de recherche pour rechercher et filtrer les reves par mots clés date ou qualité clareté, qualité du sommeil etc
@@ -97,8 +97,8 @@ Audio Features:
   ☐ Repo : https://github.com/react-native-voice/voice
 
 AI & Personalization:
-  ☐ Forecast de thèmes de rêve (ex. : "Cette semaine tu risques de rêver de voyages car…")
-  ☐ Conseils personnalisés : "Essaie de te coucher 30 min plus tôt pour favoriser les rêves lucides"
+  ✔ Forecast de thèmes de rêve (ex. : "Cette semaine tu risques de rêver de voyages car…") @done(25-10-21 08:56)
+  ✔ Conseils personnalisés : "Essaie de te coucher 30 min plus tôt pour favoriser les rêves lucides" @done(25-10-21 08:59)
 
 Internationalization:
   ☐ Possibilité de changer la langue mais celle par défaut est le francais
@@ -110,12 +110,17 @@ Export & Backup:
   ✔ Choisi par l'utilisateur : txt pdf google drive etc @done(25-10-15 12:44)
 
 Documentation & Presentation:
-  ☐ Refaire le readme pour bien expliquer le projet (Afin de le présenter durant l'oral de 2h du bts sio)
+  ☐ Refaire le readme pour bien expliquer le projet EN FRANÇAIS (Afin de le présenter durant l'oral) 
+    Rapport sous la forme d'une documentation technique comprenant:
+    - README qui explique comment lancer votre application.
+    - une explication brève de la structure du projet et l'architecture.
+    - Les choix de conception et les fonctionnalités implémentées.
+    - Des captures d'écran des pages de l'application illustrant les choix graphiques.
   ☐ Expliquer que dans le futur ce projet sera encore amélioré notamment avec supabase
   ☐ Faire une pres canva pour présentation orale bien détaillée sur l'app
 
 Psychological Features:
-  ☐ Cartographie des émotions : chaque rêve noté avec une émotion dominante → stats (ex. : 40% joyeux, 30% anxieux)
+  ✔ Cartographie des émotions : chaque rêve noté avec une émotion dominante → stats (ex. : 40% joyeux, 30% anxieux) @done(25-10-21 09:01)
   ☐ Analyse de symboles : ex. "Tu rêves souvent d'eau, ce symbole peut être lié à…"
   ☐ Journal parallèle : possibilité d'ajouter ce que tu vivais la veille (stress, activité, repas) → pour détecter corrélations
   ☐ Détection des personnages récurrents : l'app identifie les "personnages clés" de tes rêves
@@ -128,7 +133,7 @@ Lucid Dreaming Features:
 
 Code Quality:
   ☐ REMOVE COMMENTS ON THE ENTIRE PROJECT @critical
-  ☐ Remake home made comments
+  ☐ Remake a few home made comments in french to explain as a 2nd year student
 
 Deployment:
   ☐ POSTER DANS LE PLAY STORE @critical
