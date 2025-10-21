@@ -6,14 +6,12 @@ import { useTheme } from '../../services/ThemeService';
 
 // Conditionally import Voice module
 let Voice: any = null;
-let SpeechResultsEvent: any = null;
-let SpeechErrorEvent: any = null;
 
 try {
   const VoiceModule = require('@react-native-voice/voice');
   Voice = VoiceModule.default;
-} catch (e) {
-  console.log('Voice module not available - running in Expo Go. Use development build for voice features.');
+} catch {
+  // Voice module not available - running in Expo Go. Use development build for voice features.
 }
 
 interface VoiceInputProps {
@@ -85,7 +83,6 @@ export default function VoiceInput({ onTranscript, placeholder }: VoiceInputProp
   };
 
   const onSpeechError = (event: any) => {
-    console.error('Speech recognition error:', event.error);
     setIsRecording(false);
     
     if (event.error?.code === 'permissions') {
@@ -107,8 +104,7 @@ export default function VoiceInput({ onTranscript, placeholder }: VoiceInputProp
     try {
       setTranscript('');
       await Voice.start(Platform.OS === 'ios' ? 'en-US' : 'en_US');
-    } catch (error) {
-      console.error('Error starting voice recognition:', error);
+    } catch {
       Alert.alert(
         'Error',
         'Failed to start voice recognition. Please check your microphone permissions.',
@@ -120,8 +116,8 @@ export default function VoiceInput({ onTranscript, placeholder }: VoiceInputProp
   const stopRecording = async () => {
     try {
       await Voice.stop();
-    } catch (error) {
-      console.error('Error stopping voice recognition:', error);
+    } catch {
+      // Silently handle error
     }
   };
 
