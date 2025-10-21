@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import HomeHeader from '../../components/home/HomeHeader';
 import WeekCalendar from '../../components/home/WeekCalendar';
 import QuickAddDreamCard from '../../components/home/QuickAddDreamCard';
-import { StatsOverview, DreamForecastCard } from '../../components/home';
+import { StatsOverview, DreamForecastCard, LibraryCard } from '../../components/home';
 import { useTheme } from '../../services/ThemeService';
 
 export default function HomeScreen() {
@@ -22,6 +22,7 @@ export default function HomeScreen() {
         <DreamForecastCard />
         <StatsOverview />
         <WeekCalendar />
+        <LibraryCard />
       </ScrollView>
     </SafeAreaView>
   );
