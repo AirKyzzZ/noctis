@@ -6,13 +6,16 @@ import { useRouter } from 'expo-router';
 import { useAuth } from '../../services/AuthService';
 import { useProfile } from '../../services/ProfileService';
 import { useTheme } from '../../services/ThemeService';
+import { useAchievements } from '../../services/AchievementService';
 import { pickImage } from '../../utils/imagePicker';
 import { ExportDreams } from '../../components/profile';
+import { AchievementBadge } from '../../components/achievements';
 
 export default function ProfileScreen() {
   const { exitApp } = useAuth();
   const { profile, updateProfile, loading } = useProfile();
   const { colors } = useTheme();
+  const { achievements, stats } = useAchievements();
   const router = useRouter();
   const [name, setName] = useState(profile.name);
   const [surname, setSurname] = useState(profile.surname);
@@ -185,6 +188,105 @@ export default function ProfileScreen() {
               ) : (
                 <Text className="text-white text-center font-bold text-lg">Save Profile</Text>
               )}
+            </Pressable>
+          </View>
+
+          {/* Achievements Section */}
+          <View className="mb-6">
+            <View className="flex-row items-center justify-between mb-3">
+              <Text className="text-lg font-semibold" style={{ color: colors.textPrimary }}>
+                Achievements
+              </Text>
+              <Pressable onPress={() => router.push('/achievements')} className="active:opacity-70">
+                <Text className="text-sm font-semibold" style={{ color: colors.accent }}>
+                  View All
+                </Text>
+              </Pressable>
+            </View>
+            <View className="rounded-xl p-4 mb-3" style={{ backgroundColor: colors.gray100 }}>
+              <View className="flex-row items-center justify-between mb-3">
+                <View className="flex-row items-center">
+                  <Text className="text-2xl mr-2">🏆</Text>
+                  <View>
+                    <Text className="text-base font-bold" style={{ color: colors.textPrimary }}>
+                      {stats.totalUnlocked} / {stats.totalAchievements}
+                    </Text>
+                    <Text className="text-xs" style={{ color: colors.textSecondary }}>
+                      Unlocked
+                    </Text>
+                  </View>
+                </View>
+                <View className="items-end">
+                  <Text className="text-lg font-bold" style={{ color: colors.accent }}>
+                    {stats.completionPercentage}%
+                  </Text>
+                  <Text className="text-xs" style={{ color: colors.textSecondary }}>
+                    Complete
+                  </Text>
+                </View>
+              </View>
+              <View className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: colors.gray200 }}>
+                <View
+                  className="h-full rounded-full"
+                  style={{
+                    backgroundColor: colors.accent,
+                    width: `${stats.completionPercentage}%`,
+                  }}
+                />
+              </View>
+            </View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ gap: 12 }}
+            >
+              {achievements
+                .filter(a => a.unlocked)
+                .slice(0, 6)
+                .map(achievement => (
+                  <AchievementBadge
+                    key={achievement.id}
+                    achievement={achievement}
+                    size="small"
+                  />
+                ))}
+              {stats.totalUnlocked === 0 && (
+                <View className="items-center justify-center py-4">
+                  <Text className="text-sm" style={{ color: colors.textTertiary }}>
+                    No achievements yet. Keep journaling!
+                  </Text>
+                </View>
+              )}
+            </ScrollView>
+          </View>
+
+          {/* Wellness Section */}
+          <View className="mb-6">
+            <Text className="text-lg font-semibold mb-3" style={{ color: colors.textPrimary }}>
+              Wellness
+            </Text>
+            <Pressable
+              onPress={() => router.push('/meditation')}
+              className="rounded-xl p-4 active:opacity-70"
+              style={{ backgroundColor: colors.gray100 }}
+            >
+              <View className="flex-row items-center">
+                <View
+                  className="w-12 h-12 rounded-full items-center justify-center mr-3"
+                  style={{ backgroundColor: colors.accent + '20' }}
+                >
+                  <Text className="text-2xl">🧘</Text>
+                </View>
+                <View className="flex-1">
+                  <Text className="text-base font-bold mb-1" style={{ color: colors.textPrimary }}>
+                    Meditation Exercises
+                  </Text>
+                  <Text className="text-sm" style={{ color: colors.textSecondary }}>
+                    Relax before sleep with guided meditation
+                  </Text>
+                </View>
+                <Feather name="chevron-right" size={20} color={colors.textTertiary} />
+              </View>
             </Pressable>
           </View>
 

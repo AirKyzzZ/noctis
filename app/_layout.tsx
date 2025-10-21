@@ -7,6 +7,7 @@ import { DreamProvider } from '../services/DreamService';
 import { ThemeProvider, useTheme } from '../services/ThemeService';
 import { MoonProvider } from '../services/MoonService';
 import { NotificationProvider, useNotifications } from '../services/NotificationService';
+import { AchievementProvider } from '../services/AchievementService';
 import { useFonts } from 'expo-font';
 import { Text, TextInput, Animated, StyleSheet, StatusBar } from 'react-native';
 import { ConfettiEffect } from '../components/auth/ConfettiEffect';
@@ -156,11 +157,13 @@ export default function RootLayout() {
       <AuthProvider>
         <ProfileProvider>
           <DreamProvider>
-            <MoonProvider>
-              <NotificationProvider>
-                <RootLayoutNav />
-              </NotificationProvider>
-            </MoonProvider>
+            <AchievementProvider>
+              <MoonProvider>
+                <NotificationProvider>
+                  <RootLayoutNav />
+                </NotificationProvider>
+              </MoonProvider>
+            </AchievementProvider>
           </DreamProvider>
         </ProfileProvider>
       </AuthProvider>

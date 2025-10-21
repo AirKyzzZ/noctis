@@ -86,10 +86,10 @@ Theme System:
   ✔ Juste échanger background et foreground pas besoin de modifier la couleur d'accent @done(25-10-07 19:53)
 
 Gamification & Achievements:
-  ☐ Défis : ex. "Note tes rêves 7 jours d'affilée"
-  ☐ Succès / badges : "Premier rêve lucide enregistré ! 🏆"
-  ☐ Voir tout les badges collectés dans la page de profil
-  ☐ Faire un exercice de méditation dynamique pour se relaxer avant de dormir
+  ✔ Défis : ex. "Note tes rêves 7 jours d'affilée" @done(25-10-21 16:30)
+  ✔ Succès / badges : "Premier rêve lucide enregistré ! 🏆" @done(25-10-21 16:30)
+  ✔ Voir tout les badges collectés dans la page de profil @done(25-10-21 16:30)
+  ✔ Faire un exercice de méditation dynamique pour se relaxer avant de dormir @done(25-10-21 16:30)
 
 Audio Features:
   ☐ Audio journal : possibilité d'enregistrer à la voix ton rêve (Utile au réveil quand tu es trop fatigué pour écrire)
@@ -126,9 +126,8 @@ Psychological Features:
   ☐ Détection des personnages récurrents : l'app identifie les "personnages clés" de tes rêves
 
 Lucid Dreaming Features:
-  ☐ Rappels via notifications de "tests de réalité" (notifications aléatoires → "Es-tu en train de rêver ?")
   ☐ Checklists lucides : suivi des méthodes utilisées (MILD, WBTB, etc.)
-  ☐ Suivi de progression : "Tu as eu 3 rêves lucides ce mois-ci, +50% par rapport au précédent"
+  ☐ Suivi de progression : "Tu as eu 3 rêves lucides ce mois-ci, +50% par rapport au précédent" dans la page de stats
   ☐ Bibliothèque de techniques : explications rapides pour s'entraîner à rêver lucide
 
 Code Quality:
