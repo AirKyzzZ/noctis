@@ -37,7 +37,7 @@ export const initializeI18n = async () => {
       resources,
       lng: language,
       fallbackLng: 'en',
-      compatibilityJSON: 'v3',
+      compatibilityJSON: 'v4',
       interpolation: {
         escapeValue: false,
       },
